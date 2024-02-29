@@ -1,4 +1,4 @@
-package IO;
+package Utils;
 
 import java.io.*;
 
@@ -26,7 +26,7 @@ public class Utils {
             FileInputStream fileIn = new FileInputStream(file);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileIn));
             String lineFile;
-            if (obj.equals(IUser)) {
+            if (obj.equals(obj)) {
                 String[] dataUser = obj.toString().split(" ");
 
                 while ((lineFile = bufferedReader.readLine()) != null && !found) {

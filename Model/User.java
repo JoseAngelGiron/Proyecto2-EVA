@@ -1,10 +1,14 @@
 package Model;
 
+import Interface.IUser;
+
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class User {
+public class User implements IUser, Serializable {
     private String name;
     private String nickName;
     private String email;
@@ -12,7 +16,8 @@ public class User {
 
     private final int MIN_LENGTH = 8;
     private final int MAX_LENGTH = 20;
-    public User(String name, String nickName, String email, String password){
+
+    public User(String name, String nickName, String email, String password) {
         setName(name);
         setNickName(nickName);
         setEmail(email);
@@ -35,22 +40,37 @@ public class User {
         return password;
     }
 
-    public void setName(String name) {
+    @Override
+    public boolean setName(String name) {
+        boolean added = false;
         if (validateNoSpaces(name)) {
             this.name = name;
+            added =true;
         }
+        return added;
     }
 
-    public void setNickName(String nickName) {
+    @Override
+    public boolean setNickName(String nickName) {
+        boolean added = false;
         if (validateNoSpaces(nickName)) {
             this.nickName = nickName;
+            added =true;
         }
+        return added;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean setEmail(String email) {
+        boolean added = false;
+        if (validateEmail(email)){
+            this.email = email;
+            added= true;
+        }
+        return added;
     }
 
+    @Override
     public boolean setPassword(String password) {
         boolean isPasswordSet = false;
         if (password.length() >= MIN_LENGTH && password.length() <= MAX_LENGTH && passwordIntroducedIsStrong(password)) {
@@ -60,32 +80,51 @@ public class User {
         return isPasswordSet;
     }
 
-    /**
+    @Override
+    public boolean equals(Object o) {
+        boolean equal;
 
-     Este metodo valida si el name y el nickName no tiene espacios dentro de el campo.
-     @param text que se va a validar.
-     @return Si no cumple la funcion devolveria que el apodo no es valido*/
+        User user = (User) o;
+        if (o == null || getClass() != o.getClass()) {
+            equal = false;
+        } else equal = (Objects.equals(name, user.name) || Objects.equals(email, user.email)) && Objects.equals(password, user.password);
+
+        return equal;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, password);
+    }
+
+    /**
+     * Este metodo valida si el name y el nickName no tiene espacios dentro de el campo.
+     * @param text que se va a validar.
+     * @return Si no cumple la funcion devolveria que el apodo no es valido
+     */
     private boolean validateNoSpaces(String text) {
         Pattern pattern = Pattern.compile("^\\S*$");
         return pattern.matcher(text).matches();
     }
-    /**
 
-     Este metodo valida si el email empieza con un texto y termina en .com o .es
-     @param email que se va a validar.
-     @return Si no cumple la funcion devolveria que el email no es valido*/
-    private boolean validateEmail(String email) {
+    /**
+     * Este metodo valida si el email empieza con un texto y termina en .com o .es
+     * @param email que se va a validar.
+     * @return True o false, si no cumple la funcion devolveria que el email no es valido
+     */
+    @Override
+    public boolean validateEmail(String email) {
         Pattern pattern = Pattern.compile(".+@.+\\.(com|es)$");
-        if (pattern.matcher(email).matches()) {
-            this.email = email;
-        }
+
         return pattern.matcher(email).matches();
     }
-    /**
 
-     Este metodo encripta la contraseña haciendo uso de la biblioteca hash-256
-     @param password la contraseña que se va a encriptar
-     @return la contraseña encriptada.*/
+
+    /**
+     * Este metodo encripta la contraseña haciendo uso de la biblioteca hash-256
+     * @param password la contraseña que se va a encriptar
+     * @return la contraseña encriptada.
+     */
     public String encryptPassword(String password) {
         String hexString = null;
 
@@ -111,9 +150,10 @@ public class User {
         return hexString;
     }
     /**
-    Comprueba que la contraseña introducida, tiene al menos 3 digitos, 3 minúsculas y 1 mayúscula*
-    @param password la contraseña que se va a validar
-    @return true o false, en función de si la contraseña cumple con los requisitos o no*/
+     * Comprueba que la contraseña introducida, tiene al menos 3 digitos, 3 minúsculas y 1 mayúscula*
+     * @param password la contraseña que se va a validar
+     * @return true o false, en función de si la contraseña cumple con los requisitos o no
+     */
     private boolean passwordIntroducedIsStrong(String password) {
         boolean result;
 
@@ -123,10 +163,10 @@ public class User {
     }
 
     /**
-
-    Función que comprueba si la contraseña que se le pasa tiene una cierta cantidad de números
-    @param password la contraseña a comprobar
-    @return true o false, en función si cumple con la condición*/
+     *  Función que comprueba si la contraseña que se le pasa tiene una cierta cantidad de números
+     *  @param password la contraseña a comprobar
+     *  @return true o false, en función si cumple con la condición
+     */
     private boolean checkAmountOfNumbers(String password) {
         int acu = 0;
         for (int i = 0; i < password.length(); i++) {
@@ -138,10 +178,10 @@ public class User {
         return acu >= 3;
     }
     /**
-
-     Función que comprueba si la contraseña que se le pasa tiene una cierta cantidad de mayúsculas
-     @param password la contraseña a comprobar
-     @return true o false, en función si cumple con la condición*/
+     * Función que comprueba si la contraseña que se le pasa tiene una cierta cantidad de mayúsculas
+     * @param password la contraseña a comprobar
+     * @return true o false, en función si cumple con la condición
+     */
     private boolean checkAmountUpperCase(String password) {
         int acu = 0;
         for (int i = 0; i < password.length(); i++) {
@@ -166,5 +206,13 @@ public class User {
             }
         }
         return acu >= 3;
+    }
+
+    @Override
+    public String toString() {
+        return "name: '" + name + '\'' +
+                ", nickName: '" + nickName + '\'' +
+                ", email: " + email + '\'' +
+                ", password: " + password + '\'';
     }
 }
