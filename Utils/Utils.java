@@ -3,6 +3,13 @@ package Utils;
 import java.io.*;
 
 public class Utils {
+    /**
+     * Lee un objeto y lo escribe en un archivo.
+     *
+     * @param obj  El objeto a escribir en el archivo.
+     * @param file La ruta del archivo donde se escribirá el objeto.
+     * @param <T>  El tipo de objeto a escribir.
+     */
     public static <T> void fileRead(T obj, String file) {
 
         try {
@@ -19,6 +26,14 @@ public class Utils {
         }
     }
 
+    /**
+     * Comprueba si un objeto está presente en un archivo.
+     *
+     * @param obj  El objeto a buscar en el archivo.
+     * @param file La ruta del archivo donde se realizará la búsqueda.
+     * @param <T>  El tipo de objeto a buscar.
+     * @return true si el objeto se encuentra en el archivo, false si no.
+     */
     public static <T> boolean checkInFiles(T obj, String file) {
 
         boolean found = false;
@@ -33,7 +48,7 @@ public class Utils {
                     String[] parts = lineFile.split(":");
                     found = (dataUser[0].equals(parts[0]) && (dataUser[2].equals(parts[2])));
                 }
-            }else {
+            } else {
 
                 while ((lineFile = bufferedReader.readLine()) != null && !found) {
                     found = (obj.toString().equals(lineFile));
