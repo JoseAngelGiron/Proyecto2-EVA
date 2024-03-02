@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RepoUser extends repository {
+public class RepoUser extends AbstractRepository {
     private final static String FILENAME = "users.bin";
     private static RepoUser _instance;
     private Set<User> users;       // <--  Si quieres que sea RepoUsers tiene que
