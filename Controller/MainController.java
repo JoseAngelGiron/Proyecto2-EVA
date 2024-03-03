@@ -6,6 +6,8 @@ import Utils.Serializator;
 import View.IO;
 import View.MainView;
 
+import java.security.NoSuchAlgorithmException;
+
 public class MainController implements Interface.IController {
 
     MainView mainView = new MainView();

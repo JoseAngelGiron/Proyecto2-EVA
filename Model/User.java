@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class User implements IUser, Serializable {
+public class User implements IUser, Serializable  {
     private String name;
     private String nickName;
     private String email;
@@ -17,7 +17,7 @@ public class User implements IUser, Serializable {
     private final int MIN_LENGTH = 8;
     private final int MAX_LENGTH = 20;
 
-    public User(String name, String nickName, String email, String password) {
+    public User(String name, String nickName, String email, String password){
         setName(name);
         setNickName(nickName);
         setEmail(email);
@@ -71,7 +71,7 @@ public class User implements IUser, Serializable {
     }
 
     @Override
-    public boolean setPassword(String password) {
+    public boolean setPassword(String password)  {
         boolean isPasswordSet = false;
         if (password.length() >= MIN_LENGTH && password.length() <= MAX_LENGTH && passwordIntroducedIsStrong(password)) {
             this.password = encryptPassword(password);
@@ -87,14 +87,14 @@ public class User implements IUser, Serializable {
         User user = (User) o;
         if (o == null || getClass() != o.getClass()) {
             equal = false;
-        } else equal = (Objects.equals(name, user.name) || Objects.equals(email, user.email)) && Objects.equals(password, user.password);
+        } else equal = (Objects.equals(nickName, user.nickName) || Objects.equals(email, user.email)) && Objects.equals(password, user.password);
 
         return equal;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, password);
+        return Objects.hash(nickName, email, password);
     }
 
     /**
@@ -130,7 +130,7 @@ public class User implements IUser, Serializable {
 
         try {
 
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            MessageDigest digest = MessageDigest.getInstance("SHA3-256");
 
             byte[] hash = digest.digest(password.getBytes());
 

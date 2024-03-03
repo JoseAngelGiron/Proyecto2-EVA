@@ -36,6 +36,11 @@ public class RepoUsers implements IRepoUsers, Serializable {
     public boolean checkIfUserExists(User usertoCheck) {
         return users.contains(usertoCheck);
     }
+
+    @Override
+    public boolean changeCreator(String user) {
+        return false;
+    }
 }
 
 

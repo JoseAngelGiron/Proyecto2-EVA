@@ -1,20 +1,21 @@
 package Interface;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public interface IElementTrello <T>{
 
         //Define el modelo según el diagrama de clases  y haz la lógica de las funciones
 
-        public boolean addElement(Object obj);
+        public boolean addElement(T obj);
 
-        public boolean removeElement(Object obj);
+        public boolean removeElement(T obj);
 
         public T showElement(int id);
 
-        public ArrayList<T> showAll();
+        public Collection<T> showAll();
 
         public T findElement(int id);
-        public boolean updateElement(Object obj );
+        public boolean updateElement(T obj );
 
 }
