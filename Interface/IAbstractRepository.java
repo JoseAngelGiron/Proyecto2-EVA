@@ -4,6 +4,7 @@ import Model.User;
 
 import java.util.Collection;
 
+
 public interface IAbstractRepository<T> {
 
     public T add(User data);
@@ -13,7 +14,6 @@ public interface IAbstractRepository<T> {
     public Collection<T> getAll();
 
     public T update(User data);
-
 
     public boolean delete(String id);
 
