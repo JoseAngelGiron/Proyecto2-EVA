@@ -6,17 +6,13 @@ import java.util.Collection;
 
 public interface IAbstractRepository<T> {
 
-    public T add(T data);
+    public T add(User data);
 
-
-
-    public T getById(T id);
-
+    public T getById(String id);
 
     public Collection<T> getAll();
 
-
-    public boolean update(T data);
+    public T update(User data);
 
 
     public boolean delete(String id);
