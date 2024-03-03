@@ -3,7 +3,9 @@ package View;
 import Interface.IMainView;
 import Model.User;
 
-public class MainView implements IMainView {
+import java.security.NoSuchAlgorithmException;
+
+public class MainView implements IMainView{
     /**
      * Este método muestra un menú con tres opciones:
      * “Login”, “Registrarse” y “Salir”.
@@ -21,12 +23,7 @@ public class MainView implements IMainView {
         return IO.readNumber("Inserte la opcion que desea: ", 1, 3);
     }
 
-    @Override
-    public int loginError() {
-        System.out.println("Error en la credenciales");
-        return IO.readNumber("Vuelva a intentarlo e inserte una de estas opciones: ", 1, 3);
 
-    }
 
     /**
      * Esta función imprime un mensaje relacionado con el registro de usuarios, en función del dato que recibe

@@ -7,4 +7,6 @@ public interface IRepoUsers {
     public boolean addUser(User userToAdd);
 
     public boolean checkIfUserExists(User usertoCheck);
+
+    public boolean changeCreator(String user);
 }
