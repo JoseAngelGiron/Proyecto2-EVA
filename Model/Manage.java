@@ -78,11 +78,6 @@ public class Manage implements Serializable, IManage {
      */
     @Override
     public void loginUser(User userToLogin) {
-        for (User user : users.getElements()) {
-            if (user.equals(userToLogin)) {
-                userLoggedIn = user;
-            }
-        }
     }
 
     /**
@@ -91,13 +86,7 @@ public class Manage implements Serializable, IManage {
      */
     @Override
     public ArrayList<Proyect> retrieveProyects() {
-        ArrayList<Proyect> proyects = new ArrayList<>();
-        for (Proyect proyect : getProyects().getElements()) {
-            if (proyect.getElements().equals(userLoggedIn)) {
-                proyects.add(proyect);
-            }
-        }
-        return proyects;
+        return null;
     }
 
     @Override
