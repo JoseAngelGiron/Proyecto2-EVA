@@ -40,8 +40,10 @@ public class Task implements ITask, Serializable {
     public User getColaboratorToCharge() {
         return this.colaboratorToCharge;
     }
+
     /**
      * Método para establecer el colaborador asignado a la tarea.
+     *
      * @param user Usuario colaborador a asignar.
      */
     public void setColaboratorToCharge(User user) {
@@ -50,6 +52,7 @@ public class Task implements ITask, Serializable {
 
     /**
      * Implementación del método changeStatus de la interfaz ITask.
+     *
      * @return true si se cambió el estado correctamente, false en caso contrario.
      */
     @Override
@@ -64,6 +67,7 @@ public class Task implements ITask, Serializable {
 
         return statusChanged;
     }
+
     @Override
     public boolean equals(Object object) {
         boolean isEquals = false;
@@ -72,5 +76,15 @@ public class Task implements ITask, Serializable {
         Task task = (Task) object;
         isEquals = Objects.equals(id, task.id) && Objects.equals(startDate, task.startDate) && Objects.equals(endDate, task.endDate) && state == task.state && Objects.equals(colaboratorToCharge, task.colaboratorToCharge);
         return isEquals;
+    }
+
+    @Override
+    public String toString() {
+        return " ------------------------------------------------------------------------------------- " +
+                "\n | identificador: " + id + "                       |" + " Colaborador: " +
+                "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorToCharge.getName() +
+                "\n | Inicio de la tarea: " + startDate + "         |" + " apodo " + colaboratorToCharge.getNickName() +
+                "\n | Final de la tarea: " + endDate + "          |"    + " Correo electronico:" + colaboratorToCharge.getEmail() +
+                "\n ----------------------------------------------------------------------------------- ";
     }
 }
