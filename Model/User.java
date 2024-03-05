@@ -17,6 +17,10 @@ public class User implements IUser, Serializable  {
     private final int MIN_LENGTH = 8;
     private final int MAX_LENGTH = 20;
 
+    public User(){
+
+    }
+
     public User(String name, String nickName, String email, String password){
         setName(name);
         setNickName(nickName);

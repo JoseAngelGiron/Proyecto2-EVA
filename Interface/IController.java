@@ -6,11 +6,10 @@ public interface IController {
 
 
 
-    public void startApp() throws NoSuchAlgorithmException;
+    public void startApp();
 
-    public void mainController(int opcion) throws NoSuchAlgorithmException;
+    public void mainController(int opcion);
 
-    public void loadData();
 
 
 }

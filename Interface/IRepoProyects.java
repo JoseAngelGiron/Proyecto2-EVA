@@ -1,9 +1,8 @@
 package Interface;
 
-public interface IRepoProyects {
+import Model.Proyect;
 
-    //Define el modelo. Hasta que no tenga la clase proyecto, deja esta función
-    public boolean addProyect(Proyect proyectToAdd);
+public interface IRepoProyects {
 
 
 }

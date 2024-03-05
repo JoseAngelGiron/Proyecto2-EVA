@@ -1,23 +1,17 @@
 package Controller;
 
-import Model.RepoUsers;
 import Model.User;
-import Utils.Serializator;
+import Model.Manage;
 import View.IO;
 import View.MainView;
-
-import java.security.NoSuchAlgorithmException;
 
 public class MainController implements Interface.IController {
 
     MainView mainView = new MainView();
-    RepoUsers registeredUsers = new RepoUsers();
-    RepoUsers load;
+    Manage manage = Manage.get_Instance();
 
     @Override
     public void startApp() {
-
-        loadData();
 
         int opcion;
 
@@ -26,7 +20,7 @@ public class MainController implements Interface.IController {
             opcion = mainView.mainView();
             mainController(opcion);
 
-        }while (opcion!=4);
+        }while (opcion!=3);
 
     }
 
@@ -35,51 +29,56 @@ public class MainController implements Interface.IController {
 
         switch (option) {
             case 1:
-                User userToLogin = mainView.solicitateUser();
-                System.out.println(registeredUsers.checkIfUserExists(userToLogin));
+                boolean userExists;
+                String returnToMainMenu =" ";
+                User userToLogin;
+                do{
+                    userToLogin = mainView.solicitateUser();
+                    userExists = manage.checkIfUserExists(userToLogin);
+                    if(!userExists){
+                        returnToMainMenu = IO.readString("Error en los credenciales. ¿Desea volver al menu principal" +
+                                "o desea volver a loguearse? 'S' para volver, cualquier otra tecla para volver");
+                    }
 
+                }while (!userExists || returnToMainMenu.equalsIgnoreCase("S"));
+
+                System.out.println(userExists);
+                if(manage.checkIfUserExists(userToLogin)){
+                    manage.setUserLoggedIn(userToLogin);
+                    //Llamada a la siguiente parte
+                }
 
                 break;
             case 2:
                 boolean registered;
-                String confirmation = "S";
+                String confirmation = " ";
+                User user;
+
                 do {
-                    User user = mainView.solicitateUser();
-                    registered = registeredUsers.addUser(user);
+                    user = mainView.solicitateUser();
+                    registered = manage.checkIfUserExists(user);
 
                     mainView.registerMessage(registered);
 
-                    if(registered) {
+                    if(!registered) {
                         confirmation = IO.readString("¿Desea registrase con esos datos? " +
                                 "Inserte 'S' para confirmar, o cualquier otra tecla para volver a registrarse. ");
                     }
-                } while (!registered || !confirmation.equalsIgnoreCase("S"));
-                Serializator.serialize(registeredUsers, "RepositorioUsuarios.bin");
+                } while (registered || !confirmation.equalsIgnoreCase("S"));
+
+                if(confirmation.equalsIgnoreCase("s")){
+                    manage.getUsers().add(user);
+                }
+                manage.saveData("manage.bin");
+
                 break;
             case 3:
 
-
+                //Mensaje de despedida
                 break;
-            default:
 
         }
     }
 
-    @Override
-    public void loadData() {
-        if(load==null){
-            load = Serializator.desearize("RepositorioUsuarios.bin");
-            if(load!=null){
-                registeredUsers = load;
-                System.out.println("""
-
-                        Se han encontrado datos de favoritos y se han cargado.\s
-                        Estos se encuentran disponibles para su consulta.
-                        """);
-            }
-
-        }
-
-    }
 
 }

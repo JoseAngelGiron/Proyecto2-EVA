@@ -33,11 +33,7 @@ public class Serializator {
         )){
             result = (T)ois.readObject();
         }catch(IOException | ClassNotFoundException e){
-            System.out.println("""
-
-                    No se encuentran datos guardados.
-                    Cuando guarde datos de algún favorito por primera vez, se cargaran automaticamente\s
-                    """);
+            System.out.println(e);
         }
 
         return result;

@@ -27,15 +27,14 @@ public class MainView implements IMainView{
 
     /**
      * Esta función imprime un mensaje relacionado con el registro de usuarios, en función del dato que recibe
-     * @param RegisterSucessfully que será true o false, y determinara que mensaje se imprime.
+     * @param registerMessage que será true o false, y determinara que mensaje se imprime.
      */
     @Override
-    public void registerMessage(boolean RegisterSucessfully) {
-        if(RegisterSucessfully){
-            System.out.println("El nombre y el correo estan disponibles. ¿Desea registrarse con estos datos?");
-
+    public void registerMessage(boolean registerMessage) {
+        if(registerMessage){
+            System.out.println("El apodo o correo ya existe. Introduzca unos datos validos");
         }else{
-            System.out.println("El nombre o correo ya existe. Introduzca unos datos validos");
+            System.out.println("El apodo y el correo están disponibles");
         }
 
     }
@@ -70,6 +69,7 @@ public class MainView implements IMainView{
 
         return userToRegister;
     }
+
 
 
 }

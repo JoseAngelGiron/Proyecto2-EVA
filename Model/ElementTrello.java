@@ -3,20 +3,21 @@ package Model;
 import Interface.IElementTrello;
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-public abstract class ElementTrello<T> implements IElementTrello<T> {
+public abstract class ElementTrello<T> implements IElementTrello<T>, Serializable {
     protected String name;
-    protected int id;
+    protected String id;
     protected String description;
-    protected Collection<T> elements;
+    protected ArrayList<T> elements;
 
     public ElementTrello() {
 
     }
-
-    public ElementTrello(String name, int id, String description, Collection<T> elements ) {
+    public ElementTrello(String name, String id, String description, ArrayList<T> elements ) {
         this.name = name;
         this.id = id;
         this.description = description;
@@ -31,11 +32,11 @@ public abstract class ElementTrello<T> implements IElementTrello<T> {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,7 +52,7 @@ public abstract class ElementTrello<T> implements IElementTrello<T> {
         return elements;
     }
 
-    public void setElements(Collection<T> elements) {
+    public void setElements(ArrayList<T> elements) {
         this.elements = elements;
     }
 
