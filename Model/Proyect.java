@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class Proyect extends ElementTrello<List> implements IProyect {
+public class Proyect extends ElementTrello<Task> implements IProyect {
     User projectCreator;
 
     public Proyect(){

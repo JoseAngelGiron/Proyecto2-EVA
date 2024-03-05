@@ -6,12 +6,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Task implements ITask, Serializable {
+public class Task extends ElementTrello<Task> implements ITask, Serializable {
     private String id;
     private LocalDate startDate;
     private LocalDate endDate;
     private TaskStatus state; // Enumeración TaskStatus
+    //aqui
     private User colaboratorToCharge;
+
+    public Task() {
+
+    }
 
     public Task(String id, LocalDate startDate, LocalDate endDate, TaskStatus state, User colaboratorToCharge) {
         this.id = id;
