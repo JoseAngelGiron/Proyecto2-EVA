@@ -4,6 +4,7 @@ import Interface.ITask;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Task implements ITask, Serializable {
     private String id;
@@ -63,4 +64,15 @@ public class Task implements ITask, Serializable {
 
         return statusChanged;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        boolean isEquals = false;
+        if (this == object) isEquals = true;
+        if (object == null || getClass() != object.getClass()) isEquals = false;
+        Task task = (Task) object;
+        isEquals = Objects.equals(id, task.id) && Objects.equals(startDate, task.startDate) && Objects.equals(endDate, task.endDate) && state == task.state && Objects.equals(colaboratorToCharge, task.colaboratorToCharge);
+        return isEquals;
+    }
+
 }

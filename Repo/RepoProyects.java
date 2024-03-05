@@ -18,6 +18,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         return elements;
     }
 
+
     @Override
     public Proyect getByID(String id) {
         Proyect result = null;
@@ -28,8 +29,6 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         }
         return result;
     }
-
-
 
     @Override
     public Proyect update(Proyect data) {
