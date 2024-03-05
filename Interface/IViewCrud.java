@@ -12,9 +12,6 @@ public interface IViewCrud {
 
 
     public int welcomeUser(User user);
-
-
-
     //En esta función, pasa los elementos de el hashSet a ArrayList u otro tipo de lista ordenada, la recorre después
     // y muestra sus elementos. Usa Iterador para recorrer el ArrayList
     public void showProyects(HashSet<Proyect> proyects);

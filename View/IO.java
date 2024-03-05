@@ -10,18 +10,6 @@ public class IO{
      * @return el mensaje introducido por el usuario
      */
     public static String readString(String msg){
-<<<<<<< HEAD
-        System.out.print(msg);
-        return scanner.nextLine();
-    }
-    public static String readEmpty(String msg){
-        String empty;
-        do{System.out.print(msg);
-            empty= scanner.nextLine();
-        }while (empty.isEmpty());
-        System.out.println("El mensaje esta vacío,Introduce otro numero");
-        return empty;
-=======
         String msg2;
         do {
             System.out.print(msg + ": ");
@@ -36,7 +24,6 @@ public class IO{
 
         } while (msg2.isEmpty());
         return msg2;
->>>>>>> 8af5f83b8c9c2bcac81402768f7058c669a3c88e
     }
 
     /**
@@ -62,7 +49,7 @@ public class IO{
                 System.out.println("La opción introducida no se contempla. Pruebe de nuevo.");
             }
 
-            } while(numero < numMenor || numero > numMayor);
+        } while(numero < numMenor || numero > numMayor);
         return numero;
     }
 }

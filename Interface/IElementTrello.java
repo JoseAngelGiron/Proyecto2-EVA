@@ -3,7 +3,7 @@ package Interface;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public interface IElementTrello <T>{
+public interface  IElementTrello <T>{
 
         //Define el modelo según el diagrama de clases  y haz la lógica de las funciones
 
