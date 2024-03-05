@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class RepoProyects extends AbstractRepository<Proyect> implements IRepoProyects {
-
     public RepoProyects() {
         super(new HashSet<>());
     }
@@ -29,17 +28,23 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         }
         return result;
     }
-
+ 
     @Override
     public Proyect update(Proyect data) {
-        return data;
+        Proyect result = null;
+        result = getByID(data.getId());
+        if (result != null) {
+            elements.remove(result);
+            elements.add(data);
+            result = data;
+        }
+        return result;
     }
+
     @Override
     public boolean delete(String id) {
-        return false;
+        return elements.remove(getByID(id));
     }
-
-
 
 
 }
