@@ -2,9 +2,10 @@ package Model;
 
 import Interface.ITask;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Task implements ITask {
+public class Task implements ITask, Serializable {
     private String id;
     private LocalDate startDate;
     private LocalDate endDate;

@@ -1,25 +1,46 @@
 package Repo;
 
 import Interface.IRepoProyects;
+import Model.Proyect;
+import Model.User;
+import Utils.Serializator;
 
+import java.util.HashSet;
 import java.util.Set;
 
-public class RepoProyects implements IRepoProyects {
-    private final static String FILENAME = "proyects.bin";
-    private Set<Proyect> proyects;
+public class RepoProyects extends AbstractRepository<Proyect> implements IRepoProyects {
 
-    /**
-     * Se le pasa un proyecto y lo almacena en un Set
-     *
-     * @param proyectToAdd El proyecto que se va a almacenar
-     * @return true si se a almacenado correctamente y false si a habido algun error
-     */
+    public RepoProyects() {
+        super(new HashSet<>());
+    }
+
+    public Set<Proyect> getProyects() {
+        return elements;
+    }
+
     @Override
-    public boolean addProyect(Proyect proyectToAdd) {
-        boolean result = false;
-        if (proyects.add(proyectToAdd)) {
-            result = true;
+    public Proyect getByID(String id) {
+        Proyect result = null;
+        for (Proyect user : elements) {
+            if (user.getId().equals(id)) {
+                result = user;
+            }
         }
         return result;
     }
+
+
+
+    @Override
+    public Proyect update(Proyect data) {
+        return data;
+    }
+    @Override
+    public boolean delete(String id) {
+        return false;
+    }
+
+
+
+
 }
