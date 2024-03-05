@@ -26,6 +26,7 @@ public class MainController implements Interface.IController {
 
     @Override
     public void mainController(int option) {
+        SecundaryController secundaryController = new SecundaryController();
 
         switch (option) {
             case 1:
@@ -45,7 +46,7 @@ public class MainController implements Interface.IController {
                 System.out.println(userExists);
                 if(manage.checkIfUserExists(userToLogin)){
                     manage.setUserLoggedIn(userToLogin);
-                    //Llamada a la siguiente parte
+                    secundaryController.userController();
                 }
 
                 break;

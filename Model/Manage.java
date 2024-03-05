@@ -13,11 +13,11 @@ public class Manage implements Serializable, IManage {
     private static Manage _instance;
     private final static String FILENAME1 = "manage.bin";
     private RepoUser users;
-    private RepoProyects proyects; //Preguntar a Carlos o Rafa por esto. (static)
+    private RepoProyects proyects; //Preguntar a Carlos o Rafa por esto. (static) A la larga usar proyectos aqui no es lo mas optimo
     private User userLoggedIn; //¿Esto podría darme problemas? a la hora de guardar y loguearse podría darlos?
 
 
-    public  RepoUser getUsers() {
+    public RepoUser getUsers() {
         return users;
     }
 
