@@ -1,0 +1,84 @@
+package Controller;
+
+import Model.User;
+import Model.Manage;
+import View.IO;
+import View.MainView;
+
+public class MainController implements Interface.IController {
+
+    MainView mainView = new MainView();
+    Manage manage = Manage.get_Instance();
+
+    @Override
+    public void startApp() {
+
+        int opcion;
+
+        do {
+
+            opcion = mainView.mainView();
+            mainController(opcion);
+
+        }while (opcion!=3);
+
+    }
+
+    @Override
+    public void mainController(int option) {
+
+        switch (option) {
+            case 1:
+                boolean userExists;
+                String returnToMainMenu =" ";
+                User userToLogin;
+                do{
+                    userToLogin = mainView.solicitateUser();
+                    userExists = manage.checkIfUserExists(userToLogin);
+                    if(!userExists){
+                        returnToMainMenu = IO.readString("Error en los credenciales. ¿Desea volver al menu principal" +
+                                "o desea volver a loguearse? 'S' para volver, cualquier otra tecla para volver");
+                    }
+
+                }while (!userExists || returnToMainMenu.equalsIgnoreCase("S"));
+
+                System.out.println(userExists);
+                if(manage.checkIfUserExists(userToLogin)){
+                    manage.setUserLoggedIn(userToLogin);
+                    //Llamada a la siguiente parte
+                }
+
+                break;
+            case 2:
+                boolean registered;
+                String confirmation = " ";
+                User user;
+
+                do {
+                    user = mainView.solicitateUser();
+                    registered = manage.checkIfUserExists(user);
+
+                    mainView.registerMessage(registered);
+
+                    if(!registered) {
+                        confirmation = IO.readString("¿Desea registrase con esos datos? " +
+                                "Inserte 'S' para confirmar, o cualquier otra tecla para volver a registrarse. ");
+                    }
+                } while (registered || !confirmation.equalsIgnoreCase("S"));
+
+                if(confirmation.equalsIgnoreCase("s")){
+                    manage.getUsers().add(user);
+                }
+                manage.saveData("manage.bin");
+
+                break;
+            case 3:
+
+                //Mensaje de despedida
+                break;
+
+        }
+    }
+
+
+}
