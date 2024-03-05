@@ -40,7 +40,19 @@ public class Proyect extends ElementTrello<List> implements IProyect {
         return Objects.hash(super.hashCode(), projectCreator);
     }
 
+    @Override
+    public String toString() {
+        return " |---------------------------- " +
+                "\n | Nombre proyecto=" + name + " |"+ " Nombre: " + projectCreator.getName() +
+                "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +
+                "\n | identificador: " + id + "         |"+ " Correo electronico:" + projectCreator.getEmail() +
+                "\n |--------------------------------------------------------------- " +
+                "\n | descripcion proyecto:" +
+                "\n | " + description;
 
-
+        //Falta el atributo elements pero no lo e puesto
+        // por no saber cuanto puede medir
+        // elements=" + elements+
+    }
 
 }

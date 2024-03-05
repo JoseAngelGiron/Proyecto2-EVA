@@ -10,6 +10,9 @@ public class MainController implements Interface.IController {
     MainView mainView = new MainView();
     Manage manage = Manage.get_Instance();
 
+    /**
+     * Inicia el programa y se repite hasta que el usuario salga pulsando 3
+     */
     @Override
     public void startApp() {
 
@@ -24,6 +27,11 @@ public class MainController implements Interface.IController {
 
     }
 
+    /**
+     * Se le pasa una opcion y segun esta se eligue que hace el programa
+     * @param option Se le pasa un numero entre el 1 y el 3 y segun estos se puede
+     *      loguearse, registrarse y salir del programa.
+     */
     @Override
     public void mainController(int option) {
 
