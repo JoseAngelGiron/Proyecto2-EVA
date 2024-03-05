@@ -11,7 +11,7 @@ public class IO{
         String empty;
         do{System.out.print(msg);
             empty= scanner.nextLine();
-        }while ( empty.isEmpty());
+        }while (empty.isEmpty());
         System.out.println("El mensaje esta vacío,Introduce otro numero");
         return empty;
     }
