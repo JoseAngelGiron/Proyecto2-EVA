@@ -7,6 +7,7 @@ import Repo.RepoUser;
 import Utils.Serializator;
 
 import java.io.Serializable;
+import java.security.ProtectionDomain;
 import java.util.ArrayList;
 
 public class Manage implements Serializable, IManage {
@@ -71,15 +72,32 @@ public class Manage implements Serializable, IManage {
     public boolean checkIfUserExists(User userToCheck) {
         return users.getElements().contains(userToCheck);
     }
-
+    /**
+     * Metodo para comparar el usuario que recibe con los del repositorio usuario y asignarlo
+     * @param userToLogin el usuario que se va a comparar
+     */
     @Override
     public void loginUser(User userToLogin) {
-
+        for (User user : users.getElements()) {
+            if (user.equals(userToLogin)) {
+                userLoggedIn = user;
+            }
+        }
     }
 
+    /**
+     * Metodo para comparar el usuario logueado con el atributo user que tienen los proyectos, si son iguales se añaden al arraylist
+     * @return proyects
+     */
     @Override
     public ArrayList<Proyect> retrieveProyects() {
-        return null;
+        ArrayList<Proyect> proyects = new ArrayList<>();
+        for (Proyect proyect : getProyects().getElements()) {
+            if (proyect.getElements().equals(userLoggedIn)) {
+                proyects.add(proyect);
+            }
+        }
+        return proyects;
     }
 
     @Override
