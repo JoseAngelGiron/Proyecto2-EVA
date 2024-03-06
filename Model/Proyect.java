@@ -67,27 +67,45 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         // elements=" + elements+
     }
 
+    /**
+     * Metodo para añadir un usuario como colaborador a una tarea
+     * @param idTarea Es la tarea que se va a seleccionar
+     * @param user Es el usuario que se va a asignar como colaborador
+     * @return Devolveria al usuario añadido como colaborador a la tarea
+     */
     @Override
-    public boolean assignCollaborator(String idTarea, User user) {
-        boolean isUnassigned = false;
-        for (int i=0;i<elements.size() && !isUnassigned;i++) {
-            if (elements.get(i).getId().equals(idTarea)) {
-                elements.get(i).setColaboratorToCharge(null);
-                isUnassigned = true;
-
+    public boolean assignCollaborator(Proyect proyect, String idTarea, User user) {
+        boolean isAssigned = false;
+        for (int i = 0; i < proyect.elements.size() && !isAssigned; i++) {
+                if (elements.get(i).id.equals(idTarea)) {
+                    for (int j = 0; j < elements.get(i).getColaboratorToCharge().length && !isAssigned; j++){
+                        if (elements.get(i).getColaboratorToCharge()[j] == null){
+                            elements.get(i).getColaboratorToCharge()[j] = user;
+                            isAssigned = true;
+                        }
+                    }
             }
         }
-        return isUnassigned;
+        return isAssigned;
     }
 
+    /**
+     * Metodo para eliminar un ususuario como colaborador de una tarea
+     * @param idTarea Es la tarea que se va a sellecionar
+     * @param user Es el usuario que se va a asignar como colaborador
+     * @return Devolveria la eliminacion de usuario colaborador de la tarea
+     */
     @Override
-    public boolean unassingCollaborator(String idTarea, User user) {
+    public boolean unassingCollaborator(Proyect proyect, String idTarea, User user) {
         boolean isUnassigned = false;
-        for (int i=0;i<elements.size() && !isUnassigned;i++) {
-            if (elements.get(i).getId().equals(idTarea)) {
-                elements.get(i).setColaboratorToCharge(null);
-                isUnassigned = true;
-
+        for (int i = 0; i < proyect.elements.size() && !isUnassigned; i++) {
+            if (elements.get(i).id.equals(idTarea)) {
+                for (int j = 0; j < elements.get(i).getColaboratorToCharge().length && !isUnassigned; j++) {
+                    if (elements.get(i).getColaboratorToCharge()[j].equals(user)){
+                        elements.get(i).getColaboratorToCharge()[j] = null;
+                        isUnassigned = true;
+                    }
+                }
             }
         }
         return isUnassigned;
