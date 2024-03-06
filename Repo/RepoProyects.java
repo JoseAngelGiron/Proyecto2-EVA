@@ -21,8 +21,8 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      *
      * @param id El identificador del proyecto a buscar
      * @return El proyecto encontrado, o null si no se encontró ningún proyecto con ese identificador
-     */
-
+     */ //Alberto, modifica este metodo para que devuelva el Proyecto usando como coincidencia ademas, un objeto de User.
+        //Ponselo tu en la llamada de la función, en clase te explico.
     @Override
     public Proyect getByID(String id) {
         Proyect result = null;
@@ -62,8 +62,8 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      * @return true si el proyecto se eliminó exitosamente,
      * false si no se encontró
      */
-    @Override
-    public boolean delete(String id) {
+    @Override //Alberto, cambiame este método, necesito que devuelva el objeto que se elimina. Usa iterator, please
+    public Proyect delete(String id) {
         return elements.remove(getByID(id));
     }
 

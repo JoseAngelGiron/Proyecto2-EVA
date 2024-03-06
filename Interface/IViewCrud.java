@@ -15,22 +15,29 @@ public interface IViewCrud {
 
 
 
-    //En esta función, pasa los elementos de el hashSet a ArrayList u otro tipo de lista ordenada, la recorre después
-    // y muestra sus elementos. Usa Iterador para recorrer el ArrayList
-    public void showProyects(HashSet<Proyect> proyects);
 
-    //opciones: agregar lista, agregar tarea a lista, modificar descripción, borrar proyecto, agregar colaborador a tarea
-    public int changeProyect();
+    public void showProyects(ArrayList<Proyect> proyects);
 
-    //Menu que debe mostrar entre las distintas opciones del perfil del usuario, nombre, nickname... selecionar una de ellas y poder
-    //devolver el número de esa opción.
+
+    public String changeProyect();
+
+
     public int changeProfile();
 
-    //función que pregunte si quiere mostrar sus proyectos de forma opcional, y que pregunte por el número del proyecto a borrar
-    public int deleteProyect();
+    //modifica esta función para que antes de seguir, pida confirmación de borrar.
+    public String deleteProyect();
 
-    //Función que muestre todas las tareas que recibe y permita selecionar una de ellas con un número que se le introduzca por pantalla
+    //Esta bien hecha, pero necesito que lo haga con iterator, no con un for normal
     public int showTasks(ArrayList<Task> tasks);
 
+    //Me muestras un mensaje si es verdadero, de que el proyecto fue añadido y viceversa
+    public void showIfProyectIsAdded(boolean add);
+
+    //Es autodescriptivo esto
+    public void showProject(Proyect proyect);
+
+    //Necesito un submenu con cada una de las opciones que se le pueden cambiar a un proyecto, que devuelva un int
+    //nombre, descripcion, tareas, usuario creador
+    public int chooseWhatToChange();
 
 }

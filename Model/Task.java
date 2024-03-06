@@ -3,27 +3,33 @@ package Model;
 import Interface.ITask;
 
 import java.io.Serializable;
+import java.sql.Array;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Task extends ElementTrello<Task> implements ITask, Serializable {
-    private String id;
+
     private LocalDate startDate;
     private LocalDate endDate;
-    private TaskStatus state; // Enumeración TaskStatus
-    //aqui
-    private User colaboratorToCharge;
+    private TaskStatus state;
+    private User[] colaboratorsToCharge;
+    private String[] feedback;
 
     public Task() {
 
     }
 
-    public Task(String id, LocalDate startDate, LocalDate endDate, TaskStatus state, User colaboratorToCharge) {
+    public Task(String id, LocalDate startDate, LocalDate endDate, TaskStatus state, ) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.state = state;
-        this.colaboratorToCharge = colaboratorToCharge;
+        this.colaboratorsToCharge = new User[3];
+    }
+
+    public Task(String codigo) {
+        setId(codigo);
+
     }
 
     public String getId() {
@@ -42,8 +48,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         return this.state;
     }
 
-    public User getColaboratorToCharge() {
-        return this.colaboratorToCharge;
+    public User[] getColaboratorToCharge() {
+        return this.colaboratorsToCharge;
     }
 
     /**
@@ -52,7 +58,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
      * @param user Usuario colaborador a asignar.
      */
     public void setColaboratorToCharge(User user) {
-        this.colaboratorToCharge = user;
+        this.colaboratorsToCharge = new User[]{user};
     }
 
     /**
@@ -86,7 +92,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     @Override
     public String toString() {
         return " ------------------------------------------------------------------------------------- " +
-                "\n | identificador: " + id + "                       |" + " Colaborador: " +
+                "\n | identificador: " + id + "                       |" + " Colaboradores: " +
                 "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorToCharge.getName() +
                 "\n | Inicio de la tarea: " + startDate + "         |" + " apodo " + colaboratorToCharge.getNickName() +
                 "\n | Final de la tarea: " + endDate + "          |"    + " Correo electronico:" + colaboratorToCharge.getEmail() +

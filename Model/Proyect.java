@@ -20,6 +20,18 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         super(name, id, description, new ArrayList<>());
         this.projectCreator = projectCreator;
     }
+    public Proyect(String id){
+    }
+
+    public Proyect(String codigo, User user) {
+        setId(id);
+        projectCreator = user;
+    }
+
+    @Override
+    public void setId(String nombre) {
+        super.setId("P - "+nombre);
+    }
 
 
     @Override
@@ -43,7 +55,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
     @Override
     public String toString() {
         return " |---------------------------- " +
-                "\n | Nombre proyecto=" + name + " |"+ " Nombre: " + projectCreator.getName() +
+                "\n | Nombre proyecto=" + name + " |"+ " Nombre del creador : " + projectCreator.getName() +
                 "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +
                 "\n | identificador: " + id + "         |"+ " Correo electronico:" + projectCreator.getEmail() +
                 "\n |--------------------------------------------------------------- " +
@@ -55,4 +67,29 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         // elements=" + elements+
     }
 
+    @Override
+    public boolean assignCollaborator(String idTarea, User user) {
+        boolean isUnassigned = false;
+        for (int i=0;i<elements.size() && !isUnassigned;i++) {
+            if (elements.get(i).getId().equals(idTarea)) {
+                elements.get(i).setColaboratorToCharge(null);
+                isUnassigned = true;
+
+            }
+        }
+        return isUnassigned;
+    }
+
+    @Override
+    public boolean unassingCollaborator(String idTarea, User user) {
+        boolean isUnassigned = false;
+        for (int i=0;i<elements.size() && !isUnassigned;i++) {
+            if (elements.get(i).getId().equals(idTarea)) {
+                elements.get(i).setColaboratorToCharge(null);
+                isUnassigned = true;
+
+            }
+        }
+        return isUnassigned;
+    }
 }

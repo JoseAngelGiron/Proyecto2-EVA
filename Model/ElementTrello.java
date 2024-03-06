@@ -15,7 +15,7 @@ public abstract class ElementTrello<T> implements IElementTrello<T>, Serializabl
     protected ArrayList<T> elements;
 
     public ElementTrello() {
-
+        this("","","",new ArrayList<>());
     }
     public ElementTrello(String name, String id, String description, ArrayList<T> elements ) {
         this.name = name;
