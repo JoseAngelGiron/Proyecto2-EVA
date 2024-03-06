@@ -5,6 +5,7 @@ import Model.User;
 import Utils.Serializator;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
 
@@ -54,10 +55,18 @@ public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
      * @param id El identificador del usuario a eliminar
      * @return true si el usuario se eliminó exitosamente, false si no se encontró
      */
-    @Override   //Esta lo mismo Alberto, haz que devuelva que el usuario que se ha eliminado. En principio no la vamos a usar
-                //Pero si lo hacemos, me gusta mas que la otra, y así mostramos datos y mas importante no pita.
-    public boolean delete(String id) {
-        return elements.remove(getByID(id));
+    @Override  
+    public User delete(String id) {
+        Iterator<User> iterator = elements.iterator();
+        User userToDelete = null;
+        while (iterator.hasNext()){
+            User currentUser = iterator.next();
+            if(iterator.next().getName().equals(id)){
+                userToDelete = currentUser;
+                iterator.remove();
+            }
+        }
+        return userToDelete;
     }
 
 

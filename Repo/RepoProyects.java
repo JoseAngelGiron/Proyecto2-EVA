@@ -3,6 +3,7 @@ package Repo;
 import Interface.IRepoProyects;
 import Model.Proyect;
 
+import Model.Task;
 import Model.User;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         Proyect result = null;
         for (Proyect proyect : elements) {
             if (proyect.getId().equals(id) &&
-                    user.equals(proyect.getProjectCreator)) {
+                    user.equals(proyect.getProjectCreator())) {
                 result = proyect;
             }
         }
@@ -47,7 +48,6 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      * @return El verdadero, si se ha actualizado si se encontró y actualizó correctamente,
      * o false si no se encontró
      */
-
     @Override
     public Proyect update(Proyect data) {
         Proyect result = null;
@@ -89,9 +89,9 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     public ArrayList<Proyect> retrieveUserColaboratorProyects(User user) {
         ArrayList<Proyect> tmpList = new ArrayList<>();
 
-        for (Proyect proyect : elements) {         //comprueba todas las partes de los proyectos
-            for (Task task : proyect.getElements()) {           // mira todas las tareas
-                for (User tmpuser : task.getColaboratorToCharge()) {    // Pasa por todos los usuarios
+        for (Proyect proyect : elements) {
+            for (Task task : proyect.getElements()) {
+                for (User tmpuser : task.getColaboratorToCharge()) {
                     if (tmpuser.equals(user)) {
                         tmpList.add(proyect);
                     }
@@ -99,6 +99,6 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
             }
         }
 
-
+        return tmpList;
     }
 }

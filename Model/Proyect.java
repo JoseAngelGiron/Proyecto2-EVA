@@ -20,12 +20,19 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         super(name, id, description, new ArrayList<>());
         this.projectCreator = projectCreator;
     }
-    public Proyect(String id){
-    }
+
 
     public Proyect(String codigo, User user) {
         setId(id);
         projectCreator = user;
+    }
+
+    public User getProjectCreator() {
+        return projectCreator;
+    }
+
+    public void setProjectCreator(User projectCreator) {
+        this.projectCreator = projectCreator;
     }
 
     @Override
@@ -52,7 +59,26 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         return Objects.hash(super.hashCode(), projectCreator);
     }
 
-
+    /**
+     * Metodo para añadir un usuario como colaborador a una tarea
+     * @param idTarea Es la tarea que se va a seleccionar
+     * @param user Es el usuario que se va a asignar como colaborador
+     * @return Devolveria al usuario añadido como colaborador a la tarea
+     */
+    @Override
+    public boolean assignCollaborator(Proyect proyect, String idTarea, User user) {
+        boolean isAssigned = false;
+        for (int i = 0; i < proyect.elements.size() && !isAssigned; i++) {
+            if (elements.get(i).id.equals(idTarea)) {
+                for (int j = 0; j < elements.get(i).getColaboratorToCharge().length && !isAssigned; j++){
+                    if (elements.get(i).getColaboratorToCharge()[j] == null){
+                        elements.get(i).getColaboratorToCharge()[j] = user;
+                        isAssigned = true;
+                    }
+                }
+            }
+        }
+        return isAssigned;
     }
 
     /**
