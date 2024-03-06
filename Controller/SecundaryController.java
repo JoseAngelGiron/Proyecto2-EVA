@@ -13,7 +13,7 @@ public class SecundaryController implements ISecundaryController {
     //CADA SUB-SWITCH HAY QUE DIVIDIRLO EN UN ARCHIVO NUEVO. SUBDIVIDIR Y HACER INSTANCIAS CORRECTAMENTE:
 
 
-    @Override
+
     public void userController() {
         Manage manage = Manage.get_Instance();
         ViewCrud secundaryView = new ViewCrud();
