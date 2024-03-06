@@ -20,7 +20,8 @@ public class MainView implements IMainView{
                 " |    |     |    |   \\/    |    \\ |    `   \\|    |  / \\     \\____  |    |   |   |  \\     /  |   |  |    |    \\____   |  |    |    |   ||    |___ /    |    \\  |    |   \n" +
                 " |____|     |____|_  /\\_______  //_______  /|______/   \\______  /  |____|   |___|   \\___/   |___|  |____|    / ______|  |____|    |___||_______ \\\\_______  /  |____|   \n" +
                 "                   \\/         \\/         \\/                   \\/                                             \\/                                \\/        \\/            ");
-        System.out.println("****** - Menu principal - ******");
+
+        System.out.println("\n ****** - Menu principal - ******");
         System.out.println("1-Login.");
         System.out.println("2-Registrarse.");
         System.out.println("3-Salir");

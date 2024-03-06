@@ -43,18 +43,6 @@ public class ViewCrud implements IViewCrud {
         return IO.readString("Introduzca el id del proyecto que desea modificar: ");
     }
 
-    /**
-     * Menú generico que muestra las opciones al usuario de cambiar sus credenciales.
-     * @return Un número, entre 1 y 4, que se corresponden con las distintas opciones
-     */
-    @Override
-    public int changeProfile() {
-        System.out.println("1.- Cambiar de Nombre-");
-        System.out.println("2.- Cambiar de Nickname-");
-        System.out.println("3.- Cambiar de Email");
-        System.out.println("4.- Cambiar de contraseña");
-        return IO.readNumber("Inserte la opcion que desee",1,4);
-    }
 
     /**
      * Menu destinado a pedir un identificador del proyecto que se busca, con el objetivo de borrarlo.
@@ -111,29 +99,19 @@ public class ViewCrud implements IViewCrud {
         System.out.println("-Detalles del proyecto:-");
         System.out.println(proyect.toString());
         System.out.println("-Tareas del proyecto:-");
-        for (Task task : proyect.getTasks()) {
+        for (Task task : proyect.getElements()) {
             System.out.println(task.toString());
         }
     }
 
 
-
-    @Override
-    public int chooseWhatToChange() {
-        System.out.println("1.-Cambiar Nombre-.");
-        System.out.println("2.-Cambiar Descripción-.");
-        System.out.println("3.-Cambiar Tareas-.");
-        System.out.println("4.-Cambiar Usuario-.");
-        System.out.println("5.-Cambiar Creador-");
-        return IO.readNumber("-¿Que desea cambiar?-",1,5);
-    }
     /**
-     * En esta función, pasa los elementos de el hashSet a ArraywList u otro tipo de lista ordenada, la recorre
-     * y muestra sus elementos.
+     * Esta función se encarga de mostrar todos los elementos de una lista de proyectos,
+     * la recorre y muestra sus elementos.
      * @param proyects Los proyectos que se van a mostrar
      */
     @Override
-    public void showProyects(ArrayList<Proyect>proyects) {
+    public void showProyects(ArrayList<Proyect> proyects) {
         System.out.println("-Lista de proyectos-.");
         for (Proyect proyect : proyects) {
             System.out.println(proyect.toString());

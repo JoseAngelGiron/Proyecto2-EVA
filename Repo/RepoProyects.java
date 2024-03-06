@@ -66,7 +66,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      * @param id El identificador del proyecto a eliminar
      * @return Devuelve el proyecto que se a eliminado
      */
-    @Override //Alberto, cambiame este método, necesito que devuelva el objeto que se elimina. Usa iterator, please
+    @Override
     public Proyect delete(String id) {
         Proyect proyect = null;
         Iterator<Proyect> iterator = elements.iterator();

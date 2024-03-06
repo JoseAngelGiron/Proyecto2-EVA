@@ -8,19 +8,12 @@ import java.util.ArrayList;
 
 public interface IViewCrud {
 
-
     public int welcomeUser(User user);
-
-
-
 
     public void showProyects(ArrayList<Proyect> proyects);
 
-
     public String changeProyect();
 
-
-    public int changeProfile();
 
     //modifica esta función para que antes de seguir, pida confirmación de borrar.
     public String deleteProyect();
@@ -35,8 +28,6 @@ public interface IViewCrud {
     //  muestra proyecto y las tareas de ese proyecto
     public void showProject(Proyect proyect);
 
-    //Necesito un submenu con cada una de las opciones que se le pueden cambiar a un proyecto, que devuelva un int
-    //nombre, descripcion, tareas, usuario creador
-    public int chooseWhatToChange();
+
 
 }
