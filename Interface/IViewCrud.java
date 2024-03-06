@@ -5,8 +5,6 @@ import Model.Task;
 import Model.User;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public interface IViewCrud {
 
@@ -28,12 +26,13 @@ public interface IViewCrud {
     public String deleteProyect();
 
     //Esta bien hecha, pero necesito que lo haga con iterator, no con un for normal
-    public int showTasks(ArrayList<Task> tasks);
+    public String showTasks(ArrayList<Task> tasks);
 
     //Me muestras un mensaje si es verdadero, de que el proyecto fue añadido y viceversa
     public void showIfProyectIsAdded(boolean add);
 
-    //Es autodescriptivo esto
+
+    //  muestra proyecto y las tareas de ese proyecto
     public void showProject(Proyect proyect);
 
     //Necesito un submenu con cada una de las opciones que se le pueden cambiar a un proyecto, que devuelva un int
