@@ -19,7 +19,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
 
     }
 
-    public Task(String id, LocalDate startDate, LocalDate endDate, TaskStatus state, ) {
+    public Task(String id, LocalDate startDate, LocalDate endDate, TaskStatus state) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -85,7 +85,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         if (this == object) isEquals = true;
         if (object == null || getClass() != object.getClass()) isEquals = false;
         Task task = (Task) object;
-        isEquals = Objects.equals(id, task.id) && Objects.equals(startDate, task.startDate) && Objects.equals(endDate, task.endDate) && state == task.state && Objects.equals(colaboratorToCharge, task.colaboratorToCharge);
+        isEquals = Objects.equals(id, task.id) ;
         return isEquals;
     }
 

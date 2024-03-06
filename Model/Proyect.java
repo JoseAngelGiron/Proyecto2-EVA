@@ -52,41 +52,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         return Objects.hash(super.hashCode(), projectCreator);
     }
 
-    @Override
-    public String toString() {
-        return " |---------------------------- " +
-                "\n | Nombre proyecto=" + name + " |"+ " Nombre del creador : " + projectCreator.getName() +
-                "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +
-                "\n | identificador: " + id + "         |"+ " Correo electronico:" + projectCreator.getEmail() +
-                "\n |--------------------------------------------------------------- " +
-                "\n | descripcion proyecto:" +
-                "\n | " + description;
 
-        //Falta el atributo elements pero no lo e puesto
-        // por no saber cuanto puede medir
-        // elements=" + elements+
-    }
-
-    /**
-     * Metodo para añadir un usuario como colaborador a una tarea
-     * @param idTarea Es la tarea que se va a seleccionar
-     * @param user Es el usuario que se va a asignar como colaborador
-     * @return Devolveria al usuario añadido como colaborador a la tarea
-     */
-    @Override
-    public boolean assignCollaborator(Proyect proyect, String idTarea, User user) {
-        boolean isAssigned = false;
-        for (int i = 0; i < proyect.elements.size() && !isAssigned; i++) {
-                if (elements.get(i).id.equals(idTarea)) {
-                    for (int j = 0; j < elements.get(i).getColaboratorToCharge().length && !isAssigned; j++){
-                        if (elements.get(i).getColaboratorToCharge()[j] == null){
-                            elements.get(i).getColaboratorToCharge()[j] = user;
-                            isAssigned = true;
-                        }
-                    }
-            }
-        }
-        return isAssigned;
     }
 
     /**
@@ -110,4 +76,21 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         }
         return isUnassigned;
     }
+
+    @Override
+    public String toString() {
+        return " |---------------------------- " +
+                "\n | Nombre proyecto=" + name + " |"+ " Nombre del creador : " + projectCreator.getName() +
+                "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +
+                "\n | identificador: " + id + "         |"+ " Correo electronico:" + projectCreator.getEmail() +
+                "\n |--------------------------------------------------------------- " +
+                "\n | descripcion proyecto:" +
+                "\n | " + description;
+
+        //Falta el atributo elements pero no lo e puesto
+        // por no saber cuanto puede medir
+        // elements=" + elements+
+    }
+
+
 }

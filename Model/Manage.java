@@ -14,24 +14,23 @@ public class Manage implements Serializable, IManage {
     private static Manage _instance;
     private final static String FILENAME1 = "manage.bin";
     private RepoUser users;
-    private RepoProyects proyects;
+    private RepoProyects repoProyects;
     private User userLoggedIn;
 
 
     public RepoUser getUsers() {
         return users;
     }
+    public  RepoProyects getRepoProyects() {
+        return repoProyects;
+    }
 
     public void setUsers(RepoUser users) {
         this.users = users;
     }
 
-    public  RepoProyects getProyects() {
-        return proyects;
-    }
-
     public void setProyects(RepoProyects proyects) {
-        this.proyects = proyects;
+        this.repoProyects = proyects;
     }
 
     public  User getUserLoggedIn() {
@@ -44,7 +43,7 @@ public class Manage implements Serializable, IManage {
 
     private Manage() {
         users = new RepoUser();
-        proyects = new RepoProyects();
+        repoProyects = new RepoProyects();
         userLoggedIn = new User();
     }
 
@@ -92,7 +91,7 @@ public class Manage implements Serializable, IManage {
     @Override
     public ArrayList<Proyect> retrieveProyects() {
         ArrayList<Proyect> proyects = new ArrayList<>();
-        for (Proyect proyect : getProyects().getElements()) {
+        for (Proyect proyect : getRepoProyects().getProyects()) {
             if (proyect.getElements().equals(userLoggedIn)) {
                 proyects.add(proyect);
             }

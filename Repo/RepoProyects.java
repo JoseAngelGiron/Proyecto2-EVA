@@ -2,7 +2,7 @@ package Repo;
 
 import Interface.IRepoProyects;
 import Model.Proyect;
-import Model.Task;
+
 import Model.User;
 
 import java.util.ArrayList;
@@ -99,6 +99,6 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
             }
         }
 
-        return tmpList;
+
     }
 }
