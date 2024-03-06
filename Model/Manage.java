@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Manage implements Serializable, IManage {
     private static Manage _instance;
-    private final static String FILENAME1 = "manage.bin";
+    private final static String FILENAME = "manage.bin";
     private RepoUser users;
     private RepoProyects repoProyects;
     private User userLoggedIn;
@@ -54,7 +54,7 @@ public class Manage implements Serializable, IManage {
      */
     public static Manage get_Instance() {
         if (_instance == null) {
-            _instance = loadData(FILENAME1);
+            _instance = loadData(FILENAME);
             if (_instance == null) {
                 _instance = new Manage();
             }
@@ -115,11 +115,11 @@ public class Manage implements Serializable, IManage {
 
     /**
      * Guarda la información del objeto Manage.
-     * @param filename el nombre del archivo que se va a guardar
+     *
      * @return true si se guardo, false si no fue así
      */
-    public boolean saveData(String filename){
-        return Serializator.serialize(this, filename);
+    public boolean saveData(){
+        return Serializator.serialize(this, FILENAME);
     }
 
 

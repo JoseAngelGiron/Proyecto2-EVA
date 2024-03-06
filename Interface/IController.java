@@ -10,8 +10,7 @@ public interface IController {
 
     public void mainController(int opcion);
 
-    public void crudController();
-
+    public void mainMenuController();
 
 
 }
