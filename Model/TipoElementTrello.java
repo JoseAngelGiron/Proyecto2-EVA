@@ -3,28 +3,15 @@ package Model;
 public class TipoElementTrello{
 
 
-    public static ElementTrello build(ElementstTrello elementstTrello) {
+    public static ElementTrello build(ElementstTrello elementstTrello, String codigo, User user) {
         ElementTrello result = null;
 
         switch (elementstTrello) {
             case TASK:
-                result = new Task();
+                result = new Task(codigo);
                 break;
             case PROYECT:
-                result = new Proyect();
-                break;
-        }
-        return result;
-    }
-    public static ElementTrello build(ElementstTrello elementstTrello, int o) {
-        ElementTrello result = null;
-
-        switch (elementstTrello) {
-            case TASK:
-                result = new Task();
-                break;
-            case PROYECT:
-                result = new Proyect();
+                result = new Proyect(codigo, user);
                 break;
         }
         return result;

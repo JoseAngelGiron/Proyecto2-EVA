@@ -54,7 +54,8 @@ public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
      * @param id El identificador del usuario a eliminar
      * @return true si el usuario se eliminó exitosamente, false si no se encontró
      */
-    @Override
+    @Override   //Esta lo mismo Alberto, haz que devuelva que el usuario que se ha eliminado. En principio no la vamos a usar
+                //Pero si lo hacemos, me gusta mas que la otra, y así mostramos datos y mas importante no pita.
     public boolean delete(String id) {
         return elements.remove(getByID(id));
     }

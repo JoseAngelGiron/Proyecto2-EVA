@@ -50,8 +50,9 @@ public abstract class AbstractRepository<T> implements IAbstractRepository<T>, S
         return data;
     }
     @Override
-    public boolean delete(String id) {
-        return false;
+    public T delete(String id) {
+       T data = null;
+        return data;
     }
 
 

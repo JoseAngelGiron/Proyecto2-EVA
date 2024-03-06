@@ -16,7 +16,7 @@ public interface IAbstractRepository<T> {
     public T update(T data);
 
 
-    public boolean delete(String id);
+    public T delete(String id);
 
     //public boolean checkIfElemen
 }

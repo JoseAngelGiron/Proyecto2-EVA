@@ -14,8 +14,8 @@ public class Manage implements Serializable, IManage {
     private static Manage _instance;
     private final static String FILENAME1 = "manage.bin";
     private RepoUser users;
-    private RepoProyects proyects; //Preguntar a Carlos o Rafa por esto. (static) A la larga usar proyectos aqui no es lo mas optimo
-    private User userLoggedIn; //¿Esto podría darme problemas? a la hora de guardar y loguearse podría darlos?
+    private RepoProyects proyects;
+    private User userLoggedIn;
 
 
     public RepoUser getUsers() {
@@ -87,7 +87,7 @@ public class Manage implements Serializable, IManage {
 
     /**
      * Metodo para comparar el usuario logueado con el atributo user que tienen los proyectos, si son iguales se añaden al arraylist
-     * @return proyects
+     * @return proyects que es el array de proyectos que tiene el usuario ahora mismo.
      */
     @Override
     public ArrayList<Proyect> retrieveProyects() {
