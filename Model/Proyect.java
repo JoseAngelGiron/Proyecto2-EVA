@@ -53,31 +53,16 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
     }
 
     @Override
-    public String toString() {
-        return " |---------------------------- " +
-                "\n | Nombre proyecto=" + name + " |"+ " Nombre del creador : " + projectCreator.getName() +
-                "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +
-                "\n | identificador: " + id + "         |"+ " Correo electronico:" + projectCreator.getEmail() +
-                "\n |--------------------------------------------------------------- " +
-                "\n | descripcion proyecto:" +
-                "\n | " + description;
-
-        //Falta el atributo elements pero no lo e puesto
-        // por no saber cuanto puede medir
-        // elements=" + elements+
-    }
-
-    @Override
     public boolean assignCollaborator(String idTarea, User user) {
         boolean isUnassigned = false;
         for (int i=0;i<elements.size() && !isUnassigned;i++) {
-            if (elements.get(i).getId().equals(idTarea)) {
-                elements.get(i).setColaboratorToCharge(null);
-                isUnassigned = true;
 
-            }
+
         }
         return isUnassigned;
+
+
+
     }
 
     @Override
@@ -92,4 +77,21 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         }
         return isUnassigned;
     }
+
+    @Override
+    public String toString() {
+        return " |---------------------------- " +
+                "\n | Nombre proyecto=" + name + " |"+ " Nombre del creador : " + projectCreator.getName() +
+                "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +
+                "\n | identificador: " + id + "         |"+ " Correo electronico:" + projectCreator.getEmail() +
+                "\n |--------------------------------------------------------------- " +
+                "\n | descripcion proyecto:" +
+                "\n | " + description;
+
+        //Falta el atributo elements pero no lo e puesto
+        // por no saber cuanto puede medir
+        // elements=" + elements+
+    }
+
+
 }

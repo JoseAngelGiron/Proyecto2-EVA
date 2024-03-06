@@ -2,7 +2,9 @@ package Repo;
 
 import Interface.IRepoProyects;
 import Model.Proyect;
+import Model.User;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -68,4 +70,8 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     }
 
 
+    @Override
+    public ArrayList<Proyect> retrieveUserColaboratorProyects(User user) {
+        return null;
+    }
 }

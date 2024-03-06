@@ -17,7 +17,6 @@ public class MainController implements Interface.IController {
     public void startApp() {
 
         int opcion;
-
         do {
 
             opcion = mainView.mainView();
@@ -51,7 +50,7 @@ public class MainController implements Interface.IController {
 
                 }while (!userExists || returnToMainMenu.equalsIgnoreCase("S"));
 
-                System.out.println(userExists);
+                //System.out.println(userExists);
                 if(manage.checkIfUserExists(userToLogin)){
                     manage.setUserLoggedIn(userToLogin);
                     secundaryController.userController();
