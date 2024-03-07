@@ -29,7 +29,7 @@ public class LoginController implements ISessionController {
         do{
 
             userToLogin = mainView.solicitateUser();
-            userExists = manage.checkIfUserExists(userToLogin);
+            userExists = manage.checkLogin(userToLogin);
             if(!userExists){
                 returnToMainMenu = IO.readString("Error en los credenciales. ¿Desea volver al menu principal" +
                         "o desea volver a loguearse? 'S' para volver, cualquier otra tecla para volver");
@@ -37,7 +37,7 @@ public class LoginController implements ISessionController {
 
         }while (!userExists || returnToMainMenu.equalsIgnoreCase("S"));
 
-        if(manage.checkIfUserExists(userToLogin)){
+        if(manage.checkLogin(userToLogin)){
             manage.setUserLoggedIn(userToLogin);
             login = true;
         }
@@ -60,7 +60,7 @@ public class LoginController implements ISessionController {
 
         do {
             user = mainView.solicitateUser();
-            registered = manage.checkIfUserExists(user);
+            registered = manage.checkLogin(user);
 
             mainView.registerMessage(registered);
 

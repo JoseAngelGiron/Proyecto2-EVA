@@ -67,6 +67,8 @@ public class MainController implements Interface.IController {
 
         option = secundaryView.welcomeUser(manage.getUserLoggedIn());
         switch (option) {
+
+            //Cambiar esto, menos cases,
             case 1:
                 secundaryView.showIfProyectIsAdded(Manage.get_Instance().getRepoProyects().getProyects().add((Proyect) TipoElementTrello.build(
                         ElementstTrello.PROYECT, IO.readString("Inserte un código para el proyecto"), Manage.get_Instance().getUserLoggedIn())));
@@ -83,21 +85,18 @@ public class MainController implements Interface.IController {
                 updateControl.updateProjectController();
                 break;
             case 5:
-                secundaryView.showProject(Manage.get_Instance().getRepoProyects().delete(secundaryView.deleteProyect()));
+                Manage.get_Instance().getRepoProyects().delete(secundaryView.deleteProyect());
                 Manage.get_Instance().saveData();
-                //De nuevo, necesito una función de la vista
+                //De nuevo, necesito una función de la vista que sea especifica para proyectos eliminados el
 
                 break;
             case 6:
-                ArrayList<Proyect> proyects = Manage.get_Instance().getRepoProyects().retrieveUserColaboratorProyects(Manage.get_Instance().getUserLoggedIn());
-                secundaryView.showProyects(proyects);
-                //secundaryView.
-                //Aqui va la función de Manage que me devuelva los proyectos, de la lista de proyectos de colaboradores.
-                //Debo pedir una función para seleccionar el proyecto que se le muestran, y luego, que vea las tareas de ese proyecto que le interesa
-                //Al usuario.
-                //Cuando lo haga,
+                TaskController taskController = new TaskController();
+                taskController.controllerTask(Manage.get_Instance().getRepoProyects().retrieveUserColaboratorProyects(Manage.get_Instance().getUserLoggedIn()));
                 break;
             case 7:
+                ChangeSettingsUserController settingsControl = new ChangeSettingsUserController();
+                settingsControl.changeUserController();
                 //Opciones de usuario
 
 

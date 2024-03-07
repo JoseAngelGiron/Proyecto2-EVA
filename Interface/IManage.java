@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public interface IManage {
 
-    public boolean checkIfUserExists(User userToCheck);
+    public boolean checkLogin(User userToCheck);
 
     public void loginUser(User userToLogin);
 

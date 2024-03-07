@@ -91,7 +91,7 @@ public class User implements IUser, Serializable  {
         User user = (User) o;
         if (o == null || getClass() != o.getClass()) {
             equal = false;
-        } else equal = (Objects.equals(nickName, user.nickName) || Objects.equals(email, user.email)) && Objects.equals(password, user.password);
+        } else equal = (Objects.equals(nickName, user.nickName) || Objects.equals(email, user.email));
 
         return equal;
     }

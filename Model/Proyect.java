@@ -10,7 +10,7 @@ import java.util.Objects;
 
 
 public class Proyect extends ElementTrello<Task> implements IProyect {
-    User projectCreator;
+    private User projectCreator;
 
     public Proyect(){
         super();
