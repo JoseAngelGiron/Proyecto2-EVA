@@ -14,6 +14,8 @@ public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
     }
 
 
+
+
     /**
      * Obtiene un usuario del repositorio mediante su identificador
      *
@@ -24,7 +26,7 @@ public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
     public User getByID(String id) {
         User result = null;
         for (User user : elements) {
-            if (user.getNickName().equals(id)) {
+            if (user.getNickName().equals(id) || user.getEmail().equals(id)) {
                 result = user;
                 break;
             }

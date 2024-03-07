@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface ITaskController {
 
-    public void controllerTask(ArrayList<Proyect> proyect);
+    public void controllerTask();
 
 
 }

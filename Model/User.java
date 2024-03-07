@@ -13,7 +13,6 @@ public class User implements IUser, Serializable  {
     private String nickName;
     private String email;
     private String password;
-
     private final int MIN_LENGTH = 8;
     private final int MAX_LENGTH = 20;
 
