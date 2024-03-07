@@ -34,7 +34,6 @@ public class MainController implements Interface.IController {
     @Override
     public void mainController(int option) {
         LoginController loginController = new LoginController();
-
         switch (option) {
             case 1:
                 if(loginController.loginUser()){
@@ -49,12 +48,7 @@ public class MainController implements Interface.IController {
             case 3:
                 //Mensaje de despedida
                 break;
-
         }
-
-
-
-
     }
 
     /**
@@ -70,41 +64,24 @@ public class MainController implements Interface.IController {
 
             //Cambiar esto, menos cases,
             case 1:
-                secundaryView.showIfProyectIsAdded(Manage.get_Instance().getRepoProyects().getProyects().add((Proyect) TipoElementTrello.build(
-                        ElementstTrello.PROYECT, IO.readString("Inserte un código para el proyecto"), Manage.get_Instance().getUserLoggedIn())));
-                Manage.get_Instance().saveData();
+                CRUDProjectCreatorController crudControl = new CRUDProjectCreatorController();
+                crudControl.CRUDController();
                 break;
             case 2:
-                secundaryView.showProyects(Manage.get_Instance().retrieveProyects());
+                TaskController taskController = new TaskController();
+                taskController.controllerTask();
                 break;
             case 3:
-                secundaryView.showProject(Manage.get_Instance().getRepoProyects().getByID(IO.readString("Inserte el código de el proyecto que desea visualizar sus datos")));
-                break;
-            case 4:
-                UpdateProjectController updateControl = new UpdateProjectController();
-                updateControl.updateProjectController();
-                break;
-            case 5:
-                Manage.get_Instance().getRepoProyects().delete(secundaryView.deleteProyect());
-                Manage.get_Instance().saveData();
-                //De nuevo, necesito una función de la vista que sea especifica para proyectos eliminados el
-
-                break;
-            case 6:
-                TaskController taskController = new TaskController();
-                taskController.controllerTask(Manage.get_Instance().getRepoProyects().retrieveUserColaboratorProyects(Manage.get_Instance().getUserLoggedIn()));
-                break;
-            case 7:
                 ChangeSettingsUserController settingsControl = new ChangeSettingsUserController();
                 settingsControl.changeUserController();
-                //Opciones de usuario
-
-
                 break;
-            case 8:
-
+            case 4:
+                //Mensaje de despedida
+                manage.setUserLoggedIn(null);
+                manage.saveData();
                 break;
-
+            default:
+                //Mensaje generico que nos diga que nos equivocamos, como siempre lo hicimos y siempre lo haremos !
 
             }
 

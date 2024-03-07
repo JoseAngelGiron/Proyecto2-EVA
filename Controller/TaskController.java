@@ -4,6 +4,7 @@ import Interface.ITaskController;
 import Model.Manage;
 import Model.Proyect;
 import Model.Task;
+import Model.User;
 import Repo.RepoProyects;
 import View.IO;
 import View.TaskView;
@@ -14,73 +15,83 @@ import java.util.ArrayList;
 public class TaskController implements ITaskController {
 
     /**
-     * Función encargada de gestionar lo relacionado con las opciones de actualización de una tarea.
+     * Función encargada de gestionar lo relacionado con las opciones de actualización de las tareas.
      */
     @Override
-    public void controllerTask(ArrayList<Proyect> proyect) {
+    public void controllerTask() {
         Manage manage = Manage.get_Instance();
-        //Lo primero es mostrar todos los proyectos y pedir el proyecto que quiere seleccionar
-        //Aqui muestro todos los datos relativos a todos las tareas de un proyecto.
-        //Selecciono una, del proyecto y si existe, que entre al sub-menu. Desde este submenu también modificamos
-        //La cosa esta de
+        ViewCrud view = new ViewCrud();
+        TaskView taskView = new TaskView();
 
-        //función vista muestra p
+        Task task;
+        Proyect proyectRetrieved;
+        String confirmation = " ";
 
-        // Pide una id del proyecto
-        boolean cheker = false;
-        Proyect tmpProyect = null;     // Para almacenar el proyecto y entrar directamente a este
-        String returnToMainMenu;
-        boolean cheker2 = false;
 
-        do {
-            cheker = ShowProjects (IO.readString("Inserte el id del proyecto"));
-            if (!cheker){
-                returnToMainMenu = IO.readString("Error de busqueda. ¿Deseas buscar otra vez" +
-                        " o salir directamente al menu. Si deseas salir ponga s. si deseas probar otra" +
-                        " vez pulse otra tecla");
+        do{
+            //Lo primero es mostrar todos los proyectos y pedir el proyecto que quiere seleccionar
+            ArrayList<Proyect> proyectsColaborator = manage.getRepoProyects().retrieveUserColaboratorProyects(manage.getUserLoggedIn());
+            view.showProyects(proyectsColaborator);
+            proyectRetrieved = manage.getRepoProyects().retrieveProyectIfColaborator(manage.getUserLoggedIn(),IO.readString("Inserte el ID del proyecto que quiere conseguir"));
+
+            //Aqui muestro todos los datos relativos a todas las tareas de un proyecto y pido un código
+            task = manage.getRepoProyects().retrieveTask(manage.getUserLoggedIn(),taskView.selectTask(proyectRetrieved));
+            if(task == null){
+                confirmation = IO.readString("No ha introducido un ID de tarea concreta. ¿Quiere volver al proceso de selección?" +
+                        "S/para volver. Cualquier otra tecla para salir");
             }
-            returnToMainMenu = "";
+        }while(task ==null ||confirmation.equalsIgnoreCase("S"));
 
-        }while (!cheker || returnToMainMenu.equalsIgnoreCase("S"));
 
-        if (cheker) {
 
+        if(task != null){
+            int optionSubMenu;
             do {
-                cheker2 = ShowTask (IO.readString("Inserte el id de la tarea que deseas configurar"));
-                if (!cheker2){
-                    returnToMainMenu = IO.readString("Error de busqueda. ¿Deseas buscar otra vez" +
-                            " o salir directamente al menu. Si desea salir pulse s. si deseas probar otra" +
-                            " vez pulse otra tecla");
+                optionSubMenu = taskView.taskView();
+                switch (optionSubMenu) {
+                    case 1:
+                        task.setName(IO.readString("Inserte el nuevo nombre de la tarea"));
+                        manage.getRepoProyects().updateTask(task, proyectRetrieved);
+                        manage.saveData();
+                        break;
+                    case 2:
+                        task.setDescription(IO.readString("Inserte la nueva descripción"));
+                        manage.getRepoProyects().updateTask(task, proyectRetrieved);
+                        manage.saveData();
+                        //Actualizar descripción
+                        break;
+                    case 3:
+                        //Actualizar fecha de inicio y de fin
+                        break;
+                    case 4:
+                        //task.changeStatus(IO.readNumber("",1,3));
+                        //AQUI TENGO QUE LLAMAR A OTRO SUB MENU PARA CAMBIAR UNA TAREA EL ESTADO, QUIZÁS, NO ESTOY SEGURO.
+                        break;
+                    case 5:
+
+                        break;
+                    case 6:
+                        User userToAddAsColaborator = manage.getUsers().getByID(IO.readString("Insertar el nombre del colaborador o su e-mail para añadirlo"));
+                        if (userToAddAsColaborator!=null){
+                            if (task.setColaboratorToCharge(userToAddAsColaborator)){
+                                manage.getRepoProyects().updateTask(task, proyectRetrieved);
+                                manage.saveData();
+                            }
+
+                        }else{
+                            //imprimir mensaje de error. No se encontro el usuario a añadir como colaborador.
+                        }
+
+                    case 7:
+                        //Mensaje de despedida de este sub menu.
+                    default:
+                        //Mensaje ingo
                 }
-            }while (!cheker2 || returnToMainMenu.equalsIgnoreCase("S"));
+
+            } while (optionSubMenu != 7);
         }
-        TaskView view = new TaskView();
-        int optionSubMenu;
-        do {
-            optionSubMenu = view.taskView();
-            switch (optionSubMenu) {
-                case 1:
-                    //Actualizar nombre de la tarea
-                    manage.getRepoProyects().update();
-                    break;
-                case 2:
-                    //Actualizar descripción
-                    break;
-                case 3:
-                    //Actualizar fecha de inicio y de fin
-                    break;
-                case 4:
-                    //AQUI TENGO QUE LLAMAR A OTRO SUB MENU PARA CAMBIAR UNA TAREA EL ESTADO, QUIZÁS, NO ESTOY SEGURO.
-                    break;
-                case 5:
-                    //Mensaje de despedida de este sub menu.
-                    break;
-                case 6:
-                    //Asignar un colaborador a cargo de la tarea.
-                default:
 
-            }
 
-        } while (optionSubMenu != 7);
+
     }
 }

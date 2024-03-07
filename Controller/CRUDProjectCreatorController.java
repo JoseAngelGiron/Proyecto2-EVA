@@ -22,7 +22,7 @@ public class CRUDProjectCreatorController implements ICRUDProjectCreatorControll
                 case 1:
                     secundaryView.showIfProyectIsAdded(Manage.get_Instance().getRepoProyects().getProyects().add((Proyect) TipoElementTrello.build(
                             ElementstTrello.PROYECT, IO.readString("Inserte un código para el proyecto"), Manage.get_Instance().getUserLoggedIn())));
-                    Manage.get_Instance().saveData();
+                    manage.saveData();
                     break;
                 case 2:
                     secundaryView.showProyects(Manage.get_Instance().retrieveProyects());

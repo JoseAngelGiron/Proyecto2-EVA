@@ -1,8 +1,11 @@
 package Interface;
 
+import Model.Proyect;
+import Model.Task;
+
 public interface ITaskView {
     //Menu del controlador de actualizar una tarea.
-    public int taskView();
+    int taskView();
 
-
+    String selectTask(Proyect proyect);
 }

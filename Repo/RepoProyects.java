@@ -81,24 +81,42 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     }
 
     /**
-     * Segun el usuario que se le pasa comprueba en que proyectos esta y devuelve en los que se encuentra
+     * Segun el usuario que se le pasa comprueba en que proyectos tiene al menos asignado una tarea
+     * y devuelve aquellos proyectos en los que se encuentra
      * @param user El usuario que va a buscar los proyectos en los que esta
      * @return devuelve un arraylist de todos los proyectos en los que esta el usuario
      */
     @Override
     public ArrayList<Proyect> retrieveUserColaboratorProyects(User user) {
-        ArrayList<Proyect> tmpList = new ArrayList<>();
+        ArrayList<Proyect> proyectsColaborator = new ArrayList<>();
 
         for (Proyect proyect : elements) {
             for (Task task : proyect.getElements()) {
                 for (User tmpuser : task.getColaboratorToCharge()) {
                     if (tmpuser.equals(user)) {
-                        tmpList.add(proyect);
+                        proyectsColaborator.add(proyect);
                     }
                 }
             }
         }
+        return proyectsColaborator;
+    }
+    //Alberto, HAZ ESTAS 3
 
-        return tmpList;
+    //La 1º, me tiene que devolver UN proyecto, comparando el user y el idProyecto
+    //recorre todos los proyectos, comparando el id del proyecto, y si encaja, recorre el array de
+    @Override
+    public Proyect retrieveProyectIfColaborator(User user, String idProyecto) {
+        return null;
+    }
+
+    @Override
+    public Task retrieveTask(User userToCharge, String idTask) {
+        return null;
+    }
+
+    @Override
+    public boolean updateTask(Task task, Proyect proyect) {
+        return false;
     }
 }

@@ -20,19 +20,16 @@ public class ViewCrud implements IViewCrud {
         System.out.println(" ¡¡ Bienvenido a trello 2.0"+ user.getNickName()+ " !! ");
         System.out.println(" Seleccione que desea hacer a continuación: ");
         System.out.println(" *************** - Navegación - ****************** \n");
-        System.out.println("1- Crear un proyecto nuevo");
-        System.out.println("2- Listar todos sus proyectos");
-        System.out.println("3- Ver datos de uno de sus proyectos.");
-        System.out.println("4- Actualizar datos de uno de sus proyectos.");
-        System.out.println("5- Cerrar uno de sus proyectos. ");
-        System.out.println("6- Entrar a un proyecto del cual se es colaborador ");
-        System.out.println("7- Opciones de usuario");
-        System.out.println("8- Cerrar sesión.\n");
+        System.out.println("1- Entrar a proyectos propios");
+        System.out.println("2- Entrar a un proyecto del cual se es colaborador ");
+        System.out.println("3- Opciones de usuario");
+        System.out.println("4- Cerrar sesión.\n");
         System.out.println("******************- --------------------- - ****************** \n");
-        return IO.readNumber("Inserte la opcion que desea: ", 1, 8);
+        return IO.readNumber("Inserte la opcion que desea: ", 1, 4);
 
     }
 
+    //Probablemente borre esto
     /**
      * Menu destinado a elegir entre los distintos proyectos existentes. Permite introducir un código de proyecto.
      * @return un String, que será el código de un proyecto.
@@ -50,21 +47,17 @@ public class ViewCrud implements IViewCrud {
      */
     @Override
     public String deleteProyect() {
-        String msg = " ";
-        System.out.println("-¿Que proyecto desea borrar?:-");
-        msg = IO.readString("-Inserte el identificador del proyecto que desea.-");
-        boolean confirmado = false;
-        //modifica para pedir confirmación antes de enviar.
-        do {
-            System.out.print("-¿Está seguro de que desea borrar el proyecto?-.");
-            String borrar =borrar.nextLine().trim().toLowerCase();
-            if (borrar.equals("Sí")||borrar.equals("Si")){
-            } else if (borrar.equals("No")) {
-                System.out.println("-Operación cancelada-.");
-            } else {
-                System.out.println("-Respuesta inválida. Por favor, responda con 'Sí' o 'No'.-");
-            }
-        } while (!confirmado);
+        String msg;
+        String confirmation;
+
+        msg = IO.readString("Inserte el identificador del proyecto que desea borrar ");
+
+        confirmation = IO.readString("¿Esta seguro que desea proceder? si se encuentra el código, " +
+                "se borrara permanentemente el proyecto. \nPulse N/ para cancelar o cualquier otra tecla para proceder." );
+        if(confirmation.equalsIgnoreCase("N")){
+            msg = " ";
+        }
+
         return msg;
     }
 
@@ -74,7 +67,7 @@ public class ViewCrud implements IViewCrud {
      * @param tasks las tareas que se van a mostrar
      * @return un número, entre 1 y 999
      */ //Esta función me la cambias, que devuelva un string y con ITERATOR
-    @Override
+    @Override //CAMBIAR
     public String showTasks(ArrayList<Task> tasks){
         StringBuilder taskList = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++){
@@ -83,7 +76,7 @@ public class ViewCrud implements IViewCrud {
         return taskList.toString();
     }
 
-    @Override
+    @Override //CAMBIAR
     public void showIfProyectIsAdded(boolean add) {
         if (add) {
             System.out.println("¡El proyecto fue añadido con éxito!");

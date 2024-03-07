@@ -29,8 +29,6 @@ public class MainView implements IMainView{
         return IO.readNumber("Inserte la opcion que desea: ", 1, 3);
     }
 
-
-
     /**
      * Esta función imprime un mensaje relacionado con el registro de usuarios, en función del dato que recibe
      * @param registerMessage que será true o false, y determinara que mensaje se imprime.

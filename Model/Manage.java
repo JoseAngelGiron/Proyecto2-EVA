@@ -21,7 +21,7 @@ public class Manage implements Serializable, IManage {
     public RepoUser getUsers() {
         return users;
     }
-    public  RepoProyects getRepoProyects() {
+    public RepoProyects getRepoProyects() {
         return repoProyects;
     }
 
@@ -33,7 +33,7 @@ public class Manage implements Serializable, IManage {
         this.repoProyects = proyects;
     }
 
-    public  User getUserLoggedIn() {
+    public User getUserLoggedIn() {
         return userLoggedIn;
     }
 
@@ -63,9 +63,9 @@ public class Manage implements Serializable, IManage {
     }
 
     /**
-     * Metodo para comprobar si un usuario existe en el repositorio de usuarios
+     * Metodo para comprobar si un usuario existe en el repositorio de usuarios, comprobando credenciales
      * @param userToCheck el usuario que se va a comprobar
-     * @return true, si se encuentra el usuario, false si el usuario no se encuentra
+     * @return true, si se encuentra el usuario y sus credenciales encajan, false si el usuario no se encuentra
      */
     @Override
     public boolean checkLogin(User userToCheck) {
@@ -108,7 +108,7 @@ public class Manage implements Serializable, IManage {
     }
 
     @Override
-    public ArrayList<Task> showAsignedTasks() {
+    public ArrayList<Task> showAsignedTasks() { //CAMBIAR ESTO, SHOW NO ES UN NOMBRE CORRECTO
         return null;
     }
 

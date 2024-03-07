@@ -3,7 +3,6 @@ package Model;
 import Interface.ITask;
 
 import java.io.Serializable;
-import java.sql.Array;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -20,7 +19,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     }
 
     public Task(String id, LocalDate startDate, LocalDate endDate, TaskStatus state) {
-        this.id = id;
+        setId(id);
         this.startDate = startDate;
         this.endDate = endDate;
         this.state = state;
@@ -56,11 +55,13 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
      * Método para establecer el colaborador asignado a la tarea.
      *
      * @param user Usuario colaborador a asignar.
+     * @return true, si se añade el colaborador o false, si no se añade
      */
-    public void setColaboratorToCharge(User user) {
+    public boolean setColaboratorToCharge(User user) {
         this.colaboratorsToCharge = new User[]{user};
+        return false;
     }
-
+    //ESTO PARA CAMBIARLO
     /**
      * Implementación del método changeStatus de la interfaz ITask.
      *
