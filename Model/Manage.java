@@ -68,8 +68,16 @@ public class Manage implements Serializable, IManage {
      * @return true, si se encuentra el usuario, false si el usuario no se encuentra
      */
     @Override
-    public boolean checkIfUserExists(User userToCheck) {
-        return users.getElements().contains(userToCheck);
+    public boolean checkLogin(User userToCheck) {
+        boolean login = false;
+        for(User user: users.getElements()) {
+            if(user.getPassword().equals(userToCheck.getPassword()) && (user.getNickName().equals(userToCheck.getNickName()) ||
+                            user.getEmail().equals(userToCheck.getEmail()))) {
+                login = true;
+                break;
+            }
+        }
+        return login;
     }
     /**
      * Metodo para comparar el usuario que recibe con los del repositorio usuario y asignarlo
@@ -92,7 +100,7 @@ public class Manage implements Serializable, IManage {
     public ArrayList<Proyect> retrieveProyects() {
         ArrayList<Proyect> proyects = new ArrayList<>();
         for (Proyect proyect : getRepoProyects().getProyects()) {
-            if (proyect.getElements().equals(userLoggedIn)) {
+            if (proyect.getProjectCreator().equals(userLoggedIn)) { /// COMPROBAR SI DA ERROR Y QUIZAS MOVER DE SITIO, NO HAY QUE SOBRECARGAR ESTA CLASE
                 proyects.add(proyect);
             }
         }
