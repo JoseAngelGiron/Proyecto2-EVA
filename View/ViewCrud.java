@@ -17,7 +17,7 @@ public class ViewCrud implements IViewCrud {
      */
     @Override
     public int welcomeUser(User user) {
-        System.out.println(" ¡¡ Bienvenido a trello 2.0"+ user.getNickName()+ " !! ");
+        System.out.println(" ¡¡ Bienvenido a ProductivityPilot "+ user.getNickName()+ " !! \n" );
         System.out.println(" Seleccione que desea hacer a continuación: ");
         System.out.println(" *************** - Navegación - ****************** \n");
         System.out.println("1- Entrar a proyectos propios");
@@ -62,6 +62,20 @@ public class ViewCrud implements IViewCrud {
     }
 
     /**
+     * Función que muestra por pantalla un mensaje relacionado con el borrado del proyecto.
+     * @param proyectDeleted que será true o false, en función de si el proyecto fue borrado, o no
+     */
+    @Override
+    public void showIfProjectDeleted(Proyect proyectDeleted) {
+        if(proyectDeleted!=null){
+            System.out.println("El proyecto "+ proyectDeleted.getName() + proyectDeleted.getId() +" que has introducido, ha sido borrado");
+        }else{
+            System.out.println("No sé encontro ningún proyecto, o cancelaste la opción de borrado.");
+        }
+
+    }
+
+    /**
      * Función que muestra todas las tareas y permite seleccionar una de ellas mediante un número introducido por pantalla
      *
      * @param tasks las tareas que se van a mostrar
@@ -76,24 +90,40 @@ public class ViewCrud implements IViewCrud {
         return taskList.toString();
     }
 
-    @Override //CAMBIAR
+    /**
+     * Función que se encarga de mostrar un mensaje de confirmación, en relación a si un proyecto se ha añadido correctamente
+     * o no
+     * @param add el dato que determinara el mensaje que aparecera por pantalla. True, para confirmar que se añadio correctamente
+     *  o false, si no fue así
+     */
+    @Override
     public void showIfProyectIsAdded(boolean add) {
         if (add) {
-            System.out.println("¡El proyecto fue añadido con éxito!");
+            System.out.println("El proyecto fue añadido a la base de datos. Puede consultarlo a partir de ahora con" +
+                    "su código de proyecto o de forma general listando sus proyectos añadidos");
         } else {
-            System.out.println("El proyecto no pudo ser añadido.");
+            System.out.println("Debe haberse confundido, ya existe un proyecto con el mismo código. Pruebe de nuevo, por favor.");
         }
     }
 
 
-
+    /**
+     * Función encargada de mostrar los datos relativos a un proyecto. Si el objeto que recibe es null, muestra un
+     * mensaje diciendo que no se encontro el proyecto
+     * @param proyect un objeto de Proyect, del cual se mostraran sus datos.
+     */
     @Override
     public void showProject(Proyect proyect) {
-        System.out.println("-Detalles del proyecto:-");
-        System.out.println(proyect.toString());
-        System.out.println("-Tareas del proyecto:-");
-        for (Task task : proyect.getElements()) {
-            System.out.println(task.toString());
+        if(proyect==null){
+            System.out.println("No se encontro el proyecto asociado al código que ha solicitado." +
+                    "Pruebe de nuevo, porfavor ");
+        }else {
+            System.out.println("-Detalles del proyecto:-");
+            System.out.println(proyect);
+            System.out.println("-Tareas del proyecto:-");
+            for (Task task : proyect.getElements()) {
+                System.out.println(task.toString());
+            }
         }
     }
 
@@ -105,9 +135,15 @@ public class ViewCrud implements IViewCrud {
      */
     @Override
     public void showProyects(ArrayList<Proyect> proyects) {
-        System.out.println("-Lista de proyectos-.");
-        for (Proyect proyect : proyects) {
-            System.out.println(proyect.toString());
+        if(proyects != null){
+            System.out.println("No se han encontrado proyectos asociados. Pruebe de nuevo, por favor.");
+        }else{
+            System.out.println("-Lista de proyectos-.");
+            for (Proyect proyect : proyects) {
+                System.out.println(proyect.toString());
+            }
+
         }
+
     }
 }
