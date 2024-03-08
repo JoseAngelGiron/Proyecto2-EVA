@@ -24,7 +24,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     /**
      * Obtiene un proyecto del repositorio mediante su identificador
      *
-     * @param id El identificador del proyecto a buscar
+     * @param id   El identificador del proyecto a buscar
      * @param user El usuario que se va a comprobar si es el creador
      * @return El proyecto encontrado, o null si no se encontró ningún proyecto con ese identificador
      */
@@ -61,12 +61,13 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
 
     /**
      * Función encargada de actualizar los datos de un usuario a los proyectos que el ha creado.
+     *
      * @param newUser que se trata de los nuevos datos de usuario.
      */
     @Override
     public void update(User newUser) {
-        for(Proyect proyect:elements){
-            if(proyect.getProjectCreator().equals(newUser)){
+        for (Proyect proyect : elements) {
+            if (proyect.getProjectCreator().equals(newUser)) {
                 proyect.setProjectCreator(newUser);
             }
         }
@@ -76,13 +77,14 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     /**
      * Función encargada de actualizar las todas las tareas de los proyectos, en las cuales el usuario que recibe la
      * función es el colaborador
+     *
      * @param newUser los datos del nuevo usuario que se van a actualizar
      */
     private void updateTasks(User newUser) {
-        for(Proyect proyect:elements){
-            for (Task task: proyect.getElements()){
-                for(int i=0;i<task.getColaboratorToCharge().length;i++){
-                    if(task.getColaboratorToCharge()[i].equals(newUser)){
+        for (Proyect proyect : elements) {
+            for (Task task : proyect.getElements()) {
+                for (int i = 0; i < task.getColaboratorToCharge().length; i++) {
+                    if (task.getColaboratorToCharge()[i].equals(newUser)) {
                         task.getColaboratorToCharge()[i] = newUser;
                     }
                 }
@@ -114,6 +116,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     /**
      * Segun el usuario que se le pasa comprueba en que proyectos tiene al menos asignado una tarea
      * y devuelve aquellos proyectos en los que se encuentra
+     *
      * @param user El usuario que va a buscar los proyectos en los que esta
      * @return devuelve un arraylist de todos los proyectos en los que esta el usuario
      */
@@ -138,18 +141,79 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
 
     //La 1º, me tiene que devolver UN proyecto, comparando el user y el idProyecto
     //recorre todos los proyectos, comparando el id del proyecto, y si encaja, recorre el array de proyectos
+
+    /**
+     * Se le pasa un usuario y una id de proyecto y con esta información busca si hay algun proyecto con esas caracteristicas
+     *
+     * @param user       que va a ser el colaborador de la tarea
+     * @param idProyecto es el identificador de proyecto y es por donde se va a buscar este
+     * @return el proyecto con el colaborador user y la id entregada
+     */
     @Override
     public Proyect retrieveProyectIfColaborator(User user, String idProyecto) {
-        return null;
+        Proyect proyect = null;
+        for (Proyect proyects : elements) {
+            for (Task tmpUser : proyects.getElements()) {
+                for (int i = 0; i < tmpUser.getColaboratorToCharge().length; i++) {
+                    if (proyects.getId().equals(idProyecto) && tmpUser.getColaboratorToCharge()[i].equals(user)) {
+                        proyect = proyects;
+                    }
+                }
+            }
+        }
+        return proyect;
     }
+
+    /**
+     * Recupera una tarea asociada con un usuario específico y un ID de tarea.
+     *
+     * @param userToCharge El usuario a cargar para la tarea.
+     * @param idTask       El ID de la tarea a recuperar.
+     * @return La tarea recuperada, o null si no se encuentra.
+     */
 
     @Override
     public Task retrieveTask(User userToCharge, String idTask) {
-        return null;
+        Task task = null;
+        // que significa recuperar tarea
+        for (Proyect proyect : elements) {
+            for (Task tmpTask : proyect.getElements()) {
+                for (int i = 0; i < tmpTask.getColaboratorToCharge().length; i++) {
+                    if (tmpTask.getId().equals(idTask)
+                            && tmpTask.getColaboratorToCharge()[i].equals(userToCharge)) {
+                        task = tmpTask;
+                    }
+                }
+            }
+        }
+        return task;
     }
 
+    /**
+     * Actualiza una tarea dentro de un proyecto.
+     * @param task La tarea a actualizar
+     * @param proyect El proyecto en el que se actualizará la tarea
+     * @return true si la tarea se actualizó correctamente,
+     * false si no se encontró la tarea o el proyecto
+     */
     @Override
     public boolean updateTask(Task task, Proyect proyect) {
-        return false;
+        boolean updated = false;
+        for (Proyect tmpProyect : elements){
+            if (tmpProyect.equals(proyect)){
+                for (Task tmpTask : proyect.getElements()){
+                    if (tmpTask.equals(task)){
+                        tmpProyect.getElements().remove(tmpTask);
+                        tmpProyect.addElement(task);
+                        updated = true;
+                        break;
+                    }
+                }
+                if (updated){
+                    break;
+                }
+            }
+        }
+        return updated;
     }
 }
