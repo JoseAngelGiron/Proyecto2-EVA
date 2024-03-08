@@ -172,7 +172,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         }
 
 
-        return null;
+        return task;
     }
 
     @Override
