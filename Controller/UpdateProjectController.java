@@ -1,9 +1,9 @@
 package Controller;
 
 import Interface.IUpdateProjectController;
-import Model.Manage;
-import Model.Proyect;
+import Model.*;
 import View.IO;
+import View.MainView;
 import View.ProjectView;
 
 public class UpdateProjectController implements IUpdateProjectController {
@@ -15,7 +15,6 @@ public class UpdateProjectController implements IUpdateProjectController {
     public void updateProjectController() {
         Manage manage = Manage.get_Instance();
         ProjectView projectView = new ProjectView();
-        //Aqui muestro todos sus proyectos previamente, si el lo solicita
         Proyect proyect = Manage.get_Instance().getRepoProyects().getByID(IO.readString("Inserte el código de el proyecto que desea actualizar"), Manage.get_Instance().getUserLoggedIn());
 
         if (proyect != null) {
@@ -24,21 +23,35 @@ public class UpdateProjectController implements IUpdateProjectController {
                 optionSubMenu = projectView.chooseWhatToChange();
                 switch (optionSubMenu) {
                     case 1:
-
-                        //Actualizar nombre del proyecto
+                        String newName = IO.readString("Inserte el nuevo nombre del proyecto: ");
+                        proyect.setName(newName);
                         break;
                     case 2:
-
-                        //Actualizar descripción
+                        String newDescription = IO.readString("Inserte la nueva descripción del proyecto: ");
+                        proyect.setDescription(newDescription);
                         break;
                     case 3:
-                        //Cambiar el creador. //Que tenga un mensaje de aviso
+                        String newCreatorNickName = IO.readString("Inserte el apodo del nuevo creador:");
+                        User newCreator = null;
+                        for (User user : Manage.get_Instance().getUsers().getElements()) {
+                            if (user.getNickName().equals(newCreatorNickName)) {
+                                newCreator = user;
+                            }
+                        }
+                        if (newCreator != null) {
+                            proyect.setProjectCreator(newCreator);
+                            System.out.println("El creador del proyecto se ha actualizado correctamente.");
+                        }
                         break;
                     case 4:
-
-                        //AQUI TENGO QUE LLAMAR A OTRO SUB MENU PARA CAMBIAR UNA TAREA EN CONCRETO.
+                        boolean taskChanged = submenu();
+                        //Falta el submenu
+                        if (taskChanged) {
+                            System.out.println("La tarea se ha actualizado correctamente.");
+                        }
                         break;
                     case 5:
+                        System.out.println("Gracias por usarlo");
                         //Mensaje de despedida de este sub menu.
                         break;
                 }
@@ -46,11 +59,7 @@ public class UpdateProjectController implements IUpdateProjectController {
             } while (optionSubMenu != 5);
 
         } else {
-            //Mensaje de error. Que se haga en la vista.
+            //Aqui va el mensaje de error de la clase MainView lo que pasa es que por evitar conflictos no lo he puesto
         }
-
-        //Lo actualizo
-        //con la lógica de Update en cada case. La función de cambiar creador es algo engañosa, porque deberiamos sacar
-        //al usuario de este controlador ya que no tiene permiso para seguir editando los datos relativos al proyecto.
     }
 }
