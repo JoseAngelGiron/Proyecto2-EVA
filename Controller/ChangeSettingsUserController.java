@@ -17,36 +17,30 @@ public class ChangeSettingsUserController implements IChangeUserController {
 
         int optionToChange;
         do {
+            manage.getRepoProyects().update(manage.getUserLoggedIn()); //Funciones para actualizar, TESTEAR MUY FUERTE Y CRUZADO CON EL RESTO DE FUNCIONES
+            manage.getUsers().update(manage.getUserLoggedIn());
+            manage.saveData();
+
             optionToChange = settingsView.changeProfile();
             switch (optionToChange) {
-                //Tengo que actualizar los proyectos con el nuevo user, para que no de error. Tiene una función de update
-                //hecha para esto.
-                case 1:
-                    if (Manage.get_Instance().getUserLoggedIn().setName(IO.readString("Inserte su nuevo nombre"))) {
-                        Manage.get_Instance().getUsers().update(manage.getUserLoggedIn());
-                        //Aqui actualizar todos los proyectos con el nuevo usuario
-                    }
 
+                case 1:
+                    Manage.get_Instance().getUserLoggedIn().setName(IO.readString("Inserte su nuevo nombre"));
                     break;
                 case 2:
-                    if (Manage.get_Instance().getUserLoggedIn().setNickName(IO.readString("Inserte el apodo por el que quiere ser identificado"))) {
-                        Manage.get_Instance().getUsers().update(manage.getUserLoggedIn());
-                    }
+                    Manage.get_Instance().getUserLoggedIn().setNickName(IO.readString("Inserte el apodo por el que quiere ser identificado"));
                     break;
                 case 3:
-                    if (Manage.get_Instance().getUserLoggedIn().setEmail(IO.readString("Inserte su nuevo correo electronico"))) {
-                        Manage.get_Instance().getUsers().update(manage.getUserLoggedIn());
-                    }
+                    Manage.get_Instance().getUserLoggedIn().setEmail(IO.readString("Inserte su nuevo correo electronico"));
                     break;
                 case 4:
-                    if (Manage.get_Instance().getUserLoggedIn().setPassword(IO.readString("Inserte su nueva contraseña"))) {
-                        //Manage.get_Instance().getUsers().update(manage.getUserLoggedIn());
-                    }
-
+                    Manage.get_Instance().getUserLoggedIn().setPassword(IO.readString("Inserte su nueva contraseña"));
                     break;
                 case 5:
-                    //Mensaje de despedida de este sub menu.
+                    settingsView.goodByeMessage();
                     break;
+                default:
+                    settingsView.errorOption();
             }
 
         } while (optionToChange != 5);

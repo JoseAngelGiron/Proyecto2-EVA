@@ -13,14 +13,8 @@ public interface IRepoProyects {
     Task retrieveTask(User userToCharge, String idTask);
     boolean updateTask(Task task, Proyect proyect);
     Proyect getByID(String id, User user);
+    void update(User user);
+    private void updateTasks(User newUser){
 
-
-
-
-    //Esta función que reciba un newUser y que si los usuarios son iguales, actualiza el user de los proyectos.
-    //Funciona porque basicamente user tiene dos claves que son identicas. Me daría problema la contraseña, que no puedo cambiarla
-
-
-
-    //public void updateProyectsWithNewUser(User newUser);
+    }
 }

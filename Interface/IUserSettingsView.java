@@ -1,5 +1,7 @@
 package Interface;
 
 public interface IUserSettingsView {
-    public int changeProfile();
+    int changeProfile();
+    void goodByeMessage();
+    void errorOption();
 }

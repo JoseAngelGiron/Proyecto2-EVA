@@ -40,7 +40,6 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         return result;
     }
 
-
     /**
      * Actualiza un proyecto en el repositorio
      *
@@ -59,6 +58,38 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         }
         return result;
     }
+
+    /**
+     * Función encargada de actualizar los datos de un usuario a los proyectos que el ha creado.
+     * @param newUser que se trata de los nuevos datos de usuario.
+     */
+    @Override
+    public void update(User newUser) {
+        for(Proyect proyect:elements){
+            if(proyect.getProjectCreator().equals(newUser)){
+                proyect.setProjectCreator(newUser);
+            }
+        }
+        updateTasks(newUser);
+    }
+
+    /**
+     * Función encargada de actualizar las todas las tareas de los proyectos, en las cuales el usuario que recibe la
+     * función es el colaborador
+     * @param newUser los datos del nuevo usuario que se van a actualizar
+     */
+    private void updateTasks(User newUser) {
+        for(Proyect proyect:elements){
+            for (Task task: proyect.getElements()){
+                for(int i=0;i<task.getColaboratorToCharge().length;i++){
+                    if(task.getColaboratorToCharge()[i].equals(newUser)){
+                        task.getColaboratorToCharge()[i] = newUser;
+                    }
+                }
+            }
+        }
+    }
+
 
     /**
      * Elimina un proyecto de la lista de usuarios utilizando su identificador
@@ -101,10 +132,12 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         }
         return proyectsColaborator;
     }
+
+
     //Alberto, HAZ ESTAS 3
 
     //La 1º, me tiene que devolver UN proyecto, comparando el user y el idProyecto
-    //recorre todos los proyectos, comparando el id del proyecto, y si encaja, recorre el array de
+    //recorre todos los proyectos, comparando el id del proyecto, y si encaja, recorre el array de proyectos
     @Override
     public Proyect retrieveProyectIfColaborator(User user, String idProyecto) {
         return null;

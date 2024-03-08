@@ -24,18 +24,18 @@ public class LoginController implements ISessionController {
         MainView mainView = new MainView();
         boolean login =false;
         boolean userExists;
-        String returnToMainMenu =" ";
+        String returnToMainMenu;
         User userToLogin;
         do{
-
+            returnToMainMenu = " ";
             userToLogin = mainView.solicitateUser();
             userExists = manage.checkLogin(userToLogin);
             if(!userExists){
                 returnToMainMenu = IO.readString("Error en los credenciales. ¿Desea volver al menu principal" +
-                        "o desea volver a loguearse? 'S' para volver, cualquier otra tecla para volver");
+                        "o desea volver a loguearse? 'S' para volver a intentar loguearse, cualquier otra tecla para volver");
             }
 
-        }while (!userExists || returnToMainMenu.equalsIgnoreCase("S"));
+        }while (returnToMainMenu.equalsIgnoreCase("S"));
 
         if(manage.checkLogin(userToLogin)){
             manage.setUserLoggedIn(userToLogin);
