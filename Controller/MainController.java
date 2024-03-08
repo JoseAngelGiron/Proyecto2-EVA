@@ -59,31 +59,33 @@ public class MainController implements Interface.IController {
         ViewCrud secundaryView = new ViewCrud();
         int option;
 
-        option = secundaryView.welcomeUser(manage.getUserLoggedIn());
-        switch (option) {
+        do {
+            option = secundaryView.welcomeUser(manage.getUserLoggedIn());
 
-            //Cambiar esto, menos cases,
-            case 1:
-                CRUDProjectCreatorController crudControl = new CRUDProjectCreatorController();
-                crudControl.CRUDController();
-                break;
-            case 2:
-                TaskController taskController = new TaskController();
-                taskController.controllerTask();
-                break;
-            case 3:
-                ChangeSettingsUserController settingsControl = new ChangeSettingsUserController();
-                settingsControl.changeUserController();
-                break;
-            case 4:
-                //Mensaje de despedida
-                manage.setUserLoggedIn(null);
-                manage.saveData();
-                break;
-            default:
-                //Mensaje generico que nos diga que nos equivocamos, como siempre lo hicimos y siempre lo haremos !
+            switch (option) {
+                case 1:
+                    CRUDProjectCreatorController crudControl = new CRUDProjectCreatorController();
+                    crudControl.CRUDController();
+                    break;
+                case 2:
+                    TaskController taskController = new TaskController();
+                    taskController.controllerTask();
+                    break;
+                case 3:
+                    ChangeSettingsUserController settingsControl = new ChangeSettingsUserController();
+                    settingsControl.changeUserController();
+                    break;
+                case 4:
+                    //Mensaje de despedida
+                    manage.setUserLoggedIn(null);
+                    manage.saveData();
+                    break;
+                default:
+                    //Mensaje generico que nos diga que nos equivocamos, como siempre lo hicimos y siempre lo haremos !
 
             }
 
-        }
+
+        }while(option!=4);
     }
+}
