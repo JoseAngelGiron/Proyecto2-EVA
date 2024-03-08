@@ -95,8 +95,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         return " ------------------------------------------------------------------------------------- " +
                 "\n | identificador: " + id + "                       |" + " Colaboradores: " +
                 "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorsToCharge[0].getName() +
-                "\n | Inicio de la tarea: " + startDate + "         |" + " apodo " + colaboratorsToCharge[0].getNickName() +
-                "\n | Final de la tarea: " + endDate + "          |"    + " Correo electronico:" + colaboratorsToCharge[0].getEmail() +
+                "\n | Inicio de la tarea: " + startDate.getDayOfMonth() + "/" + startDate.getMonthValue() + "/" + startDate.getYear() + "         |" + " apodo " + colaboratorsToCharge[0].getNickName() +
+                "\n | Final de la tarea: " + endDate.getDayOfMonth() + "/" + endDate.getMonthValue() + "/" + endDate.getYear() + "          |"    + " Correo electronico:" + colaboratorsToCharge[0].getEmail() +
                 "\n ----------------------------------------------------------------------------------- ";
     }
 }
