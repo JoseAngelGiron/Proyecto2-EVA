@@ -11,8 +11,8 @@ public class MainController implements IMainController {
     Manage manage = Manage.get_Instance();
 
     /**
-     * COMENTA ESTO BIEN JOER
-     * Inicia el programa y se repite hasta que el usuario salga pulsando 3
+     * Función encargada de iniciar el programa y llamar al menu principal para solicitar una opción.
+     * Hace uso de la función mainView mostrar el menú y pedir la opción requerida
      */
     @Override
     public void startApp() {
@@ -36,14 +36,14 @@ public class MainController implements IMainController {
                 if(loginController.loginUser()){
                     mainMenuController();
                 }else{
-                    //Mensaje redirigiendo al menu principal
+                    MainView.printMessage("Inicio de sesión fallido. Pruebe de nuevo o registrese");
                 }
                 break;
             case 2:
                 loginController.registerUser();
                 break;
             case 3:
-                //Mensaje de despedida
+                MainView.printMessage("¡Gracias por usar nuestra aplicación!");
                 break;
         }
     }
@@ -73,13 +73,10 @@ public class MainController implements IMainController {
                     settingsControl.changeUserController();
                     break;
                 case 4:
-                    //Mensaje de despedida
+                    MainView.printMessage("Ha cerrado su sesión. ¡Vuelva pronto!");
                     manage.setUserLoggedIn(null);
                     manage.saveData();
                     break;
-                default:
-                    //Mensaje generico que nos diga que nos equivocamos, como siempre lo hicimos y siempre lo haremos !
-
             }
 
 

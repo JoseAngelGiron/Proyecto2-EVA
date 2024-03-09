@@ -32,9 +32,10 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     public Proyect getByID(String id, User user) {
         Proyect result = null;
         for (Proyect proyect : elements) {
-            if (proyect.getId().equals(id) &&
+            if (proyect.getId().equals("P - "+id) &&
                     user.equals(proyect.getProjectCreator())) {
                 result = proyect;
+                break;
             }
         }
         return result;

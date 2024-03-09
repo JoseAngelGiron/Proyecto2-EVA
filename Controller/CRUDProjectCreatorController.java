@@ -35,7 +35,8 @@ public class CRUDProjectCreatorController implements ICRUDProjectCreatorControll
                     viewCrud.showProyects(Manage.get_Instance().retrieveProyects());
                     break;
                 case 3:
-                    viewCrud.showProject(Manage.get_Instance().getRepoProyects().getByID(IO.readString("Inserte el código de el proyecto que desea visualizar sus datos"), manage.getUserLoggedIn()));
+                    viewCrud.showProject(Manage.get_Instance().getRepoProyects().getByID(IO.readString("Inserte el código de el proyecto que desea visualizar sus datos." +
+                            " No es necesario el identificado de clase '(P -)'"), manage.getUserLoggedIn()));
                     break;
                 case 4:
                     UpdateProjectController updateControl = new UpdateProjectController();
@@ -47,8 +48,7 @@ public class CRUDProjectCreatorController implements ICRUDProjectCreatorControll
                 case 6:
                     //Mensaje de despedida
                     break;
-                default:
-                    //Mensaje indicando que se ha equivocado.
+
             }
 
 

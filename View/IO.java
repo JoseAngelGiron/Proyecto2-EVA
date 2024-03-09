@@ -11,15 +11,15 @@ public class IO{
      */
     public static String readString(String msg){
         String msg2;
+        teclado.nextLine();
         do {
             System.out.print(msg + ": ");
-            msg2 = teclado.next();
+            msg2 = teclado.nextLine().trim();
 
             if (msg2.isEmpty()){
-                System.out.println("""
-                        Por favor, introduzca algún tipo de información.
-                         Pruebe de nuevo por favor\s
-                        """);
+                System.out.println("Por favor, introduzca algún tipo de información."+
+                        "Pruebe de nuevo por favor ");
+                teclado.nextLine();
             }
 
         } while (msg2.isEmpty());
@@ -42,11 +42,12 @@ public class IO{
 
             } catch (Exception e) {
                 System.out.println("Por favor, introduce un número valido.");
-                teclado.nextLine();
+
             }
 
             if (numero < numMenor || numero > numMayor){
                 System.out.println("La opción introducida no se contempla. Pruebe de nuevo.");
+
             }
 
         } while(numero < numMenor || numero > numMayor);

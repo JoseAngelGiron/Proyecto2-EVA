@@ -135,12 +135,13 @@ public class ViewCrud implements IViewCrud {
     @Override
     public void showProyects(ArrayList<Proyect> proyects) {
         if(proyects != null){
-            System.out.println("No se han encontrado proyectos asociados. Pruebe de nuevo, por favor.");
-        }else{
             System.out.println("-Lista de proyectos-.");
             for (Proyect proyect : proyects) {
                 System.out.println(proyect.toString());
             }
+
+        }else{
+            System.out.println("No se han encontrado proyectos asociados. Pruebe de nuevo, por favor.");
 
         }
 

@@ -11,6 +11,7 @@ public class OwnProjectsView implements IOwnProjectsView {
         System.out.println("3- Ver datos de uno de sus proyectos.");
         System.out.println("4- Actualizar datos de uno de sus proyectos.");
         System.out.println("5- Cerrar uno de sus proyectos. ");
+        System.out.println("6- Volver al menu de navegación. ");
         return IO.readNumber("¿Que opción desea?",1,6);
     }
 }

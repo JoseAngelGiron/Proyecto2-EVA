@@ -72,6 +72,14 @@ public class MainView implements IMainView{
         return userToRegister;
     }
 
+    public static void printMessage(String message){
+        try {
+            Thread.sleep(500);
+            System.out.println(message);
+        }catch (InterruptedException e) {
+
+        }
+    }
 
 
 }
