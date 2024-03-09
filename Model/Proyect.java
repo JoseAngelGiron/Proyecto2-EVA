@@ -1,10 +1,8 @@
 package Model;
 
 
-import Interface.IProyect;
+import Interface.Model_Interface.IProyect;
 
-import java.awt.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 

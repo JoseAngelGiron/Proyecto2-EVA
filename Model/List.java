@@ -1,8 +1,7 @@
 package Model;
 
-import Interface.IList;
+import Interface.Model_Interface.IList;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 

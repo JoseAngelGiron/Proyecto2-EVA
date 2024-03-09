@@ -1,8 +1,7 @@
 package Repo;
 
-import Interface.IRepoUsers;
+import Interface.Repo_Interface.IRepoUsers;
 import Model.User;
-import Utils.Serializator;
 
 import java.util.HashSet;
 import java.util.Iterator;

@@ -1,9 +1,8 @@
 package Controller;
 
-import Interface.IUpdateProjectController;
+import Interface.Controller_Interface.IUpdateProjectController;
 import Model.*;
 import View.IO;
-import View.MainView;
 import View.ProjectView;
 
 public class UpdateProjectController implements IUpdateProjectController {
@@ -15,51 +14,47 @@ public class UpdateProjectController implements IUpdateProjectController {
     public void updateProjectController() {
         Manage manage = Manage.get_Instance();
         ProjectView projectView = new ProjectView();
-        Proyect proyect = Manage.get_Instance().getRepoProyects().getByID(IO.readString("Inserte el código de el proyecto que desea actualizar"), Manage.get_Instance().getUserLoggedIn());
+        RetrieveDataController retrieveDataController = new RetrieveDataController();
+        Proyect proyect = retrieveDataController.retrieveProyect();
 
-        if (proyect != null) {
+        if (proyect != null ) {
             int optionSubMenu;
             do {
+                manage.getRepoProyects().update(proyect);
+                manage.saveData();
                 optionSubMenu = projectView.chooseWhatToChange();
                 switch (optionSubMenu) {
                     case 1:
-                        String newName = IO.readString("Inserte el nuevo nombre del proyecto: ");
-                        proyect.setName(newName);
+                        proyect.setName(IO.readString("Inserte el nuevo nombre del proyecto: "));
                         break;
                     case 2:
-                        String newDescription = IO.readString("Inserte la nueva descripción del proyecto: ");
-                        proyect.setDescription(newDescription);
+                        proyect.setDescription(IO.readString("Inserte la nueva descripción del proyecto: "));
                         break;
                     case 3:
-                        String newCreatorNickName = IO.readString("Inserte el apodo del nuevo creador:");
-                        User newCreator = null;
-                        for (User user : Manage.get_Instance().getUsers().getElements()) {
-                            if (user.getNickName().equals(newCreatorNickName)) {
-                                newCreator = user;
-                            }
-                        }
-                        if (newCreator != null) {
-                            proyect.setProjectCreator(newCreator);
-                            System.out.println("El creador del proyecto se ha actualizado correctamente.");
-                        }
+                        UpdateTaskController taskController = new UpdateTaskController();
+                        taskController.controllerTask(proyect);
                         break;
                     case 4:
-                        boolean taskChanged = submenu();
-                        //Falta el submenu
-                        if (taskChanged) {
-                            System.out.println("La tarea se ha actualizado correctamente.");
+                        User user =manage.getUsers().getByID(IO.readString(projectView.changeCreator()));
+
+                        if(user != null){
+                            proyect.setProjectCreator(user);
+                            manage.getRepoProyects().update(proyect);
+                            manage.saveData();
+                            projectView.genericMessage("Los permisos fueron cambiados con éxito, saliendo...");
+                        }else{
+                            projectView.genericMessage("No se encontro el usuario, o quiso cancelar la operación.");
+
                         }
                         break;
                     case 5:
-                        System.out.println("Gracias por usarlo");
-                        //Mensaje de despedida de este sub menu.
+                        projectView.genericMessage("Saliendo del menu...");
                         break;
                 }
-
-            } while (optionSubMenu != 5);
+            } while (optionSubMenu != 5 || !manage.getUserLoggedIn().equals(proyect.getProjectCreator()));
 
         } else {
-            //Aqui va el mensaje de error de la clase MainView lo que pasa es que por evitar conflictos no lo he puesto
+            projectView.genericMessage("Saliendo del menu...");
         }
     }
 }

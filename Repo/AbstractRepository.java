@@ -1,9 +1,6 @@
 package Repo;
 
-import Interface.IAbstractRepository;
-import Model.Manage;
-import Model.User;
-import Utils.Serializator;
+import Interface.Repo_Interface.IAbstractRepository;
 
 import java.io.Serializable;
 import java.util.Collection;

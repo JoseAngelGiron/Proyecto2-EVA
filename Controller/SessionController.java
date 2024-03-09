@@ -1,7 +1,7 @@
 package Controller;
 
 
-import Interface.ISessionController;
+import Interface.Controller_Interface.ISessionController;
 import Model.*;
 import View.IO;
 import View.MainView;
@@ -9,8 +9,8 @@ import View.MainView;
 
 
 
-public class LoginController implements ISessionController {
-    //CADA SUB-SWITCH HAY QUE DIVIDIRLO EN UN ARCHIVO NUEVO. SUBDIVIDIR Y HACER INSTANCIAS CORRECTAMENTE:
+public class SessionController implements ISessionController {
+
 
     /**
      * Función del controlador, encargada de controlar el login del usuario, realizando los pasos necesarios para
@@ -20,10 +20,11 @@ public class LoginController implements ISessionController {
     @Override
     public boolean loginUser() {
         Manage manage = Manage.get_Instance();
-        //Partir este código de la vista
-        MainView mainView = new MainView();
+        MainView mainView = new MainView(); //Partir este código de la vista
+
         boolean login =false;
         boolean userExists;
+
         String returnToMainMenu;
         User userToLogin;
         do{
@@ -34,7 +35,6 @@ public class LoginController implements ISessionController {
                 returnToMainMenu = IO.readString("Error en los credenciales. ¿Desea volver al menu principal" +
                         "o desea volver a loguearse? 'S' para volver a intentar loguearse, cualquier otra tecla para volver");
             }
-
         }while (returnToMainMenu.equalsIgnoreCase("S"));
 
         if(manage.checkLogin(userToLogin)){

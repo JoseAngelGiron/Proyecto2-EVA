@@ -1,6 +1,6 @@
 package Repo;
 
-import Interface.IRepoProyects;
+import Interface.Repo_Interface.IRepoProyects;
 import Model.Proyect;
 
 import Model.Task;
@@ -189,6 +189,19 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         return task;
     }
 
+    @Override
+    public Task retrieveTaskFromProject(String idTarea, Proyect proyect) {
+        Task taskToReturn = null;
+
+        for (Task task : proyect.getElements()) {
+            if (task.getId().equals(idTarea)) {
+                taskToReturn = task;
+            }
+        }
+
+        return taskToReturn;
+    }
+
     /**
      * Actualiza una tarea dentro de un proyecto.
      * @param task La tarea a actualizar
@@ -196,7 +209,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      * @return true si la tarea se actualizó correctamente,
      * false si no se encontró la tarea o el proyecto
      */
-    @Override
+    @Override //ESTO VOY A TENER QUE MIRARLO CON DETALLE
     public boolean updateTask(Task task, Proyect proyect) {
         boolean updated = false;
         for (Proyect tmpProyect : elements){

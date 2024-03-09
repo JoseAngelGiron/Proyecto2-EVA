@@ -1,14 +1,11 @@
 package Controller;
 
+import Interface.Controller_Interface.IMainController;
 import Model.*;
-import View.IO;
 import View.MainView;
-import View.ProjectView;
 import View.ViewCrud;
 
-import java.util.ArrayList;
-
-public class MainController implements Interface.IController {
+public class MainController implements IMainController {
 
     MainView mainView = new MainView();
     Manage manage = Manage.get_Instance();
@@ -33,7 +30,7 @@ public class MainController implements Interface.IController {
      */
     @Override
     public void mainController(int option) {
-        LoginController loginController = new LoginController();
+        SessionController loginController = new SessionController();
         switch (option) {
             case 1:
                 if(loginController.loginUser()){
@@ -68,8 +65,8 @@ public class MainController implements Interface.IController {
                     crudControl.CRUDController();
                     break;
                 case 2:
-                    TaskController taskController = new TaskController();
-                    taskController.controllerTask();
+                    //UpdateTaskController taskController = new UpdateTaskController();
+                    //taskController.controllerTask();
                     break;
                 case 3:
                     ChangeSettingsUserController settingsControl = new ChangeSettingsUserController();

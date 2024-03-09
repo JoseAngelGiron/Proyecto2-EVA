@@ -1,6 +1,6 @@
 package Controller;
 
-import Interface.IChangeUserController;
+import Interface.Controller_Interface.IChangeUserController;
 import Model.Manage;
 import View.IO;
 import View.UserSettingsView;

@@ -49,7 +49,7 @@ public class IO{
                 System.out.println("La opción introducida no se contempla. Pruebe de nuevo.");
             }
 
-            } while(numero < numMenor || numero > numMayor);
+        } while(numero < numMenor || numero > numMayor);
         return numero;
     }
 }

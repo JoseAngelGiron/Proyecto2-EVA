@@ -1,8 +1,6 @@
-package Interface;
+package Interface.Controller_Interface;
 
-import java.security.NoSuchAlgorithmException;
-
-public interface IController {
+public interface IMainController {
 
 
 
