@@ -1,6 +1,6 @@
 package Model;
 
-import Interface.IUser;
+import Interface.Model_Interface.IUser;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
@@ -17,7 +17,7 @@ public class User implements IUser, Serializable  {
     private final int MAX_LENGTH = 20;
 
     public User(){
-
+        this("","","example@gmail.com","");
     }
 
     public User(String name, String nickName, String email, String password){

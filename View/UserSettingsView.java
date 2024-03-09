@@ -1,6 +1,6 @@
 package View;
 
-import Interface.IUserSettingsView;
+import Interface.View_Interface.IUserSettingsView;
 
 public class UserSettingsView implements IUserSettingsView {
 

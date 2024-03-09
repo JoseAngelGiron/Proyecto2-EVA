@@ -1,6 +1,6 @@
 package View;
 
-import Interface.IOwnProjectsView;
+import Interface.View_Interface.IOwnProjectsView;
 
 public class OwnProjectsView implements IOwnProjectsView {
     @Override

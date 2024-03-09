@@ -1,9 +1,7 @@
 package View;
 
-import Interface.IMainView;
+import Interface.View_Interface.IMainView;
 import Model.User;
-
-import java.security.NoSuchAlgorithmException;
 
 public class MainView implements IMainView{
     /**

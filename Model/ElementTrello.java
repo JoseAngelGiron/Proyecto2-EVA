@@ -1,6 +1,6 @@
 package Model;
 
-import Interface.IElementTrello;
+import Interface.Model_Interface.IElementTrello;
 
 
 import java.io.Serializable;

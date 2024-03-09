@@ -1,13 +1,11 @@
 package Model;
 
-import Interface.IManage;
-import Repo.AbstractRepository;
+import Interface.Model_Interface.IManage;
 import Repo.RepoProyects;
 import Repo.RepoUser;
 import Utils.Serializator;
 
 import java.io.Serializable;
-import java.security.ProtectionDomain;
 import java.util.ArrayList;
 
 public class Manage implements Serializable, IManage {

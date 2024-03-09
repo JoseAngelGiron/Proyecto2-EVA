@@ -1,6 +1,6 @@
 package View;
 
-import Interface.IViewCrud;
+import Interface.View_Interface.IViewCrud;
 import Model.Proyect;
 import Model.Task;
 import Model.User;
@@ -72,22 +72,21 @@ public class ViewCrud implements IViewCrud {
         }else{
             System.out.println("No sé encontro ningún proyecto, o cancelaste la opción de borrado.");
         }
-
     }
 
     /**
      * Función que muestra todas las tareas y permite seleccionar una de ellas mediante un número introducido por pantalla
      *
      * @param tasks las tareas que se van a mostrar
-     * @return un número, entre 1 y 999
-     */ //Esta función me la cambias, que devuelva un string y con ITERATOR
-    @Override //CAMBIAR
+     * @return una cadena de texto, que se identifica con el código de texto que se le pide al usuario
+     */
+    @Override
     public String showTasks(ArrayList<Task> tasks){
-        StringBuilder taskList = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++){
-            taskList.append(tasks.get(i).toString()).append(" (").append(i + 1).append(")\n");
+
+        for (Task task:tasks){
+            System.out.println(task);
         }
-        return taskList.toString();
+        return IO.readString("Introduzca el código de la tarea que desea buscar");
     }
 
     /**
