@@ -3,6 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class IO{
     public static Scanner teclado = new Scanner(System.in);
+    public static boolean isFirstExecution =true;
 
     /**
      * Esta función permite al usuario introducir un mensaje por consola y devuelve dicho mensaje
@@ -11,18 +12,22 @@ public class IO{
      */
     public static String readString(String msg){
         String msg2;
-        teclado.nextLine();
-        do {
-            System.out.print(msg + ": ");
+        System.out.println(msg);
+        do{
             msg2 = teclado.nextLine().trim();
 
-            if (msg2.isEmpty()){
-                System.out.println("Por favor, introduzca algún tipo de información."+
-                        "Pruebe de nuevo por favor ");
-                teclado.nextLine();
+            if (isFirstExecution) {
+                isFirstExecution = false;
+            } else {
+                if (msg2.isEmpty()) {
+                    System.out.println("Por favor, introduzca algún tipo de información. Pruebe de nuevo por favor ");
+                    System.out.println(msg);
+                }
             }
+        }while (msg2.isEmpty());
 
-        } while (msg2.isEmpty());
+
+        isFirstExecution=true;
         return msg2;
     }
 

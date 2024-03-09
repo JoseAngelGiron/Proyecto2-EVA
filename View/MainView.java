@@ -72,6 +72,10 @@ public class MainView implements IMainView{
         return userToRegister;
     }
 
+    /**
+     * Función generica para imprimir un mensaje
+     * @param message el mensaje que va a recibir, que se va a imprimir por pantalla
+     */
     public static void printMessage(String message){
         try {
             Thread.sleep(500);

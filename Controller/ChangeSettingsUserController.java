@@ -3,6 +3,7 @@ package Controller;
 import Interface.Controller_Interface.IChangeUserController;
 import Model.Manage;
 import View.IO;
+import View.MainView;
 import View.UserSettingsView;
 
 public class ChangeSettingsUserController implements IChangeUserController {
@@ -37,10 +38,8 @@ public class ChangeSettingsUserController implements IChangeUserController {
                     Manage.get_Instance().getUserLoggedIn().setPassword(IO.readString("Inserte su nueva contraseña"));
                     break;
                 case 5:
-                    settingsView.goodByeMessage();
+                    MainView.printMessage("Volviendo al menú principal...");
                     break;
-                default:
-                    settingsView.errorOption();
             }
 
         } while (optionToChange != 5);

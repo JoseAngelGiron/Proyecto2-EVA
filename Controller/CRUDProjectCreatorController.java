@@ -4,8 +4,9 @@ import Interface.Controller_Interface.ICRUDProjectCreatorController;
 import Model.ElementstTrello;
 import Model.Manage;
 import Model.Proyect;
-import Model.TipoElementTrello;
+import Model.TrelloFactory;
 import View.IO;
+import View.MainView;
 import View.OwnProjectsView;
 import View.ViewCrud;
 
@@ -24,15 +25,14 @@ public class CRUDProjectCreatorController implements ICRUDProjectCreatorControll
         do {
             //TENGO QUE REESTRUCTURAR VISTA, PARA PODER TENER ORGANIZADO CORRECTAMENTE LAS VISTAS
             option = projectsView.showMenuProjects();
-
+            manage.saveData();
             switch (option) {
                 case 1:
-                    viewCrud.showIfProyectIsAdded(Manage.get_Instance().getRepoProyects().getProyects().add((Proyect) TipoElementTrello.build(
-                            ElementstTrello.PROYECT, IO.readString("Inserte un código para el proyecto"), Manage.get_Instance().getUserLoggedIn())));
-                    manage.saveData();
+                    SelectItemController selectItemController = new SelectItemController();
+                    viewCrud.showIfProyectIsAdded(Manage.get_Instance().getRepoProyects().getProyects().add(selectItemController.selectTypeProyect()));
                     break;
                 case 2:
-                    viewCrud.showProyects(Manage.get_Instance().retrieveProyects());
+                    viewCrud.showProyects(manage.retrieveProyects());
                     break;
                 case 3:
                     viewCrud.showProject(Manage.get_Instance().getRepoProyects().getByID(IO.readString("Inserte el código de el proyecto que desea visualizar sus datos." +
@@ -43,10 +43,10 @@ public class CRUDProjectCreatorController implements ICRUDProjectCreatorControll
                     updateControl.updateProjectController();
                     break;
                 case 5:
-                    viewCrud.showIfProjectDeleted(Manage.get_Instance().getRepoProyects().delete(viewCrud.deleteProyect()));
-                    Manage.get_Instance().saveData();
+                    viewCrud.showIfProjectDeleted(manage.deleteFromCreator(viewCrud.deleteProyect(), manage.getUserLoggedIn()));
+                    break;
                 case 6:
-                    //Mensaje de despedida
+                    MainView.printMessage("Saliendo hacía el menu de navegación.... ");
                     break;
 
             }

@@ -9,8 +9,8 @@ import java.util.Collection;
 import java.util.Objects;
 
 public abstract class ElementTrello<T> implements IElementTrello<T>, Serializable {
-    protected String name;
     protected String id;
+    protected String name;
     protected String description;
     protected ArrayList<T> elements;
 

@@ -33,10 +33,14 @@ public class UpdateProjectController implements IUpdateProjectController {
                         proyect.setDescription(IO.readString("Inserte la nueva descripción del proyecto: "));
                         break;
                     case 3:
+                        SelectItemController selectItemController = new SelectItemController();
+                        proyect.getElements().add(selectItemController.selectTypeTask());
+                        break;
+                    case 4:
                         UpdateTaskController taskController = new UpdateTaskController();
                         taskController.controllerTask(proyect);
                         break;
-                    case 4:
+                    case 5:
                         User user =manage.getUsers().getByID(IO.readString(projectView.changeCreator()));
 
                         if(user != null){
@@ -49,11 +53,11 @@ public class UpdateProjectController implements IUpdateProjectController {
 
                         }
                         break;
-                    case 5:
+                    case 6:
                         MainView.printMessage("Saliendo del menu...");
                         break;
                 }
-            } while (optionSubMenu != 5 || !manage.getUserLoggedIn().equals(proyect.getProjectCreator()));
+            } while (optionSubMenu != 6 || !manage.getUserLoggedIn().equals(proyect.getProjectCreator()));
 
         } else {
             MainView.printMessage("Saliendo del menu...");
