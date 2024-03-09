@@ -38,10 +38,6 @@ public class TaskView implements ITaskView {
         return IO.readNumber("Seleccione la opción que desea",1,3);
     }
 
-    @Override
-    public void genericMessage(String msg) {
-
-    }
 
     @Override
     public void showColaborator(User user) {

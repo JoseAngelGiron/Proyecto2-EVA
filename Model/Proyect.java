@@ -20,7 +20,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
     }
 
 
-    public Proyect(String codigo, User user) {
+    public Proyect(String id, User user) {
         setId(id);
         projectCreator = user;
     }
@@ -35,7 +35,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
 
     @Override
     public void setId(String nombre) {
-        super.setId("P - "+nombre);
+        super.setId(nombre);
     }
 
 
@@ -104,7 +104,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
     @Override
     public String toString() {
         return " |---------------------------- " +
-                "\n | Nombre proyecto=" + name + " |"+ " Nombre del creador : " + projectCreator.getName() +
+                "\n | Nombre proyecto:" + name + " |"+ " Nombre del creador : " + projectCreator.getName() +
                 "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +
                 "\n | identificador: " + id + "         |"+ " Correo electronico:" + projectCreator.getEmail() +
                 "\n |--------------------------------------------------------------- " +

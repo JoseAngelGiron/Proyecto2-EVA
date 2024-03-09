@@ -9,7 +9,7 @@ public interface ITaskView {
     int taskView();
     String selectTask(Proyect proyect);
     int changeStatusMenu();
-    void genericMessage(String msg);
+
     void showColaborator(User user);
 
 

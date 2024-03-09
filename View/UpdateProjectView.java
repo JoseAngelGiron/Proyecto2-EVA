@@ -2,7 +2,7 @@ package View;
 
 import Interface.View_Interface.IProjectView;
 
-public class ProjectView implements IProjectView {
+public class UpdateProjectView implements IProjectView {
     @Override
     public int chooseWhatToChange() {
         System.out.println("1.- Cambiar el nombre proyecto-.");
@@ -20,15 +20,7 @@ public class ProjectView implements IProjectView {
         return IO.readString("Inserte el apodo de un usuario ya existente: ");
     }
 
-    @Override
-    public void genericMessage(String message) {
-        try {
-            Thread.sleep(500);
-            System.out.println(message);
-        }catch (InterruptedException e) {
 
-        }
-    }
 
 
 }

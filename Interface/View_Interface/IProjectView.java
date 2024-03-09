@@ -10,5 +10,5 @@ import java.util.ArrayList;
 public interface IProjectView {
     public int chooseWhatToChange();
     String changeCreator();
-    void genericMessage(String message) throws InterruptedException;
+
 }

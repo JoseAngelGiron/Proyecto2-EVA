@@ -3,7 +3,8 @@ package Controller;
 import Interface.Controller_Interface.IUpdateProjectController;
 import Model.*;
 import View.IO;
-import View.ProjectView;
+import View.MainView;
+import View.UpdateProjectView;
 
 public class UpdateProjectController implements IUpdateProjectController {
 
@@ -13,13 +14,14 @@ public class UpdateProjectController implements IUpdateProjectController {
     @Override
     public void updateProjectController() {
         Manage manage = Manage.get_Instance();
-        ProjectView projectView = new ProjectView();
+        UpdateProjectView projectView = new UpdateProjectView();
         RetrieveDataController retrieveDataController = new RetrieveDataController();
         Proyect proyect = retrieveDataController.retrieveProyect();
 
         if (proyect != null ) {
             int optionSubMenu;
             do {
+                optionSubMenu = -1;
                 manage.getRepoProyects().update(proyect);
                 manage.saveData();
                 optionSubMenu = projectView.chooseWhatToChange();
@@ -41,20 +43,20 @@ public class UpdateProjectController implements IUpdateProjectController {
                             proyect.setProjectCreator(user);
                             manage.getRepoProyects().update(proyect);
                             manage.saveData();
-                            projectView.genericMessage("Los permisos fueron cambiados con éxito, saliendo...");
+                            MainView.printMessage("Los permisos fueron cambiados con éxito, saliendo...");
                         }else{
-                            projectView.genericMessage("No se encontro el usuario, o quiso cancelar la operación.");
+                            MainView.printMessage("No se encontro el usuario, o quiso cancelar la operación.");
 
                         }
                         break;
                     case 5:
-                        projectView.genericMessage("Saliendo del menu...");
+                        MainView.printMessage("Saliendo del menu...");
                         break;
                 }
             } while (optionSubMenu != 5 || !manage.getUserLoggedIn().equals(proyect.getProjectCreator()));
 
         } else {
-            projectView.genericMessage("Saliendo del menu...");
+            MainView.printMessage("Saliendo del menu...");
         }
     }
 }
