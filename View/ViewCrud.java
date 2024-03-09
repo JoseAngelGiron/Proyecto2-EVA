@@ -53,7 +53,8 @@ public class ViewCrud implements IViewCrud {
         msg = IO.readString("Inserte el identificador del proyecto que desea borrar ");
 
         confirmation = IO.readString("¿Esta seguro que desea proceder? si se encuentra el código, " +
-                "se borrara permanentemente el proyecto. \nPulse N/ para cancelar o cualquier otra tecla para proceder." );
+                "se borrara permanentemente el proyecto junto a todos sus datos. \nPulse N/ para cancelar o cualquier otra tecla para proceder." );
+
         if(confirmation.equalsIgnoreCase("N")){
             msg = " ";
         }

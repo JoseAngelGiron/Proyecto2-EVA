@@ -35,7 +35,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
 
     @Override
     public void setId(String nombre) {
-        super.setId(nombre);
+        super.setId("P - "+nombre);
     }
 
 

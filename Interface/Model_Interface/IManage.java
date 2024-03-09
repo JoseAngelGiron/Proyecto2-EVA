@@ -6,6 +6,7 @@ import Model.User;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public interface IManage {
 
@@ -16,6 +17,10 @@ public interface IManage {
     public ArrayList<Proyect> retrieveProyects();
 
     public ArrayList<Task> showAsignedTasks();
+
+    Proyect deleteFromCreator(String id, User userLogged);
+
+
 
 
 

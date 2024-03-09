@@ -14,19 +14,10 @@ public class UserSettingsView implements IUserSettingsView {
         System.out.println("2.- Cambiar de Nickname-");
         System.out.println("3.- Cambiar de Email");
         System.out.println("4.- Cambiar de contraseña");
-        return IO.readNumber("Inserte la opcion que desee",1,4);
+        System.out.println("5.- Salir de opciones de usuarios");
+        return IO.readNumber("Inserte la opcion que desee",1,5);
     }
 
-    @Override
-    public void goodByeMessage() {
-        System.out.println("¡ Gracias por usar nuestra aplicación ! ");
-        System.out.println("Ahora volverá al menu principal :) \n");
-    }
-
-    @Override
-    public void errorOption() {
-        System.out.println("Ha introducido una opción incorrecta. Pruebe de nuevo \n");
-    }
 
 
 }

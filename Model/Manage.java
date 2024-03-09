@@ -7,6 +7,7 @@ import Utils.Serializator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Manage implements Serializable, IManage {
     private static Manage _instance;
@@ -109,6 +110,28 @@ public class Manage implements Serializable, IManage {
     public ArrayList<Task> showAsignedTasks() { //CAMBIAR ESTO, SHOW NO ES UN NOMBRE CORRECTO
         return null;
     }
+
+    /**
+     * Elimina un proyecto del repo de proyectos utilizando su identificador y el usuario que se le pasa
+     *
+     * @param id El identificador del proyecto a eliminar
+     * @return Devuelve el proyecto que se a eliminado
+     */
+    @Override
+    public Proyect deleteFromCreator(String id, User userLogged) {
+        Proyect proyect = null;
+
+        Iterator<Proyect> iterator = repoProyects.getProyects().iterator();
+
+        while (iterator.hasNext()) {
+            Proyect tmpProyect = iterator.next();
+            if (tmpProyect.getId().equals("P - "+id) && userLogged.equals(userLoggedIn)) {
+                proyect = tmpProyect;
+                iterator.remove();
+                }
+            }
+            return proyect;
+        }
 
     /**
      * Carga la información de un objeto Manage.

@@ -95,7 +95,11 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
 
 
     /**
-     * Elimina un proyecto de la lista de usuarios utilizando su identificador
+     * Elimina un proyecto del repo de proyectos utilizando su identificador
+     * Esta función borra, independientemente del usuario que haya logueado. CUIDADO
+     *
+     * NOTA: Esta función se desarrollo con la idea de hace pruebas, y de que en un futuro creasemos superadministradores
+     * Todavía no se pone en uso
      *
      * @param id El identificador del proyecto a eliminar
      * @return Devuelve el proyecto que se a eliminado
@@ -103,10 +107,10 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     @Override
     public Proyect delete(String id) {
         Proyect proyect = null;
-        Iterator<Proyect> iterator = elements.iterator();
+        Iterator<Proyect> iterator = getProyects().iterator();
         while (iterator.hasNext()) {
             Proyect tmpProyect = iterator.next();
-            if (tmpProyect.getId().equals(id)) {
+            if (tmpProyect.getId().equals("P - "+id)) {
                 proyect = tmpProyect;
                 iterator.remove();
             }
@@ -127,7 +131,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
 
         for (Proyect proyect : elements) {
             for (Task task : proyect.getElements()) {
-                for (User tmpuser : task.getColaboratorToCharge()) {
+                for (User tmpuser : task.getColaboratorToCharge()) { //CORTAR ESTO PARA QUE NO AÑADA 2 VECES EL MISMO PROYECTO
                     if (tmpuser.equals(user)) {
                         proyectsColaborator.add(proyect);
                     }
@@ -137,11 +141,6 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         return proyectsColaborator;
     }
 
-
-    //Alberto, HAZ ESTAS 3
-
-    //La 1º, me tiene que devolver UN proyecto, comparando el user y el idProyecto
-    //recorre todos los proyectos, comparando el id del proyecto, y si encaja, recorre el array de proyectos
 
     /**
      * Se le pasa un usuario y una id de proyecto y con esta información busca si hay algun proyecto con esas caracteristicas
