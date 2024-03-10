@@ -40,10 +40,6 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
 
     }
 
-    public String getId() {
-        return this.id;
-    }
-
     public LocalDate getStartDate() {
         return this.startDate;
     }

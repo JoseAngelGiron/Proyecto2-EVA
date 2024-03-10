@@ -2,7 +2,7 @@ package View;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class IO{
-    public static Scanner teclado = new Scanner(System.in);
+    public static Scanner keyboard = new Scanner(System.in);
     public static boolean isFirstExecution =true;
 
     /**
@@ -14,7 +14,7 @@ public class IO{
         String msg2;
         System.out.println(msg);
         do{
-            msg2 = teclado.nextLine().trim();
+            msg2 = keyboard.nextLine().trim();
 
             if (isFirstExecution) {
                 isFirstExecution = false;
@@ -43,7 +43,7 @@ public class IO{
         do{
             System.out.print(msg);
             try {
-                numero = teclado.nextInt();
+                numero = keyboard.nextInt();
 
             } catch (Exception e) {
                 System.out.println("Por favor, introduce un número valido.");

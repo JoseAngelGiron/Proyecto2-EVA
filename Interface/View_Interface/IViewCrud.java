@@ -12,7 +12,6 @@ public interface IViewCrud {
 
     void showProyects(ArrayList<Proyect> proyects);
 
-    String changeProyect();
 
     String deleteProyect();
     void showIfProjectDeleted(Proyect ProyectDeleted);

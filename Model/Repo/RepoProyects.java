@@ -1,4 +1,4 @@
-package Repo;
+package Model.Repo;
 
 import Interface.Repo_Interface.IRepoProyects;
 import Model.Proyect;
@@ -99,7 +99,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      * Esta función borra, independientemente del usuario que haya logueado. CUIDADO
      *
      * NOTA: Esta función se desarrollo con la idea de hace pruebas, y de que en un futuro creasemos superadministradores
-     * Todavía no se pone en uso
+     * Todavía NO se pone en uso
      *
      * @param id El identificador del proyecto a eliminar
      * @return Devuelve el proyecto que se a eliminado
@@ -209,7 +209,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      * @return true si la tarea se actualizó correctamente,
      * false si no se encontró la tarea o el proyecto
      */
-    @Override //ESTO VOY A TENER QUE MIRARLO CON DETALLE
+    @Override //ESTO VOY A TENER QUE MIRARLO CON DETALLE PORQUE ME HAS METIDO 2 BREAKS Y NOS LA PODEMOS CARGAR
     public boolean updateTask(Task task, Proyect proyect) {
         boolean updated = false;
         for (Proyect tmpProyect : elements){

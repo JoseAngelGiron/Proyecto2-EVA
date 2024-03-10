@@ -62,4 +62,17 @@ public class Utils {
 
         return found;
     }
+
+    /**
+     * Función generica para imprimir un mensaje
+     * @param message el mensaje que va a recibir, que se va a imprimir por pantalla
+     */
+    public static void printMessage(String message){
+        try {
+            Thread.sleep(500);
+            System.out.println(message);
+        }catch (InterruptedException e) {
+
+        }
+    }
 }
