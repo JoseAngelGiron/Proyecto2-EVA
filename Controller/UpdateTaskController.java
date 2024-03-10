@@ -63,7 +63,7 @@ public class UpdateTaskController implements IUpdateTaskController {
                                 colaboratorAdded = task.setColaboratorToCharge(userToAddAsColaborator);
                             }
                             taskView.showColaborator(colaboratorAdded);
-
+                            break;
                         case 7:
                             Utils.printMessage("Estas saliendo del menu de actualización de tareas...");
                             break;
