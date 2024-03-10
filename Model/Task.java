@@ -116,6 +116,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         TaskStatus newStatus = TaskStatus.fromNumber(status);
         if (newStatus != null) {
             state = newStatus;
+            statusChanged =true;
         }
 
         return statusChanged;

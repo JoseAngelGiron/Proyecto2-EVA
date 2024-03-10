@@ -145,7 +145,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     /**
      * Se le pasa un usuario y una id de proyecto y con esta información busca si hay algun proyecto con esas caracteristicas
      *
-     * @param user       que va a ser el colaborador de la tarea
+     * @param user que va a ser el colaborador de la tarea
      * @param idProyecto es el identificador de proyecto y es por donde se va a buscar este
      * @return el proyecto con el colaborador user y la id entregada
      */
@@ -155,7 +155,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         for (Proyect proyects : elements) {
             for (Task tmpUser : proyects.getElements()) {
                 for (int i = 0; i < tmpUser.getColaboratorToCharge().length; i++) {
-                    if (proyects.getId().equals(idProyecto) && tmpUser.getColaboratorToCharge()[i].equals(user)) {
+                    if (proyects.getId().equals("P - "+idProyecto) && tmpUser.getColaboratorToCharge()[i].equals(user)) {
                         proyect = proyects;
                     }
                 }

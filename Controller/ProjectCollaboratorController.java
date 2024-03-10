@@ -25,22 +25,24 @@ public class ProjectCollaboratorController implements IProjectCollaboratorContro
 
            if (!proyects.isEmpty()) {
                Proyect proyectToUpdate = manage.getRepoProyects().retrieveProyectIfColaborator(manage.getUserLoggedIn(),collaboratorProjectsView.showProyects(proyects));
+               if(proyectToUpdate!=null) {
+                   Task taskToUpdate = manage.getRepoProyects().retrieveTask(manage.getUserLoggedIn(), collaboratorProjectsView.showTasks(proyectToUpdate));
+                   if (taskToUpdate != null) {
+                       if (taskToUpdate.changeStatus(collaboratorProjectsView.changeStatusMenu())) {
+                           taskToUpdate.addComentary(IO.readString("Inserte un comentario al respecto."));
+                           manage.getRepoProyects().updateTask(taskToUpdate, proyectToUpdate);
+                           collaboratorProjectsView.showTask(taskToUpdate);
+                       } else {
+                           Utils.printMessage("Ha cancelado la opción de actualización de estado.");
+                       }
 
-               Task taskToUpdate = manage.getRepoProyects().retrieveTask(manage.getUserLoggedIn(), collaboratorProjectsView.showTasks(proyectToUpdate));
-               if (taskToUpdate != null) {
-                    if(taskToUpdate.changeStatus(collaboratorProjectsView.changeStatusMenu())){
-                        taskToUpdate.addComentary(IO.readString("Inserte un comentario al respecto."));
-                        manage.getRepoProyects().updateTask(taskToUpdate, proyectToUpdate);
-                        collaboratorProjectsView.showTask(taskToUpdate);
-                    }else{
-                        Utils.printMessage("Ha cancelado la opción de actualización de estado.");
-                    }
 
-
+                   } else {
+                       Utils.printMessage("La tarea que ha introducido no se encuentra");
+                   }
                }else{
-                   Utils.printMessage("La tarea que ha introducido no se encuentra");
+                   Utils.printMessage("El código de proyecto introducido no se corresponde con ninguno de la lista");
                }
-
            } else {
                Utils.printMessage("No hay proyectos en los que se encuentre como colaborador.");
            }
