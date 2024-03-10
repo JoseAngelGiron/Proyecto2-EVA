@@ -2,6 +2,7 @@ package Controller;
 
 import Interface.Controller_Interface.IMainController;
 import Model.*;
+import Utils.Utils;
 import View.MainView;
 import View.ViewCrud;
 
@@ -36,14 +37,14 @@ public class MainController implements IMainController {
                 if(loginController.loginUser()){
                     mainMenuController();
                 }else{
-                    MainView.printMessage("Inicio de sesión fallido. Pruebe de nuevo o registrese");
+                    Utils.printMessage("Inicio de sesión fallido. Pruebe de nuevo o registrese");
                 }
                 break;
             case 2:
                 loginController.registerUser();
                 break;
             case 3:
-                MainView.printMessage("¡Gracias por usar nuestra aplicación!");
+                Utils.printMessage("¡Gracias por usar nuestra aplicación!");
                 break;
         }
     }
@@ -65,15 +66,15 @@ public class MainController implements IMainController {
                     crudControl.CRUDController();
                     break;
                 case 2:
-                    //UpdateTaskController taskController = new UpdateTaskController();
-                    //taskController.controllerTask();
+                    ProjectCollaboratorController collaboratorController = new ProjectCollaboratorController();
+                    collaboratorController.projectsCollaboratorController();
                     break;
                 case 3:
                     ChangeSettingsUserController settingsControl = new ChangeSettingsUserController();
                     settingsControl.changeUserController();
                     break;
                 case 4:
-                    MainView.printMessage("Ha cerrado su sesión. ¡Vuelva pronto!");
+                    Utils.printMessage("Ha cerrado su sesión. ¡Vuelva pronto!");
                     manage.setUserLoggedIn(null);
                     manage.saveData();
                     break;

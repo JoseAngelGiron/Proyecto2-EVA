@@ -5,6 +5,7 @@ import Model.ElementstTrello;
 import Model.Manage;
 import Model.Proyect;
 import Model.TrelloFactory;
+import Utils.Utils;
 import View.IO;
 import View.MainView;
 import View.OwnProjectsView;
@@ -46,12 +47,10 @@ public class CRUDProjectCreatorController implements ICRUDProjectCreatorControll
                     viewCrud.showIfProjectDeleted(manage.deleteFromCreator(viewCrud.deleteProyect(), manage.getUserLoggedIn()));
                     break;
                 case 6:
-                    MainView.printMessage("Saliendo hacía el menu de navegación.... ");
+                    Utils.printMessage("Saliendo hacía el menu de navegación.... ");
                     break;
 
             }
-
-
         }while(option!=6);
 
     }

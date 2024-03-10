@@ -4,6 +4,8 @@ import Model.Proyect;
 import Model.Task;
 import Model.User;
 
+import java.util.ArrayList;
+
 public interface ITaskView {
     //Menu del controlador de actualizar una tarea.
     int taskView();
@@ -12,5 +14,8 @@ public interface ITaskView {
 
     void showColaborator(User user);
 
+    String showProyects(ArrayList<Proyect> proyects);
+    String showTasks(Proyect proyect);
+    void showTask(Task task);
 
 }

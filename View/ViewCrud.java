@@ -28,19 +28,6 @@ public class ViewCrud implements IViewCrud {
         return IO.readNumber("Inserte la opcion que desea: ", 1, 4);
 
     }
-
-    //Probablemente borre esto
-    /**
-     * Menu destinado a elegir entre los distintos proyectos existentes. Permite introducir un código de proyecto.
-     * @return un String, que será el código de un proyecto.
-     */
-    @Override
-    public String changeProyect() {
-
-        return IO.readString("Introduzca el id del proyecto que desea modificar: ");
-    }
-
-
     /**
      * Menu destinado a pedir un identificador del proyecto que se busca, con el objetivo de borrarlo.
      * @return un código de proyecto.

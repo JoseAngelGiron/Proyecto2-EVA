@@ -2,6 +2,7 @@ package Controller;
 
 import Interface.Controller_Interface.IUpdateProjectController;
 import Model.*;
+import Utils.Utils;
 import View.IO;
 import View.MainView;
 import View.UpdateProjectView;
@@ -47,20 +48,20 @@ public class UpdateProjectController implements IUpdateProjectController {
                             proyect.setProjectCreator(user);
                             manage.getRepoProyects().update(proyect);
                             manage.saveData();
-                            MainView.printMessage("Los permisos fueron cambiados con éxito, saliendo...");
+                            Utils.printMessage("Los permisos fueron cambiados con éxito, saliendo...");
                         }else{
-                            MainView.printMessage("No se encontro el usuario, o quiso cancelar la operación.");
+                            Utils.printMessage("No se encontro el usuario, o quiso cancelar la operación.");
 
                         }
                         break;
                     case 6:
-                        MainView.printMessage("Saliendo del menu...");
+                        Utils.printMessage("Saliendo del menu...");
                         break;
                 }
             } while (optionSubMenu != 6 || !manage.getUserLoggedIn().equals(proyect.getProjectCreator()));
 
         } else {
-            MainView.printMessage("Saliendo del menu...");
+            Utils.printMessage("Saliendo del menu...");
         }
     }
 }

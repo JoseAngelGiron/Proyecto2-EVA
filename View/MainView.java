@@ -52,10 +52,10 @@ public class MainView implements IMainView{
         User userToRegister;
 
         do{
-            String name = IO.readString("Inserte su nombre");
-            String nickName = IO.readString("Inserte el nombre de usuario que desea");
-            String email = IO.readString("Inserte su email");
-            String password = IO.readString("Inserte su contraseña");
+            String name = IO.readString("Inserte su nombre: ");
+            String nickName = IO.readString("Inserte el nombre de usuario que desea: ");
+            String email = IO.readString("Inserte su email: ");
+            String password = IO.readString("Inserte su contraseña: ");
             userToRegister = new User(name, nickName, email, password);
             if (userToRegister.getName() == null  || userToRegister.getNickName() == null){
                 System.out.println("El nombre o el nombre de usuario no puede contener espacios en blanco");
@@ -72,18 +72,7 @@ public class MainView implements IMainView{
         return userToRegister;
     }
 
-    /**
-     * Función generica para imprimir un mensaje
-     * @param message el mensaje que va a recibir, que se va a imprimir por pantalla
-     */
-    public static void printMessage(String message){
-        try {
-            Thread.sleep(500);
-            System.out.println(message);
-        }catch (InterruptedException e) {
 
-        }
-    }
 
 
 }

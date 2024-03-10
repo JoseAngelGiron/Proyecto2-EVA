@@ -1,13 +1,9 @@
 package Controller;
 
-
 import Interface.Controller_Interface.ISessionController;
 import Model.*;
 import View.IO;
 import View.MainView;
-
-
-
 
 public class SessionController implements ISessionController {
 

@@ -1,8 +1,8 @@
 package Model;
 
 import Interface.Model_Interface.IManage;
-import Repo.RepoProyects;
-import Repo.RepoUser;
+import Model.Repo.RepoProyects;
+import Model.Repo.RepoUser;
 import Utils.Serializator;
 
 import java.io.Serializable;
@@ -112,7 +112,7 @@ public class Manage implements Serializable, IManage {
     }
 
     /**
-     * Elimina un proyecto del repo de proyectos utilizando su identificador y el usuario que se le pasa
+     * Elimina un proyecto del repositorio de proyectos utilizando su identificador y el usuario que se le pasa
      *
      * @param id El identificador del proyecto a eliminar
      * @return Devuelve el proyecto que se a eliminado
