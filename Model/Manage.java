@@ -128,16 +128,17 @@ public class Manage implements Serializable, IManage {
     @Override
     public Proyect deleteProyectFromCreator(String id, User userLogged) {
         Proyect proyect = null;
-
+        boolean removed = false;
         Iterator<Proyect> iterator = repoProyects.getElements().iterator();
 
-        while (iterator.hasNext()) {
+        while (iterator.hasNext() && !removed) {
             Proyect tmpProyect = iterator.next();
             if (tmpProyect.getId().equals(id) && tmpProyect.getProjectCreator().equals(userLoggedIn)) {
                 proyect = tmpProyect;
                 iterator.remove();
-                }
+                removed = true;
             }
+        }
             return proyect;
     }
 

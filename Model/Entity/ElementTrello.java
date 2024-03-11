@@ -16,13 +16,13 @@ public abstract class ElementTrello<T> implements IElementTrello<T>, Serializabl
     protected List<T> elements;
 
     public ElementTrello() {
-        this("","","",new ArrayList<>());
+        this("","","");
     }
-    public ElementTrello(String name, String id, String description, ArrayList<T> elements ) {
+    public ElementTrello(String name, String id, String description  ) {
         this.name = name;
         this.id = id;
         this.description = description;
-        this.elements = elements;
+        this.elements = new ArrayList<>();
     }
 
     public String getName() {
