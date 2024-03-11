@@ -34,9 +34,9 @@ public class MainView implements IMainView{
     @Override
     public void registerMessage(boolean registerMessage) {
         if(registerMessage){
-            System.out.println("El apodo o correo ya existe. Introduzca unos datos validos");
-        }else{
             System.out.println("El apodo y el correo están disponibles: ");
+        }else{
+            System.out.println("El apodo o correo ya existe. Pruebe de nuevo, por favor");
         }
 
     }

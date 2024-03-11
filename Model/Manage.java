@@ -39,14 +39,7 @@ public class Manage implements Serializable, IManage {
         return userLoggedIn;
     }
 
-    public void setUserLoggedIn(User userLoggedIn) {
-        for(User user: users.getElements()){
-            if(user.equals(userLoggedIn)){
-                this.userLoggedIn = user;
-            }
-        }
 
-    }
 
     private Manage() {
         users = new RepoUser();
@@ -86,17 +79,38 @@ public class Manage implements Serializable, IManage {
         }
         return login;
     }
+
     /**
-     * Metodo para comparar el usuario que recibe con los del repositorio usuario y asignarlo
-     * @param userToLogin el usuario que se va a comparar
+     * Función que compara los atributos primarios de un usuario y compara si ya existen, con el fin de no permitir
+     * el registro con credenciales ya existentes
+     * @param userToCheck el usuario sobre el que se comprobarán credenciales
+     * @return true si no se encuentran los credenciales. False, si se encuentran y por tanto no permitira el registro.
      */
     @Override
-    public void loginUser(User userToLogin) {
-        for (User user : users.getElements()) {
-            if (user.equals(userToLogin)) {
-                userLoggedIn = user;
+    public boolean checkRegister(User userToCheck) {
+        boolean register = true;
+        for(User user: users.getElements()) {
+            if(user.getNickName().equalsIgnoreCase(userToCheck.getNickName()) ||
+                    user.getEmail().equalsIgnoreCase(userToCheck.getEmail())) {
+                register = false;
+                break;
             }
         }
+        return register;
+    }
+
+
+    /**
+     * Metodo para comparar el usuario que recibe con los del repositorio usuario y asignarlo
+     * @param userLoggedIn el usuario que se va a comparar
+     */
+    public void setUserLoggedIn(User userLoggedIn) {
+        for(User user: users.getElements()){
+            if(user.equals(userLoggedIn)){
+                this.userLoggedIn = user;
+            }
+        }
+
     }
 
     /**
@@ -114,10 +128,6 @@ public class Manage implements Serializable, IManage {
         return proyects;
     }
 
-    @Override
-    public ArrayList<Task> showAsignedTasks() { //CAMBIAR ESTO, SHOW NO ES UN NOMBRE CORRECTO
-        return null;
-    }
 
     /**
      * Elimina un proyecto del repositorio de proyectos utilizando su identificador y el usuario que se le pasa
@@ -140,6 +150,41 @@ public class Manage implements Serializable, IManage {
             }
         }
             return proyect;
+    }
+
+
+    /**
+     * Función para comprobar si el email de un usuario ya esta siendo usado por otro usuario
+     * @param email el email que se va a comprobar
+     * @return el nuevo email, que va a ser el que recibe si no se encuentran coincidencias, y si no, será una cadena vacía
+     */
+    @Override
+    public String checkEmail(String email) {
+        String newEmail = email;
+        for (User user: users.getElements()){
+            if(user.getEmail().equalsIgnoreCase(email.toLowerCase())){
+                newEmail = " "; //PODRIA PONER UN BREAK? ¿ES ABUSAR?
+            }
+        }
+
+        return newEmail;
+    }
+
+    /**
+     * Función para comprobar si un nickname de usuario ya esta siendo usado por otro usuario
+     * @param nickName el nickname que se va a comprobar
+     * @return el nuevo nickname, que va a ser el que recibe si no se encuentran coincidencias, y si no, será una cadena vacía
+     */
+    @Override
+    public String checkNickname(String nickName) {
+        String newNickName = nickName;
+        for (User user: users.getElements()){
+            if(user.getName().equalsIgnoreCase(nickName.toLowerCase())){
+                newNickName = " "; //PODRIA PONER UN BREAK? ¿ES ABUSAR?
+            }
+        }
+
+        return newNickName;
     }
 
     /**
