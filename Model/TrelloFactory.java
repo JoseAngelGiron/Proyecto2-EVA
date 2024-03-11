@@ -1,5 +1,10 @@
 package Model;
 
+import Model.Entity.ElementTrello;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
+
 public class TrelloFactory {
 
 

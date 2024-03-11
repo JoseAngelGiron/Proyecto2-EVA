@@ -1,6 +1,7 @@
-package Model;
+package Model.Entity;
 
 import Interface.Model_Interface.ITask;
+import Model.TaskStatus;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -88,7 +89,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
      * Método para establecer el colaborador asignado a la tarea.
      *
      * @param user Usuario colaborador a asignar.
-     * @return true, si se añade el colaborador o false, si no se añade
+     * @return El colaborador que se asigno. Si no se encuentra, devuelve un colaborador 'null'
      */
     @Override
     public User setColaboratorToCharge(User user) {
@@ -103,6 +104,28 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         }
         return userToReturn;
     }
+
+    /**
+     * Metodo encargado de desasignar colaboradores de una tarea
+     * @param user el usuario que se va a desasignar
+     * @return El colaborador que se desasigno. Si no se encuentra, devuelve un colaborador 'null'
+     */
+    @Override
+    public User unassignColaborator(User user) {
+        User tmpUser = null;
+        boolean isUnassigned = false;
+        for (int i = 0; i < colaboratorsToCharge.length && !isUnassigned; i++) {
+            if (colaboratorsToCharge[i].equals(user)){
+                tmpUser = colaboratorsToCharge[i];
+                colaboratorsToCharge[i] = null;
+                isUnassigned = true;
+            }
+        }
+        return tmpUser;
+
+    }
+
+
 
     /**
      * Este metodo cambia el estado de la tarea en función del número que se le pasa. Siendo 1, NOT_STARTED, 2 IN_PROGRESS
@@ -131,6 +154,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         feedback.add(comentary);
     }
 
+
     private void inicializeColaborators() {
         colaboratorsToCharge = new User[3];
         for (int i =0;i<colaboratorsToCharge.length;i++){
@@ -152,7 +176,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     @Override
     public String toString() {
         return " ------------------------------------------------------------------------------------- " +
-                "\n | identificador: " + id + "                       |" + " Colaboradores: " +
+                "\n | identificador: " + id + "                       |" + " Colaboradores:  " +
                 "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorsToCharge[0].getName() +
                 "\n | Inicio de la tarea: " + startDate.getDayOfMonth() + "/" + startDate.getMonthValue() + "/" + startDate.getYear() + "         |" + " apodo: " + colaboratorsToCharge[0].getNickName() +
                 "\n | Final de la tarea: " + endDate.getDayOfMonth() + "/" + endDate.getMonthValue() + "/" + endDate.getYear() + "          |"    + " Correo electronico:" + colaboratorsToCharge[0].getEmail() +

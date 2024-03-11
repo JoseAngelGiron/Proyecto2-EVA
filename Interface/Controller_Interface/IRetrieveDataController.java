@@ -1,7 +1,7 @@
 package Interface.Controller_Interface;
 
-import Model.Proyect;
-import Model.Task;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
 
 public interface IRetrieveDataController {
     Proyect retrieveProyect();

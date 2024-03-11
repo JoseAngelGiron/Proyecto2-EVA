@@ -1,4 +1,4 @@
-package Model;
+package Model.Entity;
 
 import Interface.Model_Interface.IElementTrello;
 
@@ -6,13 +6,14 @@ import Interface.Model_Interface.IElementTrello;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class ElementTrello<T> implements IElementTrello<T>, Serializable {
     protected String id;
     protected String name;
     protected String description;
-    protected ArrayList<T> elements;
+    protected List<T> elements;
 
     public ElementTrello() {
         this("","","",new ArrayList<>());
@@ -56,14 +57,36 @@ public abstract class ElementTrello<T> implements IElementTrello<T>, Serializabl
         this.elements = elements;
     }
 
-    @Override
-    public boolean addElement(T obj) {
-        return elements.add(obj);
-    }
+    /**
+     * Función encargada de añadir un elemento al elemento de la lista
+     * @param obj el objeto que se va a añadir
+     * @return el objeto que se va a añadir, que será null si ya se encontraba y no pudo ser añadido
+     */
+   @Override
+   public T addElement(T obj){
+        T tmpObj = null;
+        if(!elements.contains(obj)){
+            elements.add(obj);
+            tmpObj = obj;
+        }
+        return tmpObj;
+
+   }
+
+    /**
+     * Función encargada de eliminar un elemento de la lista.
+     * @param obj el objeto que se va a eliminar
+     * @return true o false, en función de si se encuentra el elemento y es eliminado, o false si no es así
+     */
     @Override
     public boolean removeElement(T obj) {
         return elements.remove(obj);
     }
+
+    /**
+     * Función encargada de devolver la lista de elementos
+     * @return la lista de elementos
+     */
     @Override
     public Collection<T> showAll() {
         return elements;
@@ -72,9 +95,9 @@ public abstract class ElementTrello<T> implements IElementTrello<T>, Serializabl
     public T showElement(int id) {
         return null;
     }
-
+    //ESTAS 2 SE PUEDE PASAR PARA ABAJO
     @Override
-    public T findElement(int id) {
+    public T findElement(String id) {
         return null;
     }
     @Override
@@ -85,7 +108,11 @@ public abstract class ElementTrello<T> implements IElementTrello<T>, Serializabl
 
     @Override
     public boolean equals(Object o) {
-        return false;
+        boolean equal = false;
+        if (this == o) equal = true;
+        if (!(o instanceof ElementTrello<?> that)) equal = false;
+        equal = Objects.equals(id, this.id);
+        return equal;
     }
 
     @Override

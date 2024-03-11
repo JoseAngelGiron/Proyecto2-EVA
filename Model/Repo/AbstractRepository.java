@@ -1,21 +1,23 @@
 package Model.Repo;
 
 import Interface.Repo_Interface.IAbstractRepository;
+import Model.Entity.Proyect;
+
 
 import java.io.Serializable;
 import java.util.Collection;
+
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public abstract class AbstractRepository<T> implements IAbstractRepository<T>, Serializable {
-    //En las clases concretas he puesto un hashset
+
     protected Set<T> elements;
 
-    public AbstractRepository(){
 
-    }
-    public AbstractRepository(Set<T> elements) {
-        this.elements = new HashSet<>();
+    public AbstractRepository(HashSet<Proyect> proyects) {
+        elements = new HashSet<>();
     }
 
     public Set<T> getElements() {
@@ -26,9 +28,20 @@ public abstract class AbstractRepository<T> implements IAbstractRepository<T>, S
         this.elements = elements;
     }
 
+    /**
+     * Función encarga
+     * @param data
+     * @return
+     */
     @Override
     public boolean add(T data) {
-        return elements.add(data);
+        boolean added = false;
+        if(data!=null) {
+            if(elements.add(data)) {
+                added = true;
+            }
+        }
+        return added;
     }
 
     @Override
@@ -41,6 +54,7 @@ public abstract class AbstractRepository<T> implements IAbstractRepository<T>, S
     public T getByID(String element) {
         return null;
     }
+
 
     @Override
     public T update(T data) {

@@ -1,6 +1,6 @@
 package Interface.Controller_Interface;
 
-import Model.Proyect;
+import Model.Entity.Proyect;
 
 public interface IUpdateTaskController {
 

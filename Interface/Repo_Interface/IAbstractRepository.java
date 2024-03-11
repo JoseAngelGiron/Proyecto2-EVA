@@ -1,7 +1,5 @@
 package Interface.Repo_Interface;
 
-import Model.User;
-
 import java.util.Collection;
 
 public interface IAbstractRepository<T> {

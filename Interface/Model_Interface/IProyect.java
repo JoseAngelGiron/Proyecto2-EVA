@@ -1,10 +1,11 @@
 package Interface.Model_Interface;
 
-import Model.Proyect;
-import Model.User;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
 
 public interface IProyect {
-    public boolean assignCollaborator(Proyect proyect, String idTarea, User user);
-    public boolean unassingCollaborator(Proyect proyect, String idTarea, User user);
+    Task deleteTask(String idTarea);
+
 
 }

@@ -1,10 +1,13 @@
 package Model.Repo;
 
 import Interface.Repo_Interface.IRepoUsers;
-import Model.User;
+import Model.Entity.Proyect;
+import Model.Entity.User;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
 
@@ -12,8 +15,10 @@ public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
         super(new HashSet<>());
     }
 
-
-
+    @Override
+    public HashSet<User> getElements() {
+        return (HashSet<User>) elements;
+    }
 
     /**
      * Obtiene un usuario del repositorio mediante su identificador
@@ -53,6 +58,8 @@ public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
     /**
      * Elimina a un usuario de la lista de usuarios utilizando su identificador
      *
+     * NOTA: función diseñada con el objetivo de testear y de en un futuro, añadir posibilidades de superusuarios
+     * que tengan la posibilidad de restringir el acceso a los usuarios del programa
      * @param id El identificador del usuario a eliminar
      * @return true si el usuario se eliminó exitosamente, false si no se encontró
      */

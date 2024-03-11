@@ -1,9 +1,5 @@
-import Model.Task;
-import Model.User;
+import Model.Entity.Task;
 import View.IO;
-import View.MainView;
-
-import java.time.LocalDate;
 
 public class Test {
     public static void main(String[] args) {

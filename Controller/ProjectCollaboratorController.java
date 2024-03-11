@@ -2,9 +2,9 @@ package Controller;
 
 import Interface.Controller_Interface.IProjectCollaboratorController;
 import Model.Manage;
-import Model.Proyect;
-import Model.Task;
-import Utils.Utils;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import View.Utils.Utils;
 import View.IO;
 import View.TaskView;
 

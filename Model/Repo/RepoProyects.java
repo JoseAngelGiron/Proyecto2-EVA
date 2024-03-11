@@ -1,10 +1,10 @@
 package Model.Repo;
 
 import Interface.Repo_Interface.IRepoProyects;
-import Model.Proyect;
+import Model.Entity.Proyect;
 
-import Model.Task;
-import Model.User;
+import Model.Entity.Task;
+import Model.Entity.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,7 +20,16 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         return elements;
     }
 
-
+    @Override
+    public boolean add(Proyect data) {
+        boolean added = false;
+        if(data!=null) {
+            if(getElements().add(data)) {
+                added = true;
+            }
+        }
+        return added;
+    }
     /**
      * Obtiene un proyecto del repositorio mediante su identificador
      *
@@ -32,7 +41,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
     public Proyect getByID(String id, User user) {
         Proyect result = null;
         for (Proyect proyect : elements) {
-            if (proyect.getId().equals("P - "+id) &&
+            if (proyect.getId().equals(id) &&
                     user.equals(proyect.getProjectCreator())) {
                 result = proyect;
                 break;
@@ -50,7 +59,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      */
     @Override
     public Proyect update(Proyect data) {
-        Proyect result = null;
+        Proyect result;
         result = getByID(data.getId());
         if (result != null) {
             elements.remove(result);
@@ -110,7 +119,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         Iterator<Proyect> iterator = getProyects().iterator();
         while (iterator.hasNext()) {
             Proyect tmpProyect = iterator.next();
-            if (tmpProyect.getId().equals("P - "+id)) {
+            if (tmpProyect.getId().equals(id)) {
                 proyect = tmpProyect;
                 iterator.remove();
             }
@@ -155,7 +164,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         for (Proyect proyects : elements) {
             for (Task tmpUser : proyects.getElements()) {
                 for (int i = 0; i < tmpUser.getColaboratorToCharge().length; i++) {
-                    if (proyects.getId().equals("P - "+idProyecto) && tmpUser.getColaboratorToCharge()[i].equals(user)) {
+                    if (proyects.getId().equals(idProyecto) && tmpUser.getColaboratorToCharge()[i].equals(user)) {
                         proyect = proyects;
                     }
                 }
@@ -189,6 +198,12 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         return task;
     }
 
+    /**
+     * Función encargada de recuperar una tarea, de un proyecto en especifico
+     * @param idTarea que será la clave de la tarea con la que se comparara para recuperarla
+     * @param proyect el proyecto sobre el que se va a recuperar la tarea
+     * @return un objeto que del tipo tarea, que si no se encuentra, sera null
+     */
     @Override
     public Task retrieveTaskFromProject(String idTarea, Proyect proyect) {
         Task taskToReturn = null;

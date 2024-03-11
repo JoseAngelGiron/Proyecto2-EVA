@@ -1,8 +1,8 @@
 package Interface.View_Interface;
 
-import Model.Proyect;
-import Model.Task;
-import Model.User;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
 
 import java.util.ArrayList;
 
@@ -11,11 +11,14 @@ public interface ITaskView {
     int taskView();
     String selectTask(Proyect proyect);
     int changeStatusMenu();
-
-    void showColaborator(User user);
-
+    void showColaboratorAdd(User user);
+    void showCollaboratorUnassigned(User user);
     String showProyects(ArrayList<Proyect> proyects);
     String showTasks(Proyect proyect);
     void showTask(Task task);
+    int selectAssignOrUnassigned();
+
+
+
 
 }

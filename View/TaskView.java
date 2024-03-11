@@ -1,9 +1,9 @@
 package View;
 
 import Interface.View_Interface.ITaskView;
-import Model.Proyect;
-import Model.Task;
-import Model.User;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
 
 import java.util.ArrayList;
 
@@ -56,11 +56,26 @@ public class TaskView implements ITaskView {
     }
 
     /**
+     * Metodo encargado de mostrar por pantalla información relacionada al des-asignamiento de un usuario a una tarea
+     * @param user que será el usuario sobre el que se mostrara información. Si es null, se imprimira un mensaje distinto
+     */
+    @Override
+    public void showCollaboratorUnassigned(User user) {
+        if(user!=null){
+            System.out.println("El usuario "+user.getName()+"fue eliminado como colaborador de la tarea");
+        }else{
+            System.out.println("No se encontro el colaborador.");
+        }
+    }
+
+
+
+    /**
      * Función que muestra información en relación si un colaborador fue añadido, o no, debido a que este no fue encontrado
      * @param user que será el colaborador sobre el que se mostrará la información
      */
     @Override
-    public void showColaborator(User user) {
+    public void showColaboratorAdd(User user) {
         if(user!=null){
             System.out.println("El usuario "+user.getName()+"fue añadido a la tarea");
         }else{
@@ -75,7 +90,7 @@ public class TaskView implements ITaskView {
      */
     @Override
     public String showProyects(ArrayList<Proyect> proyects) {
-        System.out.println("La lista de proyectos en la que figura como colaborador es:");
+        System.out.println("La lista de proyectos en la que figura como colaborador es :");
         for (Proyect proyect: proyects){
             System.out.println(proyect);
         }
@@ -104,10 +119,19 @@ public class TaskView implements ITaskView {
     @Override
     public void showTask(Task task) {
         System.out.println(task);
-        System.out.println("Los datos relacionados con la tarea hasta ahora, son: ");
+        System.out.println("Los datos relacionados con la tarea hasta ahora, son : ");
         for(String comentary:task.getFeedback()){
             System.out.println(comentary);
         }
+    }
+
+    @Override
+    public int selectAssignOrUnassigned() {
+        System.out.println(" ¿Que desea hacer? ");
+        System.out.println("1- Añadir colaborador");
+        System.out.println("2- Eliminar colaborador ");
+        System.out.println("3- Cancelar operación");
+        return IO.readNumber("Introduzca la opción que desea: ",1,3);
     }
 
 

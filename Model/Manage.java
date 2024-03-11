@@ -1,9 +1,12 @@
 package Model;
 
 import Interface.Model_Interface.IManage;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
 import Model.Repo.RepoProyects;
 import Model.Repo.RepoUser;
-import Utils.Serializator;
+import Model.DataAccess.Serializator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,7 +40,12 @@ public class Manage implements Serializable, IManage {
     }
 
     public void setUserLoggedIn(User userLoggedIn) {
-        this.userLoggedIn = userLoggedIn;
+        for(User user: users.getElements()){
+            if(user.equals(userLoggedIn)){
+                this.userLoggedIn = user;
+            }
+        }
+
     }
 
     private Manage() {
@@ -99,7 +107,7 @@ public class Manage implements Serializable, IManage {
     public ArrayList<Proyect> retrieveProyects() {
         ArrayList<Proyect> proyects = new ArrayList<>();
         for (Proyect proyect : getRepoProyects().getProyects()) {
-            if (proyect.getProjectCreator().equals(userLoggedIn)) { /// COMPROBAR SI DA ERROR Y QUIZAS MOVER DE SITIO, NO HAY QUE SOBRECARGAR ESTA CLASE
+            if (proyect.getProjectCreator().equals(userLoggedIn)) {
                 proyects.add(proyect);
             }
         }
@@ -118,20 +126,20 @@ public class Manage implements Serializable, IManage {
      * @return Devuelve el proyecto que se a eliminado
      */
     @Override
-    public Proyect deleteFromCreator(String id, User userLogged) {
+    public Proyect deleteProyectFromCreator(String id, User userLogged) {
         Proyect proyect = null;
 
-        Iterator<Proyect> iterator = repoProyects.getProyects().iterator();
+        Iterator<Proyect> iterator = repoProyects.getElements().iterator();
 
         while (iterator.hasNext()) {
             Proyect tmpProyect = iterator.next();
-            if (tmpProyect.getId().equals("P - "+id) && userLogged.equals(userLoggedIn)) {
+            if (tmpProyect.getId().equals(id) && tmpProyect.getProjectCreator().equals(userLoggedIn)) {
                 proyect = tmpProyect;
                 iterator.remove();
                 }
             }
             return proyect;
-        }
+    }
 
     /**
      * Carga la información de un objeto Manage.

@@ -1,8 +1,8 @@
 package Interface.View_Interface;
 
-import Model.Proyect;
-import Model.Task;
-import Model.User;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
 
 import java.util.ArrayList;
 
