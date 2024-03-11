@@ -1,7 +1,7 @@
 package Interface.Model_Interface;
 
 
-import Model.User;
+import Model.Entity.User;
 
 public interface IList {
 

@@ -2,14 +2,14 @@ package Controller;
 
 import Interface.Controller_Interface.IRetrieveDataController;
 import Model.Manage;
-import Model.Proyect;
-import Model.Task;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
 import View.IO;
 
 public class RetrieveDataController implements IRetrieveDataController {
 
     /**
-     * Metodo destinado a controlar el pedir datos sobre uno de los proyectos del usuario que tiene iniciada la sesión y
+     * Metodo destinado a controlar el pedido de datos sobre uno de los proyectos del usuario que tiene iniciada la sesión y
      * devolver el proyecto que ha solicitado
      * @return El objeto Proyecto que ha solicitado, que puede ser null si no se encuentra y cancela la opción
      */

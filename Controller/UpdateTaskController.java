@@ -2,16 +2,13 @@ package Controller;
 
 import Interface.Controller_Interface.IUpdateTaskController;
 import Model.Manage;
-import Model.Proyect;
-import Model.Task;
-import Model.User;
-import Utils.Utils;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
+import View.Utils.Utils;
 import View.IO;
-import View.MainView;
 import View.TaskView;
 import View.ViewCrud;
-
-import java.util.ArrayList;
 
 public class UpdateTaskController implements IUpdateTaskController {
 
@@ -57,12 +54,9 @@ public class UpdateTaskController implements IUpdateTaskController {
                             task.addComentary(IO.readString("¿Que comentario quiere añadir sobre el cambio de estado a la tarea?"));
                             break;
                         case 6:
-                            User colaboratorAdded = null;
-                            User userToAddAsColaborator = manage.getUsers().getByID(IO.readString("Introduzca el nombre del colaborador o su e-mail para añadirlo a la tarea"));
-                            if (userToAddAsColaborator != null) {
-                                colaboratorAdded = task.setColaboratorToCharge(userToAddAsColaborator);
-                            }
-                            taskView.showColaborator(colaboratorAdded);
+                            AssignUnassignedController assignUnassignedController = new AssignUnassignedController();
+                            assignUnassignedController.selectOperation(task);
+
                             break;
                         case 7:
                             Utils.printMessage("Estas saliendo del menu de actualización de tareas...");

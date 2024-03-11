@@ -1,9 +1,9 @@
 package View;
 
 import Interface.View_Interface.IViewCrud;
-import Model.Proyect;
-import Model.Task;
-import Model.User;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
 
 import java.util.ArrayList;
 
@@ -89,7 +89,7 @@ public class ViewCrud implements IViewCrud {
             System.out.println("El proyecto fue añadido a la base de datos. Puede consultarlo a partir de ahora con" +
                     "su código de proyecto o de forma general listando sus proyectos añadidos");
         } else {
-            System.out.println("Debe haberse confundido, ya existe un proyecto con el mismo código. Pruebe de nuevo, por favor.");
+            System.out.println("Cancelo la operación, o ya existe un proyecto con el mismo código. Pruebe de nuevo, por favor.");
         }
     }
 
@@ -122,7 +122,7 @@ public class ViewCrud implements IViewCrud {
      */
     @Override
     public void showProyects(ArrayList<Proyect> proyects) {
-        if(proyects != null){
+        if(!proyects.isEmpty()){
             System.out.println("-Lista de proyectos-.");
             for (Proyect proyect : proyects) {
                 System.out.println(proyect.toString());

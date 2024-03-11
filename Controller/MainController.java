@@ -2,7 +2,7 @@ package Controller;
 
 import Interface.Controller_Interface.IMainController;
 import Model.*;
-import Utils.Utils;
+import View.Utils.Utils;
 import View.MainView;
 import View.ViewCrud;
 
@@ -58,6 +58,7 @@ public class MainController implements IMainController {
         int option;
 
         do {
+
             option = secundaryView.welcomeUser(manage.getUserLoggedIn());
 
             switch (option) {

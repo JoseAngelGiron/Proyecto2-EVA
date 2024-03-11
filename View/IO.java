@@ -21,7 +21,7 @@ public class IO{
             } else {
                 if (msg2.isEmpty()) {
                     System.out.println("Por favor, introduzca algún tipo de información. Pruebe de nuevo por favor ");
-                    System.out.println(msg);
+
                 }
             }
         }while (msg2.isEmpty());

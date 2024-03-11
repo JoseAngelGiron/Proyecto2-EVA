@@ -2,9 +2,11 @@ package Controller;
 
 import Interface.Controller_Interface.IUpdateProjectController;
 import Model.*;
-import Utils.Utils;
+import Model.Entity.Proyect;
+import Model.Entity.User;
+import View.TaskView;
+import View.Utils.Utils;
 import View.IO;
-import View.MainView;
 import View.UpdateProjectView;
 
 public class UpdateProjectController implements IUpdateProjectController {
@@ -16,16 +18,17 @@ public class UpdateProjectController implements IUpdateProjectController {
     public void updateProjectController() {
         Manage manage = Manage.get_Instance();
         UpdateProjectView projectView = new UpdateProjectView();
+
         RetrieveDataController retrieveDataController = new RetrieveDataController();
         Proyect proyect = retrieveDataController.retrieveProyect();
 
         if (proyect != null ) {
             int optionSubMenu;
             do {
-                optionSubMenu = -1;
                 manage.getRepoProyects().update(proyect);
                 manage.saveData();
                 optionSubMenu = projectView.chooseWhatToChange();
+
                 switch (optionSubMenu) {
                     case 1:
                         proyect.setName(IO.readString("Inserte el nuevo nombre del proyecto: "));
@@ -38,11 +41,14 @@ public class UpdateProjectController implements IUpdateProjectController {
                         proyect.getElements().add(selectItemController.selectTypeTask());
                         break;
                     case 4:
+                        projectView.showTaskRemoved(proyect.deleteTask(IO.readString("Inserte el nombre de la tarea que se desea eliminar"))); //
+                        break;
+                    case 5:
                         UpdateTaskController taskController = new UpdateTaskController();
                         taskController.controllerTask(proyect);
                         break;
-                    case 5:
-                        User user =manage.getUsers().getByID(IO.readString(projectView.changeCreator()));
+                    case 6:
+                        User user =manage.getUsers().getByID(projectView.changeCreator());
 
                         if(user != null){
                             proyect.setProjectCreator(user);
@@ -51,14 +57,13 @@ public class UpdateProjectController implements IUpdateProjectController {
                             Utils.printMessage("Los permisos fueron cambiados con éxito, saliendo...");
                         }else{
                             Utils.printMessage("No se encontro el usuario, o quiso cancelar la operación.");
-
                         }
                         break;
-                    case 6:
+                    case 7:
                         Utils.printMessage("Saliendo del menu...");
                         break;
                 }
-            } while (optionSubMenu != 6 || !manage.getUserLoggedIn().equals(proyect.getProjectCreator()));
+            } while (optionSubMenu != 7 || !manage.getUserLoggedIn().equals(proyect.getProjectCreator()));
 
         } else {
             Utils.printMessage("Saliendo del menu...");

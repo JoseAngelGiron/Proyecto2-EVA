@@ -1,6 +1,7 @@
 package View;
 
 import Interface.View_Interface.IProjectView;
+import Model.Entity.Task;
 
 public class UpdateProjectView implements IProjectView {
     /**
@@ -13,10 +14,11 @@ public class UpdateProjectView implements IProjectView {
         System.out.println("1.- Cambiar el nombre proyecto-.");
         System.out.println("2.- Cambiar la descripción del proyecto-.");
         System.out.println("3.- Añadir una tarea al proyecto-.");
-        System.out.println("4.- Modificar tareas-."); //Aqui dentro va el añadir los colaboradores
-        System.out.println("5.- Cambiar creador del proyecto-");
-        System.out.println("6.- Salir");
-        return IO.readNumber(" ¿Que desea cambiar?: ",1,6);
+        System.out.println("4.- Eliminar una tarea del proyecto-.");
+        System.out.println("5.- Modificar tareas-."); //Aqui dentro va el añadir los colaboradores
+        System.out.println("6.- Cambiar creador del proyecto-");
+        System.out.println("7.- Salir");
+        return IO.readNumber(" ¿Que desea cambiar?: ",1,7);
     }
 
     /**
@@ -30,7 +32,15 @@ public class UpdateProjectView implements IProjectView {
         return IO.readString("Inserte el apodo de un usuario ya existente: ");
     }
 
-
+    @Override
+    public void showTaskRemoved(Task task) {
+        if(task!=null){
+            System.out.println("Los datos de la tarea que se eliminaron fueron: ");
+            System.out.println(task);
+        }else{
+            System.out.println("No se encontro la tarea en cuestión.");
+        }
+    }
 
 
 }

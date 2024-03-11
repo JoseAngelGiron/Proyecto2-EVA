@@ -2,11 +2,9 @@ package Controller;
 
 import Interface.Controller_Interface.IChangeUserController;
 import Model.Manage;
-import Utils.Utils;
+import View.Utils.Utils;
 import View.IO;
-import View.MainView;
 import View.UserSettingsView;
-import jdk.jshell.execution.Util;
 
 public class ChangeSettingsUserController implements IChangeUserController {
     /**

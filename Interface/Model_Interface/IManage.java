@@ -1,12 +1,10 @@
 package Interface.Model_Interface;
 
-import Model.Proyect;
-import Model.Task;
-import Model.User;
+import Model.Entity.Proyect;
+import Model.Entity.Task;
+import Model.Entity.User;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public interface IManage {
 
@@ -18,7 +16,7 @@ public interface IManage {
 
     public ArrayList<Task> showAsignedTasks();
 
-    Proyect deleteFromCreator(String id, User userLogged);
+    Proyect deleteProyectFromCreator(String id, User userLogged);
 
 
 

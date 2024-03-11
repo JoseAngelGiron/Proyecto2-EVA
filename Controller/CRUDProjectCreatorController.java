@@ -1,13 +1,9 @@
 package Controller;
 
 import Interface.Controller_Interface.ICRUDProjectCreatorController;
-import Model.ElementstTrello;
 import Model.Manage;
-import Model.Proyect;
-import Model.TrelloFactory;
-import Utils.Utils;
+import View.Utils.Utils;
 import View.IO;
-import View.MainView;
 import View.OwnProjectsView;
 import View.ViewCrud;
 
@@ -30,21 +26,20 @@ public class CRUDProjectCreatorController implements ICRUDProjectCreatorControll
             switch (option) {
                 case 1:
                     SelectItemController selectItemController = new SelectItemController();
-                    viewCrud.showIfProyectIsAdded(Manage.get_Instance().getRepoProyects().getProyects().add(selectItemController.selectTypeProyect()));
+                    viewCrud.showIfProyectIsAdded(Manage.get_Instance().getRepoProyects().add(selectItemController.selectTypeProyect()));
                     break;
                 case 2:
                     viewCrud.showProyects(manage.retrieveProyects());
                     break;
                 case 3:
-                    viewCrud.showProject(Manage.get_Instance().getRepoProyects().getByID(IO.readString("Inserte el código de el proyecto que desea visualizar sus datos." +
-                            " No es necesario el identificado de clase '(P -)'"), manage.getUserLoggedIn()));
+                    viewCrud.showProject(Manage.get_Instance().getRepoProyects().getByID(IO.readString("Inserte el código de el proyecto que desea visualizar sus datos."), manage.getUserLoggedIn()));
                     break;
                 case 4:
                     UpdateProjectController updateControl = new UpdateProjectController();
                     updateControl.updateProjectController();
                     break;
                 case 5:
-                    viewCrud.showIfProjectDeleted(manage.deleteFromCreator(viewCrud.deleteProyect(), manage.getUserLoggedIn()));
+                    viewCrud.showIfProjectDeleted(manage.deleteProyectFromCreator(viewCrud.deleteProyect(), manage.getUserLoggedIn()));
                     break;
                 case 6:
                     Utils.printMessage("Saliendo hacía el menu de navegación.... ");

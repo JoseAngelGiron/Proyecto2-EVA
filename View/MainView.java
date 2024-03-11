@@ -1,7 +1,7 @@
 package View;
 
 import Interface.View_Interface.IMainView;
-import Model.User;
+import Model.Entity.User;
 
 public class MainView implements IMainView{
     /**
@@ -13,7 +13,7 @@ public class MainView implements IMainView{
      */
     @Override
     public int mainView() {
-        System.out.println("\\______   \\\\______   \\\\_____  \\  \\______ \\  |    |   \\\\_   ___ \\ \\__    ___/|   |\\   \\ /   /|   |\\__    ___/\\__  |   | \\______   \\|   ||    |    \\_____  \\  \\__    ___/\n" +
+        System.out.println("\n\\______   \\\\______   \\\\_____  \\  \\______ \\  |    |   \\\\_   ___ \\ \\__    ___/|   |\\   \\ /   /|   |\\__    ___/\\__  |   | \\______   \\|   ||    |    \\_____  \\  \\__    ___/\n" +
                 " |     ___/ |       _/ /   |   \\  |    |  \\ |    |   //    \\  \\/   |    |   |   | \\   Y   / |   |  |    |    /   |   |  |     ___/|   ||    |     /   |   \\   |    |   \n" +
                 " |    |     |    |   \\/    |    \\ |    `   \\|    |  / \\     \\____  |    |   |   |  \\     /  |   |  |    |    \\____   |  |    |    |   ||    |___ /    |    \\  |    |   \n" +
                 " |____|     |____|_  /\\_______  //_______  /|______/   \\______  /  |____|   |___|   \\___/   |___|  |____|    / ______|  |____|    |___||_______ \\\\_______  /  |____|   \n" +
@@ -36,14 +36,15 @@ public class MainView implements IMainView{
         if(registerMessage){
             System.out.println("El apodo o correo ya existe. Introduzca unos datos validos");
         }else{
-            System.out.println("El apodo y el correo están disponibles");
+            System.out.println("El apodo y el correo están disponibles: ");
         }
 
     }
 
 
     /**
-     * Esta función se encarga de pedir datos al usuario y devuelve un objeto de la clase User.
+     * Esta función se encarga de pedir datos al usuario y devuelve un objeto de la clase User con la finalidad de
+     * proceder al registro.
      * Informa al usuario de si alguno de los datos no son validos y los vuelve a pedir si es el caso
      * @return un objeto de la clase usuario
      */
@@ -52,10 +53,10 @@ public class MainView implements IMainView{
         User userToRegister;
 
         do{
-            String name = IO.readString("Inserte su nombre: ");
-            String nickName = IO.readString("Inserte el nombre de usuario que desea: ");
-            String email = IO.readString("Inserte su email: ");
-            String password = IO.readString("Inserte su contraseña: ");
+            String name = IO.readString("Inserte el nombre con el que desea registrarse: ");
+            String nickName = IO.readString("Inserte el nombre de usuario con el que desea registrarse: ");
+            String email = IO.readString("Inserte el email con el que se va a registrarse: ");
+            String password = IO.readString("Inserte una contraseña para registrarse: ");
             userToRegister = new User(name, nickName, email, password);
             if (userToRegister.getName() == null  || userToRegister.getNickName() == null){
                 System.out.println("El nombre o el nombre de usuario no puede contener espacios en blanco");
@@ -72,7 +73,33 @@ public class MainView implements IMainView{
         return userToRegister;
     }
 
+    /**
+     * Esta función se encarga de solicitar por pantalla al usuario los datos relativos a sus credenciales, y los devuelve
+     * con el objetivo de loguearse
+     * @return Un objeto de la clase User, que contiene los credenciales del usuario
+     */
+    @Override
+    public User loginUser() {
+        User userToLogin;
 
+        do{
+
+            String nickName = IO.readString("Inserte su apodo en el sistema: ");
+            String password = IO.readString("Inserte el su contraseña: ");
+
+            userToLogin = new User(nickName, password);
+            if (userToLogin.getNickName() == null){
+                System.out.println("El nombre o el nombre de usuario no puede contener espacios en blanco");
+            }
+
+            if(userToLogin.getPassword() == null){
+                System.out.println("La contraseña debe tener minimo 8 y máximo 20 caracteres. Al menos 3 letras, 1 mayúscula y 3 números");
+            }
+
+        } while( userToLogin.getNickName() == null || userToLogin.getPassword() == null);
+
+        return userToLogin;
+    }
 
 
 }

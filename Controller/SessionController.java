@@ -2,6 +2,7 @@ package Controller;
 
 import Interface.Controller_Interface.ISessionController;
 import Model.*;
+import Model.Entity.User;
 import View.IO;
 import View.MainView;
 
@@ -16,7 +17,7 @@ public class SessionController implements ISessionController {
     @Override
     public boolean loginUser() {
         Manage manage = Manage.get_Instance();
-        MainView mainView = new MainView(); //Partir este código de la vista
+        MainView mainView = new MainView();
 
         boolean login =false;
         boolean userExists;
@@ -25,7 +26,7 @@ public class SessionController implements ISessionController {
         User userToLogin;
         do{
             returnToMainMenu = " ";
-            userToLogin = mainView.solicitateUser();
+            userToLogin = mainView.loginUser();
             userExists = manage.checkLogin(userToLogin);
             if(!userExists){
                 returnToMainMenu = IO.readString("Error en los credenciales. ¿Desea volver al menu principal" +

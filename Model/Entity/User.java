@@ -1,4 +1,4 @@
-package Model;
+package Model.Entity;
 
 import Interface.Model_Interface.IUser;
 
@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import static Model.DataAccess.Security.encryptPassword;
 
 public class User implements IUser, Serializable  {
     private String name;
@@ -27,6 +28,10 @@ public class User implements IUser, Serializable  {
         setPassword(password);
     }
 
+    public User(String nickName, String password){
+        setNickName(nickName);
+        setPassword(password);
+    }
     public String getName() {
         return name;
     }
@@ -122,36 +127,6 @@ public class User implements IUser, Serializable  {
         return pattern.matcher(email).matches();
     }
 
-
-    /**
-     * Este metodo encripta la contraseña haciendo uso de la biblioteca hash-256
-     * @param password la contraseña que se va a encriptar
-     * @return la contraseña encriptada.
-     */
-    public String encryptPassword(String password) {
-        String hexString = null;
-
-        try {
-
-            MessageDigest digest = MessageDigest.getInstance("SHA3-256");
-
-            byte[] hash = digest.digest(password.getBytes());
-
-            StringBuilder hexStringBuilder = new StringBuilder();
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) {
-                    hexStringBuilder.append('0');
-                }
-                hexStringBuilder.append(hex);
-            }
-
-            hexString = hexStringBuilder.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return hexString;
-    }
     /**
      * Comprueba que la contraseña introducida, tiene al menos 3 digitos, 3 minúsculas y 1 mayúscula*
      * @param password la contraseña que se va a validar

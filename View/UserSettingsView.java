@@ -14,7 +14,7 @@ public class UserSettingsView implements IUserSettingsView {
         System.out.println("2.- Cambiar de Nickname-");
         System.out.println("3.- Cambiar de Email");
         System.out.println("4.- Cambiar de contraseña");
-        System.out.println("5.- Salir de opciones de usuarios");
+        System.out.println("5.- Salir de las opciones con el cambio de credenciales: ");
         return IO.readNumber("Inserte la opcion que desee",1,5);
     }
 
