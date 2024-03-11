@@ -4,7 +4,6 @@ import Interface.Controller_Interface.IUpdateTaskController;
 import Model.Manage;
 import Model.Entity.Proyect;
 import Model.Entity.Task;
-import Model.Entity.User;
 import View.Utils.Utils;
 import View.IO;
 import View.TaskView;
@@ -38,7 +37,7 @@ public class UpdateTaskController implements IUpdateTaskController {
                     optionSubMenu = taskView.taskView();
                     switch (optionSubMenu) {
                         case 1:
-                            Utils.printMessage(task.toString());
+                            taskView.showTask(task);
                             break;
                         case 2:
                             task.setName(IO.readString("Inserte el nuevo nombre de la tarea"));
@@ -51,10 +50,11 @@ public class UpdateTaskController implements IUpdateTaskController {
                             break;
                         case 5:
                             task.changeStatus(taskView.changeStatusMenu());
-                            task.addComentary(IO.readString("¿Que comentario quiere añadir sobre el cambio de estado a la tarea?"));
+                            task.addComentary(IO.readString("¿Que comentario quiere añadir sobre el cambio de estado a la tarea?: "));
+                            taskView.showTask(task);
                             break;
                         case 6:
-                            AssignUnassignedController assignUnassignedController = new AssignUnassignedController();
+                            AssignUnassignedCollaboratorController assignUnassignedController = new AssignUnassignedCollaboratorController();
                             assignUnassignedController.selectOperation(task);
 
                             break;

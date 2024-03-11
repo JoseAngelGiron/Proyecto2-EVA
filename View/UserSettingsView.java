@@ -18,6 +18,27 @@ public class UserSettingsView implements IUserSettingsView {
         return IO.readNumber("Inserte la opcion que desee",1,5);
     }
 
+    @Override
+    public void showIfNickWasChange(boolean change) {
+        if(change){
+            System.out.println("Su nick fue cambiado correctamente");
+        }else{
+            System.out.println("El nombre no pudo cambiarse, no se encuentra disponible o no cumple con los requisitos");
+            System.out.println("El nombre no puede tener espacios");
+            System.out.println("El nombre tiene que tener entre 4 y 12 caracteres");
+        }
+    }
+
+    @Override
+    public void showIfEmailWasChange(boolean change) {
+        if(change){
+            System.out.println("Su E-mail fue cambiado correctamente");
+        }else{
+            System.out.println("El E-mail no pudo cambiarse, no se encuentra disponible o no cumple con los requisitos");
+            System.out.println("El email debe seguir un formato similar al de: texto@texto y acabado en '.es' o '.com' ");
+        }
+
+    }
 
 
 }

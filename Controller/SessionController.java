@@ -57,15 +57,15 @@ public class SessionController implements ISessionController {
 
         do {
             user = mainView.solicitateUser();
-            registered = manage.checkLogin(user);
+            registered = manage.checkRegister(user);
 
             mainView.registerMessage(registered);
 
-            if(!registered) {
+            if(registered) {
                 confirmation = IO.readString("¿Desea registrase con esos datos? " +
                         "Inserte 'S' para confirmar, o cualquier otra tecla para volver al registro. ");
             }
-        } while (registered || !confirmation.equalsIgnoreCase("S"));
+        } while (!registered || !confirmation.equalsIgnoreCase("S"));
 
         if(confirmation.equalsIgnoreCase("S")){
             manage.getUsers().add(user);

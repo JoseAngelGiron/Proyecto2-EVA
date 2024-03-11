@@ -4,12 +4,11 @@ import java.security.NoSuchAlgorithmException;
 
 public interface IUser {
 
-    public boolean setNickName(String nickname);
-    public boolean setName(String name);
-    public boolean setEmail(String email);
-    public boolean setPassword(String password) throws NoSuchAlgorithmException;
-
-    public boolean validateEmail(String email);
+    boolean setNickName(String nickname);
+    boolean setName(String name);
+    boolean setEmail(String email);
+    boolean setPassword(String password) throws NoSuchAlgorithmException;
+    boolean validateEmail(String email);
 
 
 

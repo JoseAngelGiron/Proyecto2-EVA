@@ -8,7 +8,7 @@ import View.IO;
 import View.TaskView;
 import View.Utils.Utils;
 
-public class AssignUnassignedController implements IAssignUnassignedController {
+public class AssignUnassignedCollaboratorController implements IAssignUnassignedController {
 
     /**
      * Función encargada de gestionar lo relativo a añadir/eliminar colaboradores a una tarea.
@@ -20,8 +20,6 @@ public class AssignUnassignedController implements IAssignUnassignedController {
         TaskView taskView = new TaskView();
         User temporaryCollaborator;
         int option = taskView.selectAssignOrUnassigned();
-
-
 
         switch (option){
             case 1:

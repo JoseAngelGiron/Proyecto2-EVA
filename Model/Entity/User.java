@@ -18,7 +18,7 @@ public class User implements IUser, Serializable  {
     private final int MAX_LENGTH = 20;
 
     public User(){
-        this("","","example@gmail.com","");
+        this("Sin datos ","Sin nick ","example@gmail.com"," ");
     }
 
     public User(String name, String nickName, String email, String password){
@@ -185,6 +185,7 @@ public class User implements IUser, Serializable  {
         }
         return acu >= 3;
     }
+
 
     @Override
     public String toString() {

@@ -8,15 +8,13 @@ import java.util.ArrayList;
 
 public interface IManage {
 
-    public boolean checkLogin(User userToCheck);
-
-    public void loginUser(User userToLogin);
-
-    public ArrayList<Proyect> retrieveProyects();
-
-    public ArrayList<Task> showAsignedTasks();
-
+    boolean checkLogin(User userToCheck);
+    boolean checkRegister(User userToCheck);
+    void setUserLoggedIn(User userToLogin);
+    ArrayList<Proyect> retrieveProyects();
     Proyect deleteProyectFromCreator(String id, User userLogged);
+    String checkNickname(String nickName);
+    String checkEmail(String email);
 
 
 

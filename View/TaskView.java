@@ -113,11 +113,12 @@ public class TaskView implements ITaskView {
     }
 
     /**
-     * Función encarga de mostrar los comentarios emparejados a una tarea
+     * Función encargada de mostrar los comentarios emparejados a una tarea
      * @param task que será la tarea sobre la que se mostrarán los comentarios
      */
     @Override
     public void showTask(Task task) {
+        System.out.println("El estado actual de la tarea es el siguiente: ");
         System.out.println(task);
         System.out.println("Los datos relacionados con la tarea hasta ahora, son : ");
         for(String comentary:task.getFeedback()){

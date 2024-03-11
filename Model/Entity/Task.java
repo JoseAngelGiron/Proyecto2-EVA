@@ -95,7 +95,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         boolean added = false;
         User userToReturn = null;
         for(int i=0;i<colaboratorsToCharge.length && !added;i++){
-            if(colaboratorsToCharge[i].getName().isEmpty()){
+            if(colaboratorsToCharge[i] ==null){
                 colaboratorsToCharge[i]=user;
                 added =true;
                 userToReturn = colaboratorsToCharge[i];
