@@ -51,7 +51,7 @@ public class User implements IUser, Serializable  {
     @Override
     public boolean setName(String name) {
         boolean added = false;
-        if (validateNoSpaces(name)) {
+        if (validateNoSpacesAndLimitedCharacters(name)) {
             this.name = name;
             added =true;
         }
@@ -61,7 +61,7 @@ public class User implements IUser, Serializable  {
     @Override
     public boolean setNickName(String nickName) {
         boolean added = false;
-        if (validateNoSpaces(nickName)) {
+        if (validateNoSpacesAndLimitedCharacters(nickName)) {
             this.nickName = nickName;
             added =true;
         }
@@ -110,8 +110,8 @@ public class User implements IUser, Serializable  {
      * @param text que se va a validar.
      * @return Si no cumple la funcion devolveria que el apodo no es valido
      */
-    private boolean validateNoSpaces(String text) {
-        Pattern pattern = Pattern.compile("^\\S*$");
+    private boolean validateNoSpacesAndLimitedCharacters(String text) {
+        Pattern pattern = Pattern.compile("^(?!.*\\s)\\w{4,12}$");
         return pattern.matcher(text).matches();
     }
 

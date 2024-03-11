@@ -16,7 +16,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
 
     }
     public Proyect(String name, String id, String description, User projectCreator) {
-        super(name, id, description, new ArrayList<>());
+        super(name, id, description);
         this.projectCreator = projectCreator;
     }
 

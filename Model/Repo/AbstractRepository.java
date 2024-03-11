@@ -29,9 +29,9 @@ public abstract class AbstractRepository<T> implements IAbstractRepository<T>, S
     }
 
     /**
-     * Función encarga
-     * @param data
-     * @return
+     * Función encargada de añadir un dato a la colección de elementos, comprobando previamente que no es nulo.
+     * @param data el dato que se va a añadir
+     * @return true, si se pudo añadir, o false, si no fue así
      */
     @Override
     public boolean add(T data) {

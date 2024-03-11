@@ -5,6 +5,8 @@ import Model.Entity.Proyect;
 import Model.Entity.Task;
 import Model.Entity.User;
 
+import java.time.LocalDate;
+
 public class TrelloFactory {
 
 
@@ -21,14 +23,16 @@ public class TrelloFactory {
         }
         return result;
     }
-    public static ElementTrello build(ElementstTrello elementstTrello, String codigo) {
+    public static ElementTrello build(ElementstTrello elementstTrello, String name, String id, String description,
+                                      User userCreator, LocalDate beginDate, LocalDate endDate) {
         ElementTrello result = null;
 
         switch (elementstTrello) {
             case TASK:
-                result = new Task(codigo);
+                result = new Task(name,id,description,beginDate,endDate);
                 break;
-
+            case PROYECT:
+                result = new Proyect(name,id,description,userCreator);
         }
         return result;
     }

@@ -59,7 +59,8 @@ public class MainView implements IMainView{
             String password = IO.readString("Inserte una contraseña para registrarse: ");
             userToRegister = new User(name, nickName, email, password);
             if (userToRegister.getName() == null  || userToRegister.getNickName() == null){
-                System.out.println("El nombre o el nombre de usuario no puede contener espacios en blanco");
+                System.out.println("El nombre o el nombre de usuario no puede contener espacios en blanco"
+                + "ademas, debe tener entre 4 y 12 caracteres");
             }
             if(userToRegister.getEmail() == null){
                 System.out.println("El email debe seguir un formato similar al de: texto@texto y acabado en '.es' o '.com' ");
@@ -89,7 +90,8 @@ public class MainView implements IMainView{
 
             userToLogin = new User(nickName, password);
             if (userToLogin.getNickName() == null){
-                System.out.println("El nombre o el nombre de usuario no puede contener espacios en blanco");
+                System.out.println("El nombre o el nombre de usuario no puede contener espacios en blanco. Ademas, debe" +
+                        "tener entre 4 y 12 caracteres");
             }
 
             if(userToLogin.getPassword() == null){

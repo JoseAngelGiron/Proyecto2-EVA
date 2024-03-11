@@ -20,16 +20,6 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         return elements;
     }
 
-    @Override
-    public boolean add(Proyect data) {
-        boolean added = false;
-        if(data!=null) {
-            if(getElements().add(data)) {
-                added = true;
-            }
-        }
-        return added;
-    }
     /**
      * Obtiene un proyecto del repositorio mediante su identificador
      *
