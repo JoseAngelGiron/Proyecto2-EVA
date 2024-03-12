@@ -11,11 +11,11 @@ public class Utils {
      * @param obj  El objeto a escribir en el archivo.
      * @param <T>  El tipo de objeto a escribir.
      */
-    public static <T> void fileRead(T obj, String file) {
-
+    public static <T> void fileRead(T obj) {
+        String rutaArchivo = ".//ProductivityPilot.txt";
         try {
-            // el true es para que de inserte debajo de lo que ya existe
-            FileWriter fileWriter = new FileWriter(file, true);
+
+            FileWriter fileWriter = new FileWriter(rutaArchivo, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(obj.toString());

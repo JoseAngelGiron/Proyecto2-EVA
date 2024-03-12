@@ -60,6 +60,11 @@ public class UpdateProjectController implements IUpdateProjectController {
                         }
                         break;
                     case 7:
+                        String confirmation=IO.readString("¿Desea guardar los datos del proyecto actualizados en un archivo de texto?" +
+                                " S/Para guardar, cualquier otra tecla para cancelar");
+                        if(confirmation.equalsIgnoreCase("S")){
+                            Utils.fileRead(proyect);
+                        }
                         Utils.printMessage("Saliendo del menu...");
                         break;
                 }

@@ -200,9 +200,9 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     public String toString() {
         return " ------------------------------------------------------------------------------------- " +
                 "\n | identificador: " + id + "                       |" + " Colaboradores:  " +
-                "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorsToCharge[0].getName() + colaboratorsToCharge[1].getName() + colaboratorsToCharge[2].getName()+
-                "\n | Inicio de la tarea: " + startDate.getDayOfMonth() + "/" + startDate.getMonthValue() + "/" + startDate.getYear() + "         |" + " apodo: " + colaboratorsToCharge[0].getNickName() + colaboratorsToCharge[1].getNickName() +colaboratorsToCharge[2].getNickName()+
-                "\n | Final de la tarea: " + endDate.getDayOfMonth() + "/" + endDate.getMonthValue() + "/" + endDate.getYear() + "          |"    + " Correo electronico:" + colaboratorsToCharge[0].getEmail() + colaboratorsToCharge[1].getEmail()+colaboratorsToCharge[2].getEmail()+
+                "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorsToCharge[0].getName() +" "+ colaboratorsToCharge[1].getName() +" "+ colaboratorsToCharge[2].getName()+
+                "\n | Inicio de la tarea: " + startDate.getDayOfMonth() + "/" + startDate.getMonthValue() + "/" + startDate.getYear() + "         |" + " apodo: " + colaboratorsToCharge[0].getNickName() +" "+ colaboratorsToCharge[1].getNickName() +" "+colaboratorsToCharge[2].getNickName()+
+                "\n | Final de la tarea: " + endDate.getDayOfMonth() + "/" + endDate.getMonthValue() + "/" + endDate.getYear() + "          |"    + " Correo electronico:" + colaboratorsToCharge[0].getEmail() +" "+ colaboratorsToCharge[1].getEmail()+" "+colaboratorsToCharge[2].getEmail()+
                 "\n ----------------------------------------------------------------------------------- ";
     }
 }
