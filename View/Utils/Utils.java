@@ -7,7 +7,6 @@ public class Utils {
      * Lee un objeto y lo escribe en un archivo.
      *
      * @param obj  El objeto a escribir en el archivo.
-     * @param file La ruta del archivo donde se escribirá el objeto.
      * @param <T>  El tipo de objeto a escribir.
      */
     public static <T> void fileRead(T obj, String file) {

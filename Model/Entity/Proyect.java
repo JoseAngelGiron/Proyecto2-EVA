@@ -2,8 +2,6 @@ package Model.Entity;
 
 
 import Interface.Model_Interface.IProyect;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 
