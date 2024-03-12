@@ -2,6 +2,7 @@ package View;
 
 import Interface.View_Interface.IProjectView;
 import Model.Entity.Task;
+import View.Utils.Utils;
 
 public class UpdateProjectView implements IProjectView {
     /**
@@ -39,6 +40,16 @@ public class UpdateProjectView implements IProjectView {
             System.out.println(task);
         }else{
             System.out.println("No se encontro la tarea en cuestión.");
+        }
+    }
+
+    @Override
+    public void showTaskAdded(Task task) {
+        if(task!=null){
+            Utils.printMessage("La tarea fue añadida correctamente. Los datos de la tarea que se añadieron fueron: ");
+            Utils.printMessage(task.toString());
+        }else{
+            Utils.printMessage("La tarea no pudo ser añadida. Ya existe un tarea con el mismo código en este proyecto");
         }
     }
 

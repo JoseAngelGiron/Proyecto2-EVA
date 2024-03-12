@@ -170,11 +170,9 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      * @param idTask       El ID de la tarea a recuperar.
      * @return La tarea recuperada, o null si no se encuentra.
      */
-
     @Override
     public Task retrieveTask(User userToCharge, String idTask) {
         Task task = null;
-        // que significa recuperar tarea
         for (Proyect proyect : elements) {
             for (Task tmpTask : proyect.getElements()) {
                 for (int i = 0; i < tmpTask.getColaboratorToCharge().length; i++) {
@@ -219,7 +217,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         boolean updated = false;
         for (Proyect tmpProyect : elements){
             if (tmpProyect.equals(proyect)){
-                for (Task tmpTask : proyect.getElements()){
+                for (Task tmpTask : proyect.getElements()){ //AQUI HABRÍA QUE CORTARLO DE OTRA MANERA, ESTO NO ES UN SET
                     if (tmpTask.equals(task)){
                         tmpProyect.getElements().remove(tmpTask);
                         tmpProyect.addElement(task);

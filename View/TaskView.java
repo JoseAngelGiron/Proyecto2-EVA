@@ -126,6 +126,10 @@ public class TaskView implements ITaskView {
         }
     }
 
+    /**
+     * Función que nos muestra un simple menú y que nos permite seleccionar entre las opciones que muestra.
+     * @return un número, que es el que el usuario introduce por consola, entre las opciones que se le muestran.
+     */
     @Override
     public int selectAssignOrUnassigned() {
         System.out.println(" ¿Que desea hacer? ");

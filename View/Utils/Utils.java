@@ -11,11 +11,11 @@ public class Utils {
      * @param obj  El objeto a escribir en el archivo.
      * @param <T>  El tipo de objeto a escribir.
      */
-    public static <T> void fileRead(T obj, String file) {
-
+    public static <T> void fileRead(T obj) {
+        String rutaArchivo = ".//ProductivityPilot.txt";
         try {
-            // el true es para que de inserte debajo de lo que ya existe
-            FileWriter fileWriter = new FileWriter(file, true);
+
+            FileWriter fileWriter = new FileWriter(rutaArchivo, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(obj.toString());
@@ -26,37 +26,6 @@ public class Utils {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
-    public static LocalDate dataTime (String dataString) {
-
-        String[] dataSeparado = dataString.split("/");
-
-        LocalDate fecha = null;
-        try {
-            int day = Integer.parseInt(dataSeparado[0]);
-            int month = Integer.parseInt(dataSeparado[1]);
-            int year = Integer.parseInt(dataSeparado[2]);
-
-            fecha = LocalDate.of(year, month, day);
-        } catch (NumberFormatException e) { //Para capturar errores al convertir de texto a entero. Que pongan letras
-            //System.err.println("Error: La fecha proporcionada no tiene un formato válido.");
-            throw new NumberFormatException();
-        } catch (ArrayIndexOutOfBoundsException e) { // Que no tiene el formato especifico la fecha es decir dia/mes/año
-            // deve ponerse de la forma que se separe con el simbolo puesto en dataString.split
-            System.err.println("Error: La fecha proporcionada no tiene el formato esperado.");
-        } catch (DateTimeException e) {
-            System.err.println("Error en la fecha: la fecha no existe");
-        } catch (Exception e) {
-            System.err.println("Error");
-        }
-        if(fecha==null){
-            fecha=LocalDate.now();
-        }
-
-
-        return fecha;
-    }
-
     /**
      * Comprueba si un objeto está presente en un archivo.
      *

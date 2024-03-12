@@ -5,6 +5,7 @@ import Model.*;
 import Model.Entity.User;
 import View.IO;
 import View.MainView;
+import View.Utils.Utils;
 
 public class SessionController implements ISessionController {
 
@@ -69,7 +70,12 @@ public class SessionController implements ISessionController {
 
         if(confirmation.equalsIgnoreCase("S")){
             manage.getUsers().add(user);
+            Utils.printMessage("Se ha generado un fichero con sus credenciales, exceptuando su contraseña. Es" +
+                    "recomendable que la tenga a buen recaudo");
+            Utils.fileRead(user);
         }
+
+
         manage.saveData();
         return registered;
     }

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Task extends ElementTrello<Task> implements ITask, Serializable {
-
     private LocalDate startDate;
     private LocalDate endDate;
     private TaskStatus state;
@@ -27,8 +26,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         state = TaskStatus.NOT_STARTED;
         inicializeColaborators();
         feedback = new ArrayList<>();
+        checkDates();
     }
-
 
     public Task(String codigo) {
         setId(codigo);
@@ -58,9 +57,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
 
     public boolean setStartDate(LocalDate startDate) {
         boolean assign = false;
-        if(startDate.isAfter(endDate)){
+        if(startDate.isBefore(LocalDate.now())){
             this.startDate = LocalDate.now();
-
         }else{
             this.startDate = startDate;
             assign = true;
@@ -70,12 +68,13 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
 
     public boolean setEndDate(LocalDate endDate) {
         boolean assign = false;
-        if(startDate.isBefore(endDate)){
+        if(endDate.isBefore(LocalDate.now())){
             this.endDate = LocalDate.now();
         }else{
             this.endDate = endDate;
             assign = true;
         }
+        checkDates();
         return assign;
     }
 
@@ -176,6 +175,16 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         }
     }
 
+    /**
+     * Función que se encarga de comprobar si la fecha de inicio es posterior a la de fin.
+     * En tal caso, asigna la fecha actual
+     */
+    private void checkDates() {
+        if(startDate.isAfter(endDate)){
+            startDate = LocalDate.now();
+        }
+    }
+
 
     @Override
     public boolean equals(Object object) {
@@ -191,9 +200,9 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     public String toString() {
         return " ------------------------------------------------------------------------------------- " +
                 "\n | identificador: " + id + "                       |" + " Colaboradores:  " +
-                "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorsToCharge[0].getName() + colaboratorsToCharge[1].getName() + colaboratorsToCharge[2].getName()+
-                "\n | Inicio de la tarea: " + startDate.getDayOfMonth() + "/" + startDate.getMonthValue() + "/" + startDate.getYear() + "         |" + " apodo: " + colaboratorsToCharge[0].getNickName() + colaboratorsToCharge[1].getNickName() +colaboratorsToCharge[2].getNickName()+
-                "\n | Final de la tarea: " + endDate.getDayOfMonth() + "/" + endDate.getMonthValue() + "/" + endDate.getYear() + "          |"    + " Correo electronico:" + colaboratorsToCharge[0].getEmail() + colaboratorsToCharge[1].getEmail()+colaboratorsToCharge[2].getEmail()+
+                "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorsToCharge[0].getName() +" "+ colaboratorsToCharge[1].getName() +" "+ colaboratorsToCharge[2].getName()+
+                "\n | Inicio de la tarea: " + startDate.getDayOfMonth() + "/" + startDate.getMonthValue() + "/" + startDate.getYear() + "         |" + " apodo: " + colaboratorsToCharge[0].getNickName() +" "+ colaboratorsToCharge[1].getNickName() +" "+colaboratorsToCharge[2].getNickName()+
+                "\n | Final de la tarea: " + endDate.getDayOfMonth() + "/" + endDate.getMonthValue() + "/" + endDate.getYear() + "          |"    + " Correo electronico:" + colaboratorsToCharge[0].getEmail() +" "+ colaboratorsToCharge[1].getEmail()+" "+colaboratorsToCharge[2].getEmail()+
                 "\n ----------------------------------------------------------------------------------- ";
     }
 }

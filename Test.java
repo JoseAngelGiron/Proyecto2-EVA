@@ -1,13 +1,11 @@
 import Model.Entity.Task;
 import View.IO;
+import View.SelectItemView;
 
 public class Test {
     public static void main(String[] args) {
-        Task task = new Task("234");
-
-        System.out.println(task);
-        task.changeStatus(IO.readNumber("",1,3));
-        System.out.println(task);
+        SelectItemView view = new SelectItemView();
+        Task task = new Task("djf","6364","fjgong",view.solicitateDate("Inserte una fecha de inicio: "),view.solicitateDate("Inserte una fecha de fin: "));
     }
 
 }

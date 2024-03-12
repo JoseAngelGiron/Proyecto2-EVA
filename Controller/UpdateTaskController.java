@@ -4,6 +4,7 @@ import Interface.Controller_Interface.IUpdateTaskController;
 import Model.Manage;
 import Model.Entity.Proyect;
 import Model.Entity.Task;
+import View.SelectItemView;
 import View.Utils.Utils;
 import View.IO;
 import View.TaskView;
@@ -21,6 +22,7 @@ public class UpdateTaskController implements IUpdateTaskController {
 
         ViewCrud view = new ViewCrud();
         TaskView taskView = new TaskView();
+        SelectItemView itemView = new SelectItemView();
 
         boolean repeat;
         do {
@@ -46,9 +48,8 @@ public class UpdateTaskController implements IUpdateTaskController {
                             task.setDescription(IO.readString("Inserte la nueva descripción"));
                             break;
                         case 4:
-                            task.setStartDate(Utils.dataTime(IO.readString("Inserte la fecha: ")));
-                            task.setEndDate(Utils.dataTime("Inserte la fecha de fin: "));
-                            //funcion de la vista que coja la tarea y la fecha nos imprima si se ha asignado bien
+                            task.setStartDate(itemView.solicitateDate("Inserte la nueva fecha de comienzo: "));
+                            task.setEndDate(itemView.solicitateDate("Inserte la nueva fecha de limite: "));
                             break;
                         case 5:
                             task.changeStatus(taskView.changeStatusMenu());
