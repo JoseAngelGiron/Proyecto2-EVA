@@ -32,7 +32,7 @@ public class SelectItemController implements IselectController {
                     taskCreated = (Task) TrelloFactory.build ( ElementstTrello.TASK,IO.readString("Inserte el nombre de la tarea "),
                             IO.readString("Inserte el código de la tarea por el cual se identificara"),
                             IO.readString("Inserte una descripción"),Manage.get_Instance().getUserLoggedIn(),
-                            LocalDate.parse(IO.readString("Inserte una fecha de fin")),LocalDate.parse(IO.readString("Inserte una fecha de inicio "))
+                            Utils.dataTime(IO.readString("Inserte una fecha de inicio: (formato dd/mm/yyyy) ")),Utils.dataTime(IO.readString("Inserte una fecha de final: (formato dd/mm/yyyy) "))
                              );
                     break;
                 case 3:

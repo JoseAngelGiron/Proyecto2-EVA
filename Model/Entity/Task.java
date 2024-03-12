@@ -22,8 +22,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
 
     public Task(String name,String id,String description, LocalDate startDate, LocalDate endDate) {
         super(name,id,description);
-        this.startDate = startDate;
-        this.endDate = endDate;
+        setStartDate(startDate);
+        setEndDate(endDate);
         state = TaskStatus.NOT_STARTED;
         inicializeColaborators();
         feedback = new ArrayList<>();
@@ -33,8 +33,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     public Task(String codigo) {
         setId(codigo);
         state = TaskStatus.NOT_STARTED;
-        startDate = LocalDate.of(0,1,1);
-        endDate = LocalDate.of(0,1,1);
+        startDate = LocalDate.now();
+        endDate = LocalDate.now();
         inicializeColaborators();
         feedback = new ArrayList<>();
 
@@ -56,12 +56,27 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         return this.colaboratorsToCharge;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public boolean setStartDate(LocalDate startDate) {
+        boolean assign = false;
+        if(startDate.isAfter(endDate)){
+            this.startDate = LocalDate.now();
+
+        }else{
+            this.startDate = startDate;
+            assign = true;
+        }
+        return assign;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public boolean setEndDate(LocalDate endDate) {
+        boolean assign = false;
+        if(startDate.isBefore(endDate)){
+            this.endDate = LocalDate.now();
+        }else{
+            this.endDate = endDate;
+            assign = true;
+        }
+        return assign;
     }
 
     public void setState(TaskStatus state) {
