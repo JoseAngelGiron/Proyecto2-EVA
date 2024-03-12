@@ -20,6 +20,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
 
 
     public Proyect(String id, User user) {
+
         this.id=id;
         projectCreator = user;
     }

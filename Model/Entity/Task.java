@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Task extends ElementTrello<Task> implements ITask, Serializable {
-
     private LocalDate startDate;
     private LocalDate endDate;
     private TaskStatus state;
@@ -27,8 +26,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         state = TaskStatus.NOT_STARTED;
         inicializeColaborators();
         feedback = new ArrayList<>();
+        checkDates();
     }
-
 
     public Task(String codigo) {
         setId(codigo);
@@ -58,9 +57,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
 
     public boolean setStartDate(LocalDate startDate) {
         boolean assign = false;
-        if(startDate.isAfter(endDate)){
+        if(startDate.isBefore(LocalDate.now())){
             this.startDate = LocalDate.now();
-
         }else{
             this.startDate = startDate;
             assign = true;
@@ -70,12 +68,13 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
 
     public boolean setEndDate(LocalDate endDate) {
         boolean assign = false;
-        if(startDate.isBefore(endDate)){
+        if(endDate.isBefore(LocalDate.now())){
             this.endDate = LocalDate.now();
         }else{
             this.endDate = endDate;
             assign = true;
         }
+        checkDates();
         return assign;
     }
 
@@ -173,6 +172,16 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         colaboratorsToCharge = new User[3];
         for (int i =0;i<colaboratorsToCharge.length;i++){
             colaboratorsToCharge[i] = new User();
+        }
+    }
+
+    /**
+     * Función que se encarga de comprobar si la fecha de inicio es posterior a la de fin.
+     * En tal caso, asigna la fecha actual
+     */
+    private void checkDates() {
+        if(startDate.isAfter(endDate)){
+            startDate = LocalDate.now();
         }
     }
 
