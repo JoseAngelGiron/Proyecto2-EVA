@@ -2,7 +2,6 @@ package Model;
 
 import Interface.Model_Interface.IManage;
 import Model.Entity.Proyect;
-import Model.Entity.Task;
 import Model.Entity.User;
 import Model.Repo.RepoProyects;
 import Model.Repo.RepoUser;
@@ -38,9 +37,6 @@ public class Manage implements Serializable, IManage {
     public User getUserLoggedIn() {
         return userLoggedIn;
     }
-
-
-
     private Manage() {
         users = new RepoUser();
         repoProyects = new RepoProyects();
@@ -98,7 +94,6 @@ public class Manage implements Serializable, IManage {
         }
         return register;
     }
-
 
     /**
      * Metodo para comparar el usuario que recibe con los del repositorio usuario y asignarlo

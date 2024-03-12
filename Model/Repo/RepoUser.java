@@ -1,13 +1,11 @@
 package Model.Repo;
 
 import Interface.Repo_Interface.IRepoUsers;
-import Model.Entity.Proyect;
-import Model.Entity.User;
 
+import Model.Entity.User;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 public class RepoUser extends AbstractRepository<User> implements IRepoUsers {
 
