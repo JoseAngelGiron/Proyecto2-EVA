@@ -74,11 +74,11 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
 
     @Override
     public String toString() {
-        return String.format(" |---------------------------- " +
-                "\n | Nombre proyecto: %-5s |"+ " Nombre del creador : " + projectCreator.getName() +
-                "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +
-                "\n | identificador: %-5s |"+ " Correo electronico:" + projectCreator.getEmail() +
-                "\n |--------------------------------------------------------------- " +
+        return String.format(" |---------------------------------------------------------------------  |" +
+                "\n | Nombre proyecto: %-5s |"+ " Nombre del creador : " + projectCreator.getName() + "|"+
+                "\n |---------------------------|" + " Apodo " + projectCreator.getNickName() +  "     |"+
+                "\n | identificador: %-5s |"+ " Correo electronico:" + projectCreator.getEmail()  + "  |"+
+                "\n |---------------------------------------------------------------------------- " +" |"+
                 "\n | descripcion proyecto:" +
                 "\n | %s",
                 name, id, description);
