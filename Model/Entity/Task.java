@@ -216,12 +216,13 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     // Si en el stado esta completo tambien se mueve la linea el resto de casos no
 
     public String toString() {
-        return String.format(" ------------------------------------------------------------------------------------- " +
+        return String.format(" -------------------------------------------------------------------------------------------------------------------------------------------------------------------- " +
                 "\n | identificador: %-30s | Colaboradores:  " +
                 "\n | Estado de la tarea: %-25s | Nombre: " + colaboratorsToCharge[0].getName() +" "+ colaboratorsToCharge[1].getName() +" "+ colaboratorsToCharge[2].getName()+
                 "\n | Inicio de la tarea: %d/%d/%-19d |" + " apodo: " + colaboratorsToCharge[0].getNickName() +" "+ colaboratorsToCharge[1].getNickName() +" "+colaboratorsToCharge[2].getNickName()+
                 "\n | Final de la tarea: %d/%d/%-20d | Correo electronico:" + colaboratorsToCharge[0].getEmail() +" "+ colaboratorsToCharge[1].getEmail()+" "+colaboratorsToCharge[2].getEmail()+
-                "\n ----------------------------------------------------------------------------------- ", id, state,
+                "\n -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ",
+                id, state,
                 startDate.getDayOfMonth(),startDate.getMonthValue(),startDate.getYear(),
                 endDate.getDayOfMonth(), endDate.getMonthValue(), endDate.getYear());
     }

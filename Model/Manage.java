@@ -158,7 +158,7 @@ public class Manage implements Serializable, IManage {
         String newEmail = email;
         for (User user: users.getElements()){
             if (user.getEmail().equalsIgnoreCase(email.toLowerCase())) {
-                newEmail = " "; //PODRIA PONER UN BREAK? ¿ES ABUSAR?
+                newEmail = " ";
                 break;
             }
         }
@@ -176,7 +176,7 @@ public class Manage implements Serializable, IManage {
         String newNickName = nickName;
         for (User user: users.getElements()){
             if (user.getName().equalsIgnoreCase(nickName.toLowerCase())) {
-                newNickName = " "; //PODRIA PONER UN BREAK? ¿ES ABUSAR?
+                newNickName = " ";
                 break;
             }
         }
