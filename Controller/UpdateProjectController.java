@@ -41,7 +41,7 @@ public class UpdateProjectController implements IUpdateProjectController {
                         projectView.showTaskAdded(proyect.addElement(selectItemController.selectTypeTask()));
                         break;
                     case 4:
-                        projectView.showTaskRemoved(proyect.deleteTask(IO.readString("Inserte el nombre de la tarea que se desea eliminar")));
+                        projectView.showTaskRemoved(proyect.deleteTask(IO.readString("Inserte el nombre de la tarea que se desea eliminar: ")));
                         break;
                     case 5:
                         UpdateTaskController taskController = new UpdateTaskController();

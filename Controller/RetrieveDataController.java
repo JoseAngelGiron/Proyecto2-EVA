@@ -22,7 +22,7 @@ public class RetrieveDataController implements IRetrieveDataController {
             confirmation =" ";
 
             proyect = manage.getRepoProyects().getByID((IO.readString(
-                    "Inserte el código del proyecto que desea seleccionar")), manage.getUserLoggedIn());
+                    "Inserte el código del proyecto que desea seleccionar: ")), manage.getUserLoggedIn());
 
             if (proyect==null){
                 confirmation = IO.readString("Error al introducir el código. ¿Desea volver a introducir otro código de proyecto?" +
@@ -49,7 +49,7 @@ public class RetrieveDataController implements IRetrieveDataController {
             confirmation =" ";
 
             task = manage.getRepoProyects().retrieveTaskFromProject(IO.readString(
-                    "Inserte el código de tarea que desea seleccionar"), proyect);
+                    "Inserte el código de tarea que desea seleccionar: "), proyect);
 
             if (task==null){
                 confirmation = IO.readString("Error al introducir el código. ¿Desea volver a introducir otro código de tarea?" +
