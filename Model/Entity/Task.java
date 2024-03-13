@@ -197,12 +197,18 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     }
 
     @Override
+    //Si pones una fecha inferior a 2 digitos se quita el 0 y se mueve toda la linea
+    //el identificador solo se alinea si tiene 3 digitos
+    // Si en el stado esta completo tambien se mueve la linea el resto de casos no
+
     public String toString() {
-        return " ------------------------------------------------------------------------------------- " +
-                "\n | identificador: " + id + "                       |" + " Colaboradores:  " +
-                "\n | Estado de la tarea: " + state + "        |" + " Nombre: " + colaboratorsToCharge[0].getName() +" "+ colaboratorsToCharge[1].getName() +" "+ colaboratorsToCharge[2].getName()+
-                "\n | Inicio de la tarea: " + startDate.getDayOfMonth() + "/" + startDate.getMonthValue() + "/" + startDate.getYear() + "         |" + " apodo: " + colaboratorsToCharge[0].getNickName() +" "+ colaboratorsToCharge[1].getNickName() +" "+colaboratorsToCharge[2].getNickName()+
-                "\n | Final de la tarea: " + endDate.getDayOfMonth() + "/" + endDate.getMonthValue() + "/" + endDate.getYear() + "          |"    + " Correo electronico:" + colaboratorsToCharge[0].getEmail() +" "+ colaboratorsToCharge[1].getEmail()+" "+colaboratorsToCharge[2].getEmail()+
-                "\n ----------------------------------------------------------------------------------- ";
+        return String.format(" ------------------------------------------------------------------------------------- " +
+                "\n | identificador: %-30s | Colaboradores:  " +
+                "\n | Estado de la tarea: %-25s | Nombre: " + colaboratorsToCharge[0].getName() +" "+ colaboratorsToCharge[1].getName() +" "+ colaboratorsToCharge[2].getName()+
+                "\n | Inicio de la tarea: %d/%d/%-19d |" + " apodo: " + colaboratorsToCharge[0].getNickName() +" "+ colaboratorsToCharge[1].getNickName() +" "+colaboratorsToCharge[2].getNickName()+
+                "\n | Final de la tarea: %d/%d/%-20d | Correo electronico:" + colaboratorsToCharge[0].getEmail() +" "+ colaboratorsToCharge[1].getEmail()+" "+colaboratorsToCharge[2].getEmail()+
+                "\n ----------------------------------------------------------------------------------- ", id, state,
+                startDate.getDayOfMonth(),startDate.getMonthValue(),startDate.getYear(),
+                endDate.getDayOfMonth(), endDate.getMonthValue(), endDate.getYear());
     }
 }
