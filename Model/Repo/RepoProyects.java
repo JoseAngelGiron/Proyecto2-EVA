@@ -131,8 +131,10 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         for (Proyect proyect : elements) {
             for (Task task : proyect.getElements()) {
                 for (User tmpuser : task.getColaboratorToCharge()) { //CORTAR ESTO PARA QUE NO AÑADA 2 VECES EL MISMO PROYECTO
-                    if (tmpuser.equals(user)) {
-                        proyectsColaborator.add(proyect);
+                    if(tmpuser!=null) {
+                        if (tmpuser.equals(user)) {
+                            proyectsColaborator.add(proyect);
+                        }
                     }
                 }
             }
@@ -150,17 +152,19 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      */
     @Override
     public Proyect retrieveProyectIfColaborator(User user, String idProyecto) {
-        Proyect proyect = null;
-        for (Proyect proyects : elements) {
-            for (Task tmpUser : proyects.getElements()) {
-                for (int i = 0; i < tmpUser.getColaboratorToCharge().length; i++) {
-                    if (proyects.getId().equals(idProyecto) && tmpUser.getColaboratorToCharge()[i].equals(user)) {
-                        proyect = proyects;
+        Proyect proyectToReturn = null;
+        for (Proyect proyect : elements) {
+            for (Task task : proyect.getElements()) {
+                if(task!=null) {
+                    for (int i = 0; i < task.getColaboratorToCharge().length; i++) {
+                        if (proyect.getId().equals(idProyecto) && task.getColaboratorToCharge()[i].equals(user)) {
+                            proyectToReturn = proyect;
+                        }
                     }
                 }
             }
         }
-        return proyect;
+        return proyectToReturn;
     }
 
     /**
@@ -170,11 +174,9 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      * @param idTask       El ID de la tarea a recuperar.
      * @return La tarea recuperada, o null si no se encuentra.
      */
-
     @Override
     public Task retrieveTask(User userToCharge, String idTask) {
         Task task = null;
-        // que significa recuperar tarea
         for (Proyect proyect : elements) {
             for (Task tmpTask : proyect.getElements()) {
                 for (int i = 0; i < tmpTask.getColaboratorToCharge().length; i++) {
@@ -219,7 +221,7 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         boolean updated = false;
         for (Proyect tmpProyect : elements){
             if (tmpProyect.equals(proyect)){
-                for (Task tmpTask : proyect.getElements()){
+                for (Task tmpTask : proyect.getElements()){ //AQUI HABRÍA QUE CORTARLO DE OTRA MANERA, ESTO NO ES UN SET
                     if (tmpTask.equals(task)){
                         tmpProyect.getElements().remove(tmpTask);
                         tmpProyect.addElement(task);

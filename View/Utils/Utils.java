@@ -1,20 +1,21 @@
 package View.Utils;
 
 import java.io.*;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 
 public class Utils {
     /**
      * Lee un objeto y lo escribe en un archivo.
      *
      * @param obj  El objeto a escribir en el archivo.
-     * @param file La ruta del archivo donde se escribirá el objeto.
      * @param <T>  El tipo de objeto a escribir.
      */
-    public static <T> void fileRead(T obj, String file) {
-
+    public static <T> void fileRead(T obj) {
+        String rutaArchivo = ".//ProductivityPilot.txt";
         try {
-            // el true es para que de inserte debajo de lo que ya existe
-            FileWriter fileWriter = new FileWriter(file, true);
+
+            FileWriter fileWriter = new FileWriter(rutaArchivo, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(obj.toString());
@@ -25,7 +26,6 @@ public class Utils {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
     /**
      * Comprueba si un objeto está presente en un archivo.
      *

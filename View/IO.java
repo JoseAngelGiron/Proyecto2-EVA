@@ -1,6 +1,5 @@
 package View;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 public class IO{
     public static Scanner keyboard = new Scanner(System.in);
@@ -47,6 +46,7 @@ public class IO{
                 numero = keyboard.nextInt();
 
             } catch (Exception e) {
+                keyboard.nextLine();
                 System.out.println("Por favor, introduce un número valido.");
 
             }

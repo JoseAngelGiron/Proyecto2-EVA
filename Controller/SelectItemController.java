@@ -21,19 +21,17 @@ public class SelectItemController implements IselectController {
         SelectItemView view = new SelectItemView();
         int option;
         Task taskCreated = null;
-            option = view.selectTypeOfTask();
+        option = view.selectTypeOfTask();
 
             switch (option){
                 case 1:
-                    taskCreated = (Task) TrelloFactory.build ( ElementstTrello.TASK,IO.readString("Inserte el código de la tarea " +
-                            "para identificarla de forma univoca"), Manage.get_Instance().getUserLoggedIn());
+                    taskCreated = (Task) TrelloFactory.build ( ElementstTrello.TASK, view.solicitateCod(), Manage.get_Instance().getUserLoggedIn());
                     break;
                 case 2:
-                    taskCreated = (Task) TrelloFactory.build ( ElementstTrello.TASK,IO.readString("Inserte el nombre de la tarea "),
-                            IO.readString("Inserte el código de la tarea por el cual se identificara"),
-                            IO.readString("Inserte una descripción"),Manage.get_Instance().getUserLoggedIn(),
-                            LocalDate.parse(IO.readString("Inserte una fecha de fin")),LocalDate.parse(IO.readString("Inserte una fecha de inicio "))
-                             );
+                    taskCreated = (Task) TrelloFactory.build ( ElementstTrello.TASK, view.solicitateName(),
+                            view.solicitateCod(),
+                            view.solicitateDescription(), Manage.get_Instance().getUserLoggedIn(),
+                            view.solicitateDate("Inserte una fecha de inicio: "), view.solicitateDate("Inserte una fecha de final: "));
                     break;
                 case 3:
                     Utils.printMessage("Operación de creación de tarea cancelada...");
@@ -58,14 +56,13 @@ public class SelectItemController implements IselectController {
 
         switch (option){
             case 1:
-                proyect = (Proyect) TrelloFactory.build ( ElementstTrello.PROYECT,IO.readString("Inserte el código del proyecto por el " +
-                        "que se identificara"), manage.getUserLoggedIn());
+                proyect = (Proyect) TrelloFactory.build ( ElementstTrello.PROYECT, view.solicitateCod(), manage.getUserLoggedIn());
                 break;
             case 2:
-                proyect = (Proyect) TrelloFactory.build (ElementstTrello.PROYECT,IO.readString("Inserte el nombre del proyecto "),
-                        IO.readString("Inserte el código del proyecto por el cual se identificara"),
-                        IO.readString("Inserte una descripción"), Manage.get_Instance().getUserLoggedIn(),
-                        LocalDate.parse(""), LocalDate.parse(""));
+                proyect = (Proyect) TrelloFactory.build (ElementstTrello.PROYECT, view.solicitateName(),
+                        view.solicitateCod(),
+                        view.solicitateDescription(), Manage.get_Instance().getUserLoggedIn(),
+                        LocalDate.of(1994, 1, 1), LocalDate.of(1994, 1, 1));
                 break;
             case 3:
                 Utils.printMessage("Operación de creación de proyecto cancelado...");

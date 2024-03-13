@@ -29,6 +29,7 @@ public class ProjectCollaboratorController implements IProjectCollaboratorContro
                    Task taskToUpdate = manage.getRepoProyects().retrieveTask(manage.getUserLoggedIn(), collaboratorProjectsView.showTasks(proyectToUpdate));
                    if (taskToUpdate != null) {
                        if (taskToUpdate.changeStatus(collaboratorProjectsView.changeStatusMenu())) {
+
                            taskToUpdate.addComentary(IO.readString("Inserte un comentario al respecto."));
                            manage.getRepoProyects().updateTask(taskToUpdate, proyectToUpdate);
                            collaboratorProjectsView.showTask(taskToUpdate);
@@ -48,8 +49,8 @@ public class ProjectCollaboratorController implements IProjectCollaboratorContro
            }
            if(!proyects.isEmpty()) {
                repeat = IO.readString("¿Quiere volver seleccionar otra tarea? Si desea editar otra tarea del proyecto, inserte " +
-                       "'S', de lo contrario, \" +\n" +
-                       "\"pulse cualquier tecla").equalsIgnoreCase("S");
+                       "'S', de lo contrario" +
+                       "pulse cualquier tecla").equalsIgnoreCase("S");
            }
        }while (repeat);
 

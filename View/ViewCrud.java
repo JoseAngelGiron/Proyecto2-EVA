@@ -112,7 +112,9 @@ public class ViewCrud implements IViewCrud {
             System.out.println(proyect);
             System.out.println("-Tareas del proyecto:-");
             for (Task task : proyect.getElements()) {
-                System.out.println(task.toString());
+                if(task!=null) {
+                    System.out.println(task);
+                }
             }
         }
     }

@@ -38,10 +38,10 @@ public class UpdateProjectController implements IUpdateProjectController {
                         break;
                     case 3:
                         SelectItemController selectItemController = new SelectItemController();
-                        proyect.getElements().add(selectItemController.selectTypeTask());
+                        projectView.showTaskAdded(proyect.addElement(selectItemController.selectTypeTask()));
                         break;
                     case 4:
-                        projectView.showTaskRemoved(proyect.deleteTask(IO.readString("Inserte el nombre de la tarea que se desea eliminar"))); //
+                        projectView.showTaskRemoved(proyect.deleteTask(IO.readString("Inserte el nombre de la tarea que se desea eliminar")));
                         break;
                     case 5:
                         UpdateTaskController taskController = new UpdateTaskController();
@@ -60,6 +60,11 @@ public class UpdateProjectController implements IUpdateProjectController {
                         }
                         break;
                     case 7:
+                        String confirmation=IO.readString("¿Desea guardar los datos del proyecto actualizados en un archivo de texto?" +
+                                " S/Para guardar, cualquier otra tecla para cancelar");
+                        if(confirmation.equalsIgnoreCase("S")){
+                            Utils.fileRead(proyect);
+                        }
                         Utils.printMessage("Saliendo del menu...");
                         break;
                 }

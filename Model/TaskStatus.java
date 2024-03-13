@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * Enum relacionado con el estado de las tareas, que representa los diferentes estados de una tarea
+ */
 public enum TaskStatus implements Serializable {
     NOT_STARTED(1),
     IN_PROGRESS(2),

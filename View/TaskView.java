@@ -21,7 +21,7 @@ public class TaskView implements ITaskView {
         System.out.println("3- Cambiar la descripción de la tarea.");
         System.out.println("4- Cambiar las fechas de la tarea.");
         System.out.println("5- Cambiar el estado de la tarea.");
-        System.out.println("6- Asignar un colaborador a la tarea.");
+        System.out.println("6- Modificar colaboradores de tarea.");
         System.out.println("7- Salir.");
         System.out.println("****** - -------------- - ****** \n");
         return IO.readNumber("Inserte la opción deseada: ",1,7);
@@ -62,7 +62,7 @@ public class TaskView implements ITaskView {
     @Override
     public void showCollaboratorUnassigned(User user) {
         if(user!=null){
-            System.out.println("El usuario "+user.getName()+"fue eliminado como colaborador de la tarea");
+            System.out.println("El usuario "+user.getName()+" fue eliminado como colaborador de la tarea");
         }else{
             System.out.println("No se encontro el colaborador.");
         }
@@ -77,7 +77,7 @@ public class TaskView implements ITaskView {
     @Override
     public void showColaboratorAdd(User user) {
         if(user!=null){
-            System.out.println("El usuario "+user.getName()+"fue añadido a la tarea");
+            System.out.println("El usuario "+user.getName()+" fue añadido a la tarea");
         }else{
             System.out.println("No se encontro el colaborador.");
         }
@@ -126,6 +126,10 @@ public class TaskView implements ITaskView {
         }
     }
 
+    /**
+     * Función que nos muestra un simple menú y que nos permite seleccionar entre las opciones que muestra.
+     * @return un número, que es el que el usuario introduce por consola, entre las opciones que se le muestran.
+     */
     @Override
     public int selectAssignOrUnassigned() {
         System.out.println(" ¿Que desea hacer? ");

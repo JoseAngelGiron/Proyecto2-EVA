@@ -18,7 +18,7 @@ public class User implements IUser, Serializable  {
     private final int MAX_LENGTH = 20;
 
     public User(){
-        this("Sin datos ","Sin nick ","example@gmail.com"," ");
+        this("SinDatos","SinNick","example@gmail.com"," ");
     }
 
     public User(String name, String nickName, String email, String password){
@@ -189,7 +189,7 @@ public class User implements IUser, Serializable  {
 
     @Override
     public String toString() {
-        return "name: '" + name + '\'' +
+        return "   name: '" + name + '\'' +
                 ", nickName: '" + nickName + '\'' +
                 ", email: " + email + '\'' +
                 ", password: " + password + '\'';

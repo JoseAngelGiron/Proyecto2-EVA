@@ -86,7 +86,7 @@ public class MainView implements IMainView{
         do{
 
             String nickName = IO.readString("Inserte su apodo en el sistema: ");
-            String password = IO.readString("Inserte el su contraseña: ");
+            String password = IO.readString("Inserte su contraseña: ");
 
             userToLogin = new User(nickName, password);
             if (userToLogin.getNickName() == null){

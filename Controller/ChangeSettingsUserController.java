@@ -18,7 +18,7 @@ public class ChangeSettingsUserController implements IChangeUserController {
 
         int optionToChange;
         do {
-            manage.getRepoProyects().update(manage.getUserLoggedIn()); //Funciones para actualizar, TESTEAR MUY FUERTE Y CRUZADO CON EL RESTO DE FUNCIONES
+            manage.getRepoProyects().update(manage.getUserLoggedIn());
             manage.getUsers().update(manage.getUserLoggedIn());
             manage.saveData();
 

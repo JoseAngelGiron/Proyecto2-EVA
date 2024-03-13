@@ -2,14 +2,12 @@ package Model.Repo;
 
 import Interface.Repo_Interface.IAbstractRepository;
 import Model.Entity.Proyect;
-
-
 import java.io.Serializable;
 import java.util.Collection;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
 
 public abstract class AbstractRepository<T> implements IAbstractRepository<T>, Serializable {
 
@@ -49,7 +47,11 @@ public abstract class AbstractRepository<T> implements IAbstractRepository<T>, S
         return elements;
     }
 
-
+    /**
+     * Función que funciona en este contexto a modo de firma, para las clases concretas
+     * @param element el elemento a devolver
+     * @return un objeto que se especifica en la clase concreta, encontrado por su ID
+     */
     @Override
     public T getByID(String element) {
         return null;
@@ -66,8 +68,8 @@ public abstract class AbstractRepository<T> implements IAbstractRepository<T>, S
         return data;
     }
 
-
-
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(elements);
+    }
 }

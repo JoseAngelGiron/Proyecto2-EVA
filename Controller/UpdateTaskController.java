@@ -4,6 +4,7 @@ import Interface.Controller_Interface.IUpdateTaskController;
 import Model.Manage;
 import Model.Entity.Proyect;
 import Model.Entity.Task;
+import View.SelectItemView;
 import View.Utils.Utils;
 import View.IO;
 import View.TaskView;
@@ -21,14 +22,15 @@ public class UpdateTaskController implements IUpdateTaskController {
 
         ViewCrud view = new ViewCrud();
         TaskView taskView = new TaskView();
+        SelectItemView itemView = new SelectItemView();
 
         boolean repeat;
-        do{
+        do {
             repeat = false;
             view.showProject(proyect);
             Task task = retrieveDataController.retrieveTask(proyect);
 
-            if(task != null) {
+            if (task != null) {
                 int optionSubMenu;
                 do {
                     manage.getRepoProyects().updateTask(task, proyect);
@@ -46,7 +48,8 @@ public class UpdateTaskController implements IUpdateTaskController {
                             task.setDescription(IO.readString("Inserte la nueva descripción"));
                             break;
                         case 4:
-                            //Actualizar fecha de inicio y de fin
+                            task.setStartDate(itemView.solicitateDate("Inserte la nueva fecha de comienzo: "));
+                            task.setEndDate(itemView.solicitateDate("Inserte la nueva fecha de limite: "));
                             break;
                         case 5:
                             task.changeStatus(taskView.changeStatusMenu());
@@ -65,8 +68,9 @@ public class UpdateTaskController implements IUpdateTaskController {
 
                 } while (optionSubMenu != 7);
                 repeat = IO.readString("Si desea editar otra tarea del proyecto, inserte 'S', de lo contrario, " +
-                        "pulse cualquier tecla").equalsIgnoreCase("S");;
+                        "pulse cualquier tecla").equalsIgnoreCase("S");
+                ;
             }
-        }while(repeat);
+        } while (repeat);
     }
 }

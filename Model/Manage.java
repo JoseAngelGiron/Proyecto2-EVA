@@ -2,7 +2,6 @@ package Model;
 
 import Interface.Model_Interface.IManage;
 import Model.Entity.Proyect;
-import Model.Entity.Task;
 import Model.Entity.User;
 import Model.Repo.RepoProyects;
 import Model.Repo.RepoUser;
@@ -38,9 +37,6 @@ public class Manage implements Serializable, IManage {
     public User getUserLoggedIn() {
         return userLoggedIn;
     }
-
-
-
     private Manage() {
         users = new RepoUser();
         repoProyects = new RepoProyects();
@@ -98,7 +94,6 @@ public class Manage implements Serializable, IManage {
         }
         return register;
     }
-
 
     /**
      * Metodo para comparar el usuario que recibe con los del repositorio usuario y asignarlo
@@ -162,8 +157,9 @@ public class Manage implements Serializable, IManage {
     public String checkEmail(String email) {
         String newEmail = email;
         for (User user: users.getElements()){
-            if(user.getEmail().equalsIgnoreCase(email.toLowerCase())){
+            if (user.getEmail().equalsIgnoreCase(email.toLowerCase())) {
                 newEmail = " "; //PODRIA PONER UN BREAK? ¿ES ABUSAR?
+                break;
             }
         }
 
@@ -179,8 +175,9 @@ public class Manage implements Serializable, IManage {
     public String checkNickname(String nickName) {
         String newNickName = nickName;
         for (User user: users.getElements()){
-            if(user.getName().equalsIgnoreCase(nickName.toLowerCase())){
+            if (user.getName().equalsIgnoreCase(nickName.toLowerCase())) {
                 newNickName = " "; //PODRIA PONER UN BREAK? ¿ES ABUSAR?
+                break;
             }
         }
 
@@ -204,6 +201,8 @@ public class Manage implements Serializable, IManage {
     public boolean saveData(){
         return Serializator.serialize(this, FILENAME);
     }
+
+
 
 
 }
