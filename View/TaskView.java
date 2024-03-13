@@ -62,7 +62,7 @@ public class TaskView implements ITaskView {
     @Override
     public void showCollaboratorUnassigned(User user) {
         if(user!=null){
-            System.out.println("El usuario "+user.getName()+"fue eliminado como colaborador de la tarea");
+            System.out.println("El usuario "+user.getName()+" fue eliminado como colaborador de la tarea");
         }else{
             System.out.println("No se encontro el colaborador.");
         }
@@ -77,7 +77,7 @@ public class TaskView implements ITaskView {
     @Override
     public void showColaboratorAdd(User user) {
         if(user!=null){
-            System.out.println("El usuario "+user.getName()+"fue añadido a la tarea");
+            System.out.println("El usuario "+user.getName()+" fue añadido a la tarea");
         }else{
             System.out.println("No se encontro el colaborador.");
         }

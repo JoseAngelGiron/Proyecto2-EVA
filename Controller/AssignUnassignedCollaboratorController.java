@@ -33,7 +33,7 @@ public class AssignUnassignedCollaboratorController implements IAssignUnassigned
                 break;
             case 2:
                 temporaryCollaborator = manage.getUsers().getByID(IO.readString("Introduzca el nombre del colaborador o su e-mail " +
-                        "que desea eliminar de la tarea: "));
+                        "para eliminarlo de la tarea: "));
                 if (temporaryCollaborator != null) {
                     temporaryCollaborator = task.unassignColaborator(temporaryCollaborator);
                     manage.saveData();

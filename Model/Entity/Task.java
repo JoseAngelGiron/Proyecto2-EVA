@@ -17,6 +17,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     private ArrayList<String> feedback;
 
     public Task() {
+        super();
 
     }
 
@@ -31,7 +32,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     }
 
     public Task(String codigo) {
-        id = codigo;
+        super("",codigo,"");
         state = TaskStatus.NOT_STARTED;
         startDate = LocalDate.now();
         endDate = LocalDate.now();
@@ -56,6 +57,12 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         return this.colaboratorsToCharge;
     }
 
+    /**
+     * Setter modificado para verificar que la fecha de inicio no es posterior a la fecha actual
+     * @param startDate una fecha que establecer como fecha de incio
+     * @return true si se consiguio establecer la fecha correctamente, o false si no fue así
+     * y se establecio la fecha actual como fecha de inicio
+     */
     public boolean setStartDate(LocalDate startDate) {
         boolean assign = false;
         if(startDate.isBefore(LocalDate.now())){
@@ -67,6 +74,12 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         return assign;
     }
 
+    /**
+     * setter modificado para comprobar si la fecha de fin es anterior a la fecha actual y ademas, comprueba si es anterior
+     * a la fecha inicio usando el metodo "checkDates"
+     * @param endDate que será la fecha que se va a asignar
+     * @return la true si se asigno la fecha correctamente, o false si se asigno la fecha actual
+     */
     public boolean setEndDate(LocalDate endDate) {
         boolean assign = false;
         if(endDate.isBefore(LocalDate.now())){
@@ -137,10 +150,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
             }
         }
         return tmpUser;
-
     }
-
-
 
     /**
      * Este metodo cambia el estado de la tarea en función del número que se le pasa. Siendo 1, NOT_STARTED, 2 IN_PROGRESS
