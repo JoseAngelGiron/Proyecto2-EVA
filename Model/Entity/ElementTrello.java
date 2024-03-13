@@ -25,34 +25,35 @@ public abstract class ElementTrello<T> implements IElementTrello<T>, Serializabl
         this.elements = new ArrayList<>();
     }
 
+    @Override
     public String getName() {
         return name;
     }
-
+    @Override
     public void setName(String name) {
         this.name = name;
     }
-
+    @Override
     public String getId() {
         return id;
     }
-
+    @Override
     public void setId(String id) {
         this.id = id;
     }
-
+    @Override
     public String getDescription() {
         return description;
     }
-
+    @Override
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @Override
     public Collection<T> getElements() {
         return elements;
     }
-
+    @Override
     public void setElements(ArrayList<T> elements) {
         this.elements = elements;
     }
@@ -83,18 +84,6 @@ public abstract class ElementTrello<T> implements IElementTrello<T>, Serializabl
         return elements.remove(obj);
     }
 
-    /**
-     * Función encargada de devolver la lista de elementos
-     * @return la lista de elementos
-     */
-    @Override
-    public Collection<T> showAll() {
-        return elements;
-    }
-    @Override
-    public T showElement(int id) {
-        return null;
-    }
     //ESTAS 2 SE PUEDE PASAR PARA ABAJO
     @Override
     public T findElement(String id) {

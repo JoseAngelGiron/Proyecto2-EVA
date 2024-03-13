@@ -71,7 +71,7 @@ public class SessionController implements ISessionController {
         if(confirmation.equalsIgnoreCase("S")){
             manage.getUsers().add(user);
             Utils.printMessage("Se ha generado un fichero con sus credenciales, exceptuando su contraseña. Es" +
-                    "recomendable que la tenga a buen recaudo");
+                    "recomendable que la tenga a buen recaudo, puesto que todavía no tenemos sistema de recuperación");
             Utils.fileRead(user);
         }
 

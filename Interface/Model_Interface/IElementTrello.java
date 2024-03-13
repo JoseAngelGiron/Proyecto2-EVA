@@ -9,9 +9,23 @@ public interface IElementTrello <T>{
 
         public boolean removeElement(T obj);
 
-        public T showElement(int id);
+        public String getName();
 
-        public Collection<T> showAll();
+
+        public void setName(String name);
+
+
+        public String getId();
+
+        public void setId(String id);
+
+        public String getDescription();
+
+        public void setDescription(String description);
+
+        public Collection<T> getElements();
+
+        public void setElements(ArrayList<T> elements);
 
         public T findElement(String id);
         public boolean updateElement(T obj );

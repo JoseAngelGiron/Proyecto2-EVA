@@ -6,6 +6,7 @@ import Model.TaskStatus;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 
 public class Task extends ElementTrello<Task> implements ITask, Serializable {
@@ -30,7 +31,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
     }
 
     public Task(String codigo) {
-        setId(codigo);
+        id = codigo;
         state = TaskStatus.NOT_STARTED;
         startDate = LocalDate.now();
         endDate = LocalDate.now();
@@ -109,7 +110,8 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         boolean added = false;
         User userToReturn = null;
         for(int i=0;i<colaboratorsToCharge.length && !added;i++){
-            if(colaboratorsToCharge[i] ==null){
+            if(colaboratorsToCharge[i].getName().equalsIgnoreCase("SinNick")
+            || colaboratorsToCharge[i].getEmail().equalsIgnoreCase("example@gmail.com")){
                 colaboratorsToCharge[i]=user;
                 added =true;
                 userToReturn = colaboratorsToCharge[i];
@@ -130,7 +132,7 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         for (int i = 0; i < colaboratorsToCharge.length && !isUnassigned; i++) {
             if (colaboratorsToCharge[i].equals(user)){
                 tmpUser = colaboratorsToCharge[i];
-                colaboratorsToCharge[i] = null;
+                colaboratorsToCharge[i] = new User();
                 isUnassigned = true;
             }
         }
