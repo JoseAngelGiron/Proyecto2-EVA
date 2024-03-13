@@ -11,14 +11,17 @@ public class UpdateProjectView implements IProjectView {
      */
     @Override
     public int chooseWhatToChange() {
-        System.out.println("\n ****** - Menu de actualización de proyectos - ******");
-        System.out.println("1.- Cambiar el nombre proyecto-.");
-        System.out.println("2.- Cambiar la descripción del proyecto-.");
-        System.out.println("3.- Añadir una tarea al proyecto-.");
-        System.out.println("4.- Eliminar una tarea del proyecto-.");
-        System.out.println("5.- Modificar tareas-."); //Aqui dentro va el añadir los colaboradores
-        System.out.println("6.- Cambiar creador del proyecto-");
-        System.out.println("7.- Salir");
+        System.out.println(" ******************************************************* ");
+        System.out.println("| ****** - Menu de actualización de proyectos - ******    |");
+        System.out.println(" *******************************************************                                                       ");
+        System.out.println("| 1.- Cambiar el nombre del proyecto                      |");
+        System.out.println("| 2.- Cambiar la descripción del proyecto                 |");
+        System.out.println("| 3.- Añadir una tarea al proyecto                        |");
+        System.out.println("| 4.- Eliminar una tarea del proyecto                     |");
+        System.out.println("| 5.- Modificar tareas                                    |");
+        System.out.println("| 6.- Cambiar creador del proyecto                        |");
+        System.out.println("| 7.- Salir                                               |");
+        System.out.println(" ***************** - ----------------- - ****************** ");;
         return IO.readNumber(" ¿Que desea cambiar?: ",1,7);
     }
 

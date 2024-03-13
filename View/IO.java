@@ -1,4 +1,5 @@
 package View;
+
 import java.util.Scanner;
 public class IO{
     public static Scanner keyboard = new Scanner(System.in);
