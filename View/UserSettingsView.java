@@ -10,11 +10,16 @@ public class UserSettingsView implements IUserSettingsView {
      */
     @Override
     public int changeProfile() {
-        System.out.println("1.- Cambiar de Nombre-");
-        System.out.println("2.- Cambiar de Nickname-");
-        System.out.println("3.- Cambiar de Email");
-        System.out.println("4.- Cambiar de contraseña");
-        System.out.println("5.- Salir de las opciones con el cambio de credenciales: ");
+        System.out.println(" ****************************************************** ");
+        System.out.println("| ************* - Menú para cambiar de perfil - ************* |");
+        System.out.println("|-------------------------------------------------------------|");
+        System.out.println("| 1.- Cambiar de Nombre                                       |");
+        System.out.println("| 2.- Cambiar de Nickname                                     |");
+        System.out.println("| 3.- Cambiar de Email                                        |");
+        System.out.println("| 4.- Cambiar de Contraseña                                   |");
+        System.out.println("| 5.- Salir de las opciones con el cambio de credenciales:    |");
+        System.out.println("|-------------------------------------------------------------|");
+        System.out.println(" ***************** - --------------------- - ***************** ");
         return IO.readNumber("Inserte la opcion que desee",1,5);
     }
 

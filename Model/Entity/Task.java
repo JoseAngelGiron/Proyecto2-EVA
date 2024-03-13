@@ -2,7 +2,6 @@ package Model.Entity;
 
 import Interface.Model_Interface.ITask;
 import Model.TaskStatus;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;

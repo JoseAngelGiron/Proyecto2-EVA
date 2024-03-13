@@ -17,14 +17,17 @@ public class ViewCrud implements IViewCrud {
      */
     @Override
     public int welcomeUser(User user) {
-        System.out.println(" ¡¡ Bienvenido a ProductivityPilot "+ user.getNickName()+ " !! \n" );
-        System.out.println(" Seleccione que desea hacer a continuación: ");
-        System.out.println(" *************** - Navegación - ****************** \n");
-        System.out.println("1- Entrar a proyectos propios");
-        System.out.println("2- Entrar a un proyecto del cual se es colaborador ");
-        System.out.println("3- Opciones de usuario");
-        System.out.println("4- Cerrar sesión.\n");
-        System.out.println("******************- --------------------- - ****************** \n");
+        System.out.println("|¡¡ Bienvenido a ProductivityPilot " + user.getNickName() + " !!");
+        System.out.println("|                                                      |");
+        System.out.println("| Seleccione qué desea hacer a continuación:           |");
+        System.out.println("| *************** - Navegación - ******************    |");
+        System.out.println("|------------------------------------------------------|");
+        System.out.println("| 1- Entrar a proyectos propios                        |");
+        System.out.println("| 2- Entrar a un proyecto del cual se es colaborador   |");
+        System.out.println("| 3- Opciones de usuario                               |");
+        System.out.println("| 4- Cerrar sesión.                                    |");
+        System.out.println("|------------------------------------------------------|");
+        System.out.println(" *************** - --------------------- - ****************** ");
         return IO.readNumber("Inserte la opcion que desea: ", 1, 4);
 
     }
