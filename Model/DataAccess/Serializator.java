@@ -24,7 +24,12 @@ public class Serializator {
 
         return result;
     }
-
+    /**
+     * Metodo que desearializa  cualquier tipo de objeto deserializable
+     * @param filename nombre del archivo que deserializar el objeto
+     * @return true si ha ido correctamente.
+     * @param <T> Tipo de objeto a serializar.
+     */
     public static<T> T desearize (String filename){
         T result = null;
 

@@ -33,6 +33,10 @@ public class UpdateProjectView implements IProjectView {
         return IO.readString("Inserte el apodo de un usuario ya existente: ");
     }
 
+    /**
+     * Función que muestra si una tarea fue eliminada o no, y en el 1º caso, los datos relativos a esta
+     * @param task la tarea que se elimino
+     */
     @Override
     public void showTaskRemoved(Task task) {
         if(task!=null){
@@ -43,6 +47,10 @@ public class UpdateProjectView implements IProjectView {
         }
     }
 
+    /**
+     * Función que muestra los datos relativos a una tarea que se añadio a un proyecto, o si no pudo ser así
+     * @param task los datos relativos a la tarea.
+     */
     @Override
     public void showTaskAdded(Task task) {
         if(task!=null){

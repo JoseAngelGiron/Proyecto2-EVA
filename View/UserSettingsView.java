@@ -18,6 +18,10 @@ public class UserSettingsView implements IUserSettingsView {
         return IO.readNumber("Inserte la opcion que desee",1,5);
     }
 
+    /**
+     * Función encargada de mostrar información relativa al cambio de nickname
+     * @param change que será el dato que determinara que información se muestra
+     */
     @Override
     public void showIfNickWasChange(boolean change) {
         if(change){
@@ -29,6 +33,10 @@ public class UserSettingsView implements IUserSettingsView {
         }
     }
 
+    /**
+     * Función encargada de mostrar la información relativa al cambio de e-mail
+     * @param change que será el dato que determinara que información se muestra
+     */
     @Override
     public void showIfEmailWasChange(boolean change) {
         if(change){

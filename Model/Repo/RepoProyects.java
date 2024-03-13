@@ -131,8 +131,10 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
         for (Proyect proyect : elements) {
             for (Task task : proyect.getElements()) {
                 for (User tmpuser : task.getColaboratorToCharge()) { //CORTAR ESTO PARA QUE NO AÑADA 2 VECES EL MISMO PROYECTO
-                    if (tmpuser.equals(user)) {
-                        proyectsColaborator.add(proyect);
+                    if(tmpuser!=null) {
+                        if (tmpuser.equals(user)) {
+                            proyectsColaborator.add(proyect);
+                        }
                     }
                 }
             }
@@ -150,17 +152,19 @@ public class RepoProyects extends AbstractRepository<Proyect> implements IRepoPr
      */
     @Override
     public Proyect retrieveProyectIfColaborator(User user, String idProyecto) {
-        Proyect proyect = null;
-        for (Proyect proyects : elements) {
-            for (Task tmpUser : proyects.getElements()) {
-                for (int i = 0; i < tmpUser.getColaboratorToCharge().length; i++) {
-                    if (proyects.getId().equals(idProyecto) && tmpUser.getColaboratorToCharge()[i].equals(user)) {
-                        proyect = proyects;
+        Proyect proyectToReturn = null;
+        for (Proyect proyect : elements) {
+            for (Task task : proyect.getElements()) {
+                if(task!=null) {
+                    for (int i = 0; i < task.getColaboratorToCharge().length; i++) {
+                        if (proyect.getId().equals(idProyecto) && task.getColaboratorToCharge()[i].equals(user)) {
+                            proyectToReturn = proyect;
+                        }
                     }
                 }
             }
         }
-        return proyect;
+        return proyectToReturn;
     }
 
     /**

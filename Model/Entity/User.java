@@ -189,7 +189,7 @@ public class User implements IUser, Serializable  {
 
     @Override
     public String toString() {
-        return "name: '" + name + '\'' +
+        return "   name: '" + name + '\'' +
                 ", nickName: '" + nickName + '\'' +
                 ", email: " + email + '\'' +
                 ", password: " + password + '\'';
