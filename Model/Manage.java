@@ -175,7 +175,7 @@ public class Manage implements Serializable, IManage {
     public String checkNickname(String nickName) {
         String newNickName = nickName;
         for (User user: users.getElements()){
-            if (user.getName().equalsIgnoreCase(nickName.toLowerCase())) {
+            if (user.getNickName().equalsIgnoreCase(nickName.toLowerCase())) {
                 newNickName = " ";
                 break;
             }

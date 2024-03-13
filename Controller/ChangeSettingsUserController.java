@@ -26,7 +26,7 @@ public class ChangeSettingsUserController implements IChangeUserController {
             switch (optionToChange) {
 
                 case 1:
-                    Manage.get_Instance().getUserLoggedIn().setName(IO.readString("Inserte su nuevo nombre"));
+                    Manage.get_Instance().getUserLoggedIn().setName(IO.readString("Inserte su nuevo nombre: "));
                     break;
                 case 2:
                     settingsView.showIfNickWasChange(Manage.get_Instance().getUserLoggedIn().setNickName(manage.checkNickname(IO.readString("Inserte el apodo por el que quiere ser identificado: "))));
@@ -35,8 +35,8 @@ public class ChangeSettingsUserController implements IChangeUserController {
                     settingsView.showIfEmailWasChange(Manage.get_Instance().getUserLoggedIn().setEmail(manage.checkEmail(IO.readString("Inserte su nuevo correo electronico: "))));
                     break;
                 case 4:
-                    Manage.get_Instance().getUserLoggedIn().setPassword(IO.readString("Inserte su nueva contraseña"));
-                    break; //MOSTRAR CREDENCIALES PROPIAS, UN NUEVO CASE
+                    Manage.get_Instance().getUserLoggedIn().setPassword(IO.readString("Inserte su nueva contraseña: "));
+                    break;
                 case 5:
                     Utils.printMessage("Volviendo al menú principal...");
                     break;

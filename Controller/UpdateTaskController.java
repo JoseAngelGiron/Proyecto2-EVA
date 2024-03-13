@@ -42,10 +42,10 @@ public class UpdateTaskController implements IUpdateTaskController {
                             taskView.showTask(task);
                             break;
                         case 2:
-                            task.setName(IO.readString("Inserte el nuevo nombre de la tarea"));
+                            task.setName(IO.readString("Inserte el nuevo nombre de la tarea: "));
                             break;
                         case 3:
-                            task.setDescription(IO.readString("Inserte la nueva descripción"));
+                            task.setDescription(IO.readString("Inserte la nueva descripción: "));
                             break;
                         case 4:
                             task.setStartDate(itemView.solicitateDate("Inserte la nueva fecha de comienzo: "));
