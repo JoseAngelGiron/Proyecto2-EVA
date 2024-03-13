@@ -84,7 +84,6 @@ public abstract class ElementTrello<T> implements IElementTrello<T>, Serializabl
         return elements.remove(obj);
     }
 
-    //ESTAS 2 SE PUEDE PASAR PARA ABAJO
     @Override
     public T findElement(String id) {
         return null;

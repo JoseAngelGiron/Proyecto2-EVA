@@ -5,6 +5,8 @@ import View.Utils.Utils;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SelectItemView implements ISelectView {
     /**
@@ -43,27 +45,94 @@ public class SelectItemView implements ISelectView {
         return IO.readNumber("Inserte la opción que desea: ",1,3);
     }
 
+    /**
+     * Función que solicita un nombre y valida dicho nombre haciendo uso de la función "validate name"
+     * @return una cadena de texto validada
+     */
     @Override
     public String solicitateName() {
         String name;
-        name = IO.readString("Inserte el nombre que desea: ");
+        do {
+            name = IO.readString("Inserte el nombre que desea: ");
+            if(!validateName(name)){
+                Utils.printMessage("El nombre debe estar entre 4 y 6 caracteres, incluidos números");
+            }
+        }while(!validateName(name));
+        
         return name;
     }
 
+    /**
+     * Función que valida una cadena de texto que se le pasa
+     * @param name que será la cadena de texto
+     * @return true o false, si se encuentra validada, o no
+     */
+    private boolean validateName(String name) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{4,6}$");
+        return pattern.matcher(name).matches();
+    }
+
+    /**
+     * Función que solicita un código y que devuelve dicho código, validado haciendo uso de la función validar código
+     * @return una cadena de texto validada
+     */
     @Override
     public String solicitateCod() {
         String cod;
-        cod = IO.readString("Inserte un código para identificarlo univocamente: ");
+        do {
+            cod = IO.readString("Inserte el cod que desea: ");
+            if(!validateCod(cod)){
+                Utils.printMessage("El código debe tener 4 numeros, exactamente");
+            }
+        }while(!validateCod(cod));
+
         return cod;
     }
 
+    /**
+     * Función que valida una cadena de texto que se le pasa
+     * @param cod que será la cadena de texto
+     * @return true o false, si se encuentra validada, o no
+     */
+    private boolean validateCod(String cod) {
+
+        Pattern pattern = Pattern.compile("^[0-9]{4}$");
+        return pattern.matcher(cod).matches();
+    }
+
+    /**
+     * Función que solicita una descripción y devuelve dicha descripción validada, haciendo uso de la función
+     * validateDescription
+     * @return una cadena de texto validad
+     */
     @Override
     public String solicitateDescription() {
         String description;
-        description = IO.readString("Inserte una descripción");
+        do {
+            description = IO.readString("Inserte una descripción");
+            if(!validateDescription(description)){
+                Utils.printMessage("El código debe tener hasta 40 caracteres");
+            }
+        }while(!validateDescription(description));
+
         return description;
     }
+    /**
+     * Función que valida una cadena de texto que se le pasa
+     * @param description que será la cadena de texto
+     * @return true o false, si se encuentra validada, o no
+     */
+    private boolean validateDescription(String description) {
 
+        Pattern pattern = Pattern.compile("^.{1,40}$");
+        return pattern.matcher(description).matches();
+    }
+
+    /**
+     * Función que recibe una cadena de texto, y la convierte a fecha, controlando los posibles errores
+     * @param msg que será un mensaje informativo para el usuario, en función de que fecha se le solicite
+     * @return una fecha, que será la que el usuario ha introducido si es valida, o la fecha actual si no es correcta.
+     */
     @Override
     public LocalDate solicitateDate(String msg) {
         LocalDate fecha = null;

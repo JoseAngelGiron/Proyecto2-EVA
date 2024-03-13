@@ -10,7 +10,7 @@ public class UserSettingsView implements IUserSettingsView {
      */
     @Override
     public int changeProfile() {
-        System.out.println(" ****************************************************** ");
+        System.out.println(" ************************************************************* ");
         System.out.println("| ************* - Menú para cambiar de perfil - ************* |");
         System.out.println("|-------------------------------------------------------------|");
         System.out.println("| 1.- Cambiar de Nombre                                       |");
