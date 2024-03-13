@@ -31,7 +31,7 @@ public class UpdateProjectView implements IProjectView {
      */
     @Override
     public String changeCreator() {
-        System.out.println(" ¡AVISO! ¡¡Esta opción es irreversible, y transferira todos los permisos de modificación al nuevo usuario !!. \n ");
+        System.out.println("\n ¡AVISO! ¡¡Esta opción es irreversible, y transferira todos los permisos de modificación al nuevo usuario !!. \n ");
         System.out.println(" Si desea cancelar, no introduzca ningún nombre valido de usuario");
         return IO.readString("Inserte el apodo de un usuario ya existente: ");
     }

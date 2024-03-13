@@ -17,8 +17,8 @@ public class ViewCrud implements IViewCrud {
      */
     @Override
     public int welcomeUser(User user) {
-        System.out.println("|¡¡ Bienvenido a ProductivityPilot " + user.getNickName() + " !!");
-        System.out.println("|                                                      |");
+        System.out.println("\n ¡¡ Bienvenido a ProductivityPilot " + user.getNickName() + " !!\n");
+        System.out.println("________________________________________________________");
         System.out.println("| Seleccione qué desea hacer a continuación:           |");
         System.out.println("| *************** - Navegación - ******************    |");
         System.out.println("|------------------------------------------------------|");
@@ -43,7 +43,7 @@ public class ViewCrud implements IViewCrud {
         msg = IO.readString("Inserte el identificador del proyecto que desea borrar ");
 
         confirmation = IO.readString("¿Esta seguro que desea proceder? si se encuentra el código, " +
-                "se borrara permanentemente el proyecto junto a todos sus datos. \nPulse N/ para cancelar o cualquier otra tecla para proceder." );
+                "se borrara permanentemente el proyecto junto a todos sus datos. \n Pulse N/ para cancelar o cualquier otra tecla para proceder." );
 
         if(confirmation.equalsIgnoreCase("N")){
             msg = " ";

@@ -106,6 +106,7 @@ public class TaskView implements ITaskView {
     @Override
     public String showTasks(Proyect proyect) {
         System.out.println("La lista de tareas de las que es colaborador es: ");
+
         for (Task task: proyect.getElements()){
             System.out.println(task);
         }
@@ -132,7 +133,7 @@ public class TaskView implements ITaskView {
      */
     @Override
     public int selectAssignOrUnassigned() {
-        System.out.println(" ¿Que desea hacer? ");
+        System.out.println("\n ¿Que desea hacer? ");
         System.out.println("1- Añadir colaborador");
         System.out.println("2- Eliminar colaborador ");
         System.out.println("3- Cancelar operación");

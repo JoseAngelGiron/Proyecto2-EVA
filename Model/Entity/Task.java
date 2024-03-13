@@ -178,7 +178,10 @@ public class Task extends ElementTrello<Task> implements ITask, Serializable {
         feedback.add(comentary);
     }
 
-
+    /**
+     * Función encargada a iniciar la lista de colaboradores con usuarios por defecto, de forma que se muestre
+     * sin datos en primer lugar.
+     */
     private void inicializeColaborators() {
         colaboratorsToCharge = new User[3];
         for (int i =0;i<colaboratorsToCharge.length;i++){
