@@ -2,6 +2,8 @@ package Model.Entity;
 
 
 import Interface.Model_Interface.IProyect;
+
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -10,7 +12,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
     private User projectCreator;
 
     public Proyect(){
-        super();
+
 
     }
     public Proyect(String name, String id, String description, User projectCreator) {
@@ -20,8 +22,7 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
 
 
     public Proyect(String id, User user) {
-
-        this.id=id;
+        super("",id,"");
         projectCreator = user;
     }
 
@@ -86,6 +87,5 @@ public class Proyect extends ElementTrello<Task> implements IProyect {
         // por no saber cuanto puede medir
         // elements=" + elements+
     }
-
 
 }

@@ -21,7 +21,7 @@ public class TaskView implements ITaskView {
         System.out.println("3- Cambiar la descripción de la tarea.");
         System.out.println("4- Cambiar las fechas de la tarea.");
         System.out.println("5- Cambiar el estado de la tarea.");
-        System.out.println("6- Asignar un colaborador a la tarea.");
+        System.out.println("6- Modificar colaboradores de tarea.");
         System.out.println("7- Salir.");
         System.out.println("****** - -------------- - ****** \n");
         return IO.readNumber("Inserte la opción deseada: ",1,7);
